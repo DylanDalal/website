@@ -1,0 +1,188 @@
+//Bebas Neue
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+//Bungee Shade
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
+
+//Bungee Outline
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap');
+
+//Rubik Puddles
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Puddles&display=swap');
+
+//Keania One (Robot!)
+@import url('https://fonts.googleapis.com/css2?family=Keania+One&display=swap');
+
+//Fruktur
+@import url('https://fonts.googleapis.com/css2?family=Fruktur&display=swap');
+
+//Fredoka One
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+//Rye
+@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+
+//Six Caps
+@import url('https://fonts.googleapis.com/css?family=Six+Caps');
+
+//Press Start 2p
+@font-face {
+    font-family: 'PressStart2P';
+    src: url(fonts/PressStart2P.ttf);
+}
+
+@font-face {
+    font-family: 'Beon';
+    src: url(fonts/beon-webfont.ttf);
+}
+
+@font-face {
+    font-family: 'Fiery';
+    src: url(fonts/Fiery-Sun-Demo.ttf);
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url(fonts/Futura.ttf);
+}
+
+@font-face {
+    font-family: 'DINCondensed';
+    src: url(fonts/DIN-Condensed-Bold.ttf);
+}
+
+.fade-container {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.fade-inn {
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    background: linear-gradient(180deg, #75ffdd, #80e4f0, #a7fffa, #80e4f0);
+    background-size: 300% 300%;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    animation: gradient 6s ease infinite;
+    align-items: center;
+    justify-content: center;
+}
+
+.page2 {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(0deg, #75ffdd, #80e4f0, #a7fffa, #80e4f0);
+    background-size: 300% 300%;
+    height: 180vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    object-fit: contain;
+    animation: gradient 6s ease infinite;
+}
+
+.page-select {
+    /* Change pointer */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    cursor: pointer;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    alignItems: center;
+    justifyContent: center;
+    font-family: six caps;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: .2em;
+    font-size: 9rem;
+    text-shadow: .04em 0 gray;
+}
+
+.header2 {
+    color: white;
+    font-family: DINCondensed;
+    font-size: 6vw;
+    padding-bottom: 3.5vh;
+    text-transform: uppercase;
+    text-shadow: .25vw .25vw rgba(0, 0, 0, 0.2);
+}
+
+.header3 {
+    color: white;
+    font-family: DINCondensed;
+    font-size: 3vw;
+    padding-bottom: 3.5vh;
+    text-transform: uppercase;
+    text-shadow: .25vw .25vw rgba(0, 0, 0, 0.7);
+}
+
+.grid-container {
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(5, min-content);
+    gap: 2vw;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes wave {
+	0%,
+	100% {
+		clip-path: polygon(
+			0% 45%,
+			16% 44%,
+			33% 50%,
+			54% 60%,
+			70% 61%,
+			84% 59%,
+			100% 52%,
+			100% 100%,
+			0% 100%
+		);
+	}
+
+	50% {
+		clip-path: polygon(
+			0% 60%,
+			15% 65%,
+			34% 66%,
+			51% 62%,
+			67% 50%,
+			84% 45%,
+			100% 46%,
+			100% 100%,
+			0% 100%
+		);
+	}
+}

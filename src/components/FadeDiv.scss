@@ -1,0 +1,66 @@
+@import 'Navbar.scss';
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 3s ease-in-out;
+  fontSize: 3vh;
+  color: white;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.header {
+    padding-top: 1vh;
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+    alignItems: center;
+    justifyContent: center;
+    font-family: DINCondensed;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: .2em;
+    font-size: 9vw;
+    text-shadow: .04em 0 #8b8b8b;
+    -webkit-transform:scale(1,1.2); /* Safari and Chrome */
+    -moz-transform:scale(1,1.2); /* Firefox */
+    -ms-transform:scale(1,1.2); /* IE 9 */
+    -o-transform:scale(1,1.2); /* Opera */
+    transform:scale(1,1.2); /* W3C */
+}
+
+.unused {
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+    alignItems: center;
+    justifyContent: center;
+    font-family: DINCondensed;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: .2vw;
+    font-size: 4vw;
+    text-shadow: .04em 0 #8b8b8b;
+    opacity: 0.3;
+    transition: opacity 1s ease, font-size 1s ease;
+    cursor: pointer;
+    -webkit-transform:scale(1,1.2); /* Safari and Chrome */
+    -moz-transform:scale(1,1.2); /* Firefox */
+    -ms-transform:scale(1,1.2); /* IE 9 */
+    -o-transform:scale(1,1.2); /* Opera */
+    transform:scale(1,1.2); /* W3C */
+}
+
+.unused:hover {
+    opacity: 1;
+    font-size: 4.2vw;
+}
+
+.textStyle {
+    padding: 0;
+    font-family: Futura;
+    fontSize: 3vw;
+    color: #efefef;
+}

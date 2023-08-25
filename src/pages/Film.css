@@ -1,0 +1,128 @@
+.modal {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-content {
+    object-fit: contain;
+    display: flex;
+}
+
+.modal-content iframe {
+    aspect-ratio: 17 / 9;
+    width: 100%;
+}
+
+.desc-content {
+    align-items: center;
+    color: #efefef;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #efefef;
+}
+
+.wrapper {
+    flex-direction: column;
+    position: relative;
+}
+
+.first_film {
+    align-items: center;
+    background: linear-gradient(#040a32, #000630);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    object-fit: contain;
+    position: absolute;
+    padding-top: 12vh;
+}
+
+.second_film {
+    background-color: #fcdf40;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding-top: 12vh;
+}
+
+.video-grid {
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(5, min-content);
+    gap: 2vw;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.column-container {
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 35vw);
+    padding-bottom: 5vh;
+}
+
+.slate_background {
+    align-items: center;
+    aspect-ratio: 16 / 9;
+    background: repeating-linear-gradient(
+        45deg,
+        black,
+        black 2vw,
+        white 2vw,
+        white 4vw
+    );
+    border: .25vw solid black;
+    box-shadow: .6vw .6vw rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    object-fit: contain;
+    outline: .25vw solid white;
+    width: 35vw;
+}
+
+.slate_background2 {
+    aspect-ratio: 17 / 9;
+    background-color: black;
+    border: .25vw solid white;
+    box-shadow: .6vw .6vw rgba(0, 0, 0, 0.4);
+    outline: .25vw solid black;
+    width: 32vw;
+    overflow: hidden;
+}
+
+.thumbnail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.thumbnail-image {
+    box-shadow: .3vw .3vw rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    width: 10vw;
+    transition: transform .5s ease, box-shadow 1s ease;
+}
+
+.thumbnail-image:hover {
+    box-shadow: .4vw .4vw rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.third_film {
+    background-color: #fcdf40;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}

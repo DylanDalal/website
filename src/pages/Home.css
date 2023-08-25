@@ -1,0 +1,56 @@
+.wrapper {
+    flex-direction: column;
+    position: relativs;
+}
+
+.columns-container {
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 30vw);
+    gap: 5vw;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.image-style {
+  width: 36vw;
+  padding-top: 3vh;
+}
+
+.bodyText {
+    font-family: Futura;
+    font-size: 1.6vw;
+    color: #efefef;
+}
+
+.first_home {
+    background: linear-gradient(#040a32, #000630);
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    object-fit: contain;
+    display: flex;
+    position: absolute;
+}
+
+.second_home {
+    background: linear-gradient(#000630, #447bae);
+    height: 70vh;
+    width: 100vw;
+    align-items: center;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+.third_home {
+    background-color: #fcdf40;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
