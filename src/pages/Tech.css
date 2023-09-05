@@ -1,0 +1,59 @@
+.first_tech {
+    align-items: center;
+    background: linear-gradient(#000630, #2a316b);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    object-fit: contain;
+    position: absolute;
+    padding-top: 12vh;
+}
+
+.second_tech {
+    background-color: #fcdf40;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding-top: 12vh;
+}
+
+.third_tech {
+    background-color: gray;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding-top: 12vh;
+}
+
+.fourth_tech {
+    background-color: orange;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding-top: 12vh;
+}
+
+.fifth_tech {
+    background-color: #a8e9bf;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding-top: 12vh;
+}

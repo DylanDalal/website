@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from "./pages/Home";
 import Film from "./pages/Film";
+import Tech from "./pages/Tech";
 
 function App() {
     const [selectedPage, setSelectedPage] = useState('Story');
@@ -15,6 +16,8 @@ function App() {
                 return <Home/>;
             case 'Film':
                 return <Film/>;
+            case 'Tech':
+                return <Tech/>;
             default:
                 return null;
         }
