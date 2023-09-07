@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react';
 import Radium from 'radium';
 import '../App.css';
 import './Film.css';
-import FadeDiv from '../components/FadeDiv';
 import './Home.css';
+import FadeDiv from '../components/FadeDiv';
+import FadeVideo from '../components/FadeVideo';
 import botm from '../resources/film/botm.jpg';
 import botmgif from '../resources/film/botm.gif';
 import md from '../resources/film/MonotonousDejection.jpg';
@@ -64,6 +65,13 @@ const cine_reel = [
         videoId: 'P80XtLAZBOY',
     }
 ]
+
+const director_desc = `My Directing credits have come from directing five short films, all using a Virtual
+Production stage but with varying numbers of crew members, as well as one independent animated feature.`;
+
+const vp_reel_desc = `In addition to my time building their Virtual Production system, writing course material for it,
+and training faculty to use it, I was able to help create nine short films during my time as a Virtual Production
+Researcher for Florida State University. `;
 
 const videos = [
   {
@@ -214,16 +222,29 @@ const VideoThumbnail = ({ video, onClick }) => {
             <div className="first_film" style={{position: "relative", zIndex: 1}}>
                 <FadeDiv text="Reels" className="header2"/>
                 <div className="column-container">
-                    <FadeDiv text="Virtual Production" className="header3"/>
+                    <div>
+                        <FadeDiv text="Director" className="header3"/>
+                        <div style={{width: "33vw"}}>
+                            <FadeDiv text={director_desc} className="textStyle" />
+                        </div>
+                    </div>
                     <VideoModal video={vp_reel} onClose={closeModal}/>
                 </div>
                 <div className="column-container">
-                    <FadeDiv text="Cinematography" className="header3"/>
+                    <div>
+                        <FadeDiv text="Virtual Production Director" className="header3"/>
+                        <div style={{width: "33vw"}}>
+                            <FadeDiv text={vp_reel_desc} className="textStyle" />
+                        </div>
+                    </div>
                     <VideoModal video={cine_reel} onClose={closeModal}/>
                 </div>
             </div>
             <div className="second_film" style={{position: "relative", zIndex: 1}}>
-                <div className="header2"> Portfolio </div>
+                <FadeDiv text="Editing Portfolio" className="header2"/>
+            </div>
+            <div className="third_film" style={{position: "relative", zIndex: 1}}>
+                <div className="header2">Complete Portfolio</div>
                 <div className="column-container" style={{gap: "5vw"}}>
                     <div className="slate_background">
                         <div className="slate_background2">
