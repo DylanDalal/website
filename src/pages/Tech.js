@@ -6,6 +6,12 @@ import './Tech.css'
 import FadeDiv from '../components/FadeDiv';
 import './Home.css';
 
+const reims = `I was initially brought on to the College of Motion Picture Arts to lead the software development of an
+               VR tour of France’s Notre Dame de Reims Cathedral. We partnered with the University of Alabama to take a
+               Matterport 3D scan of the cathedral, which my teammate then cleaned up in Blender while I wrote the
+               tour's gameplay features. \n\n The project generated tens of thousands of dollars for the FSU CMPA in
+               grant funding for preserving history through technology.`;
+
 function Film() {
     return (
         <>
@@ -29,12 +35,12 @@ function Film() {
                 <div className="column-container">
                     <div>
                         <FadeDiv text="Experience Gothic, Anywhere" className="header4"/>
-                        <FadeDiv text="Cinematography" className="textStyle"/>
+                        <FadeDiv text={reims} className="textStyle"/>
                     </div>
                 </div>
             </div>
             <div className="fifth_tech" style={{position: "relative", zIndex: 1}}>
-                <FadeDiv text="Clip Money, Inc." className="header2"/>
+                <FadeDiv text="Premise Entertainment" className="header2"/>
                 <div className="column-container">
                     <div>
                         <FadeDiv text="Software Engineer Intern" className="header4"/>
