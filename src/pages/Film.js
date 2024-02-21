@@ -133,6 +133,21 @@ const videos = [
     thumbnailUrl: fmf,
     thumbnailUrlGif: fmfgif,
   },
+  {
+    videoId: 'temp',
+    title: "No McDonald's on the Moon",
+    role: "Cinematographer | Editor | StageCraft Technician",
+    description: `No McDonald's on the Moon was made as a test and display of the wide range of colors the FSU Virtual
+    Production system could showcase. I added a few more shots to the beginning and end of the test to make it into a
+    short film.`
+    thumbnailUrl: temp2,
+    thumbnailUrlGif: temp3,
+  },
+  {
+    videoId: 'temp',
+    title: "Ebenezer Has Something To Show You",
+    role: "Writer | Editor | StageCraft Technician"
+  }
 ];
 
 
