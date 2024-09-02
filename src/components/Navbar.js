@@ -30,13 +30,14 @@ function Navbar({ onSelectPage }) {
     }, [texts[2]]);
 
     const myStoryString = `Welcome! My name is Dylan Dalal, a recently graduated software engineer and amateur filmmaker.
-    You can navigate to my blog and portfolios by clicking the words above or scroll dow to read my story.`
+    You can navigate to my blog and portfolios by clicking the words above or scroll down to read my story.`
 
-    const myFilms = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus auctor turpis at ultricies.
-    Curabitur scelerisque urna quam, eget iaculis turpis facilisis quis. Suspendisse dapibus scelerisque.`
+    const myFilms = `I had always loved movies as a child, but I didn't start making films until my dad got an iPhone
+    when I was six. Scroll down to view my reels and complete portfolio.`
 
-    const myTech = `My fascination with technology started with a LEGO Mindstorms NXT when I was six years old. I
-    shifted to building real computers and playing with software not long after. Scroll down for more.`
+    const myTech = `My fascination with technology started with a LEGO Mindstorms set when I was seven years old. I
+    shifted to building real computers and playing with software about four years after. Scroll down for my projects
+    or click here for my resume.`
 
     const myBlog = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut egestas nisi ac mi feugiat aliquet.
     Quisque euismod lectus at aliquet cursus. Aliquam lobortis metus in tortor faucibus.`
