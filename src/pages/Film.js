@@ -135,16 +135,6 @@ const videos = [
   },
   {
     videoId: 'temp',
-    title: "No McDonald's on the Moon",
-    role: "Cinematographer | Editor | StageCraft Technician",
-    description: `No McDonald's on the Moon was made as a test and display of the wide range of colors the FSU Virtual
-    Production system could showcase. I added a few more shots to the beginning and end of the test to make it into a
-    short film.`
-    thumbnailUrl: temp2,
-    thumbnailUrlGif: temp3,
-  },
-  {
-    videoId: 'temp',
     title: "Ebenezer Has Something To Show You",
     role: "Writer | Editor | StageCraft Technician"
   }
@@ -254,9 +244,6 @@ const VideoThumbnail = ({ video, onClick }) => {
                     </div>
                     <VideoModal video={cine_reel} onClose={closeModal}/>
                 </div>
-            </div>
-            <div className="second_film" style={{position: "relative", zIndex: 1}}>
-                <FadeDiv text="Editing Portfolio" className="header2"/>
             </div>
             <div className="third_film" style={{position: "relative", zIndex: 1}}>
                 <div className="header2">Complete Portfolio</div>
