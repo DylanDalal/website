@@ -211,7 +211,7 @@ const VideoThumbnail = ({ video, onClick }) => {
 
   // Only display the GIF if it's preloaded, otherwise display the JPEG
   const imageUrl =
-    currentThumbnailState === 'gif' && gifsPreloaded
+    currentThumbnailState === 'gif'
       ? video.thumbnailUrlGif
       : video.thumbnailUrl;
 
