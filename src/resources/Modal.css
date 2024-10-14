@@ -8,21 +8,53 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3; /* Ensure it's on top of everything */
+  z-index: 3;
 }
 
 /* Modal content box */
 .modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 80%;
+  background-color: #efefef;
+  padding: 0; /* Padding inside the modal moved to header/body */
+  border-radius: 12px;
+  width: 70%;
   max-height: 80%;
-  overflow-y: auto; /* Scrollable if content overflows */
+  display: flex;
+  flex-direction: column;
   position: relative;
+  overflow: hidden; /* Prevent body from scrolling outside the modal */
+  border: 20px solid #ccc; /* Add a border around the entire modal */
 }
 
-/* Close button in the top right corner */
+/* Fixed Header */
+.modal-header {
+  padding: 20px 0 5px 0;
+  background-color: white;
+  font-size: 20px;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Scrollable Body */
+.modal-body {
+  padding: 2vh 10vw 0 10vw;
+  overflow-y: auto;
+  flex-grow: 1;
+  max-height: calc(70vh - 60px); /* Adjusts for the header height */
+}
+
+/* Inner content with border */
+.modal-inner {
+  background-color: #efefef;
+  padding: 0;
+  border-radius: 8px;
+  border: 3px solid white;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
 .close-button {
   position: absolute;
   top: 10px;
@@ -30,4 +62,65 @@
   font-size: 24px;
   cursor: pointer;
   color: black;
+}
+
+.modal-subheader {
+    font-family: DINCondensed;
+    font-size: 3vw;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-top: 0.5vh;
+    padding-bottom: 0vh;
+    text-transform: uppercase;
+    text-shadow: .15vw .05vw rgba(0, 0, 0, 0.2);
+    line-height: 1;
+}
+
+.modal-header-text {
+    font-family: DINCondensed;
+    font-size: 5vw;
+    text-transform: uppercase;
+    text-shadow: .15vw .05vw rgba(0, 0, 0, 0.2);
+    padding-bottom: 0;
+    line-height: 1;
+}
+
+.responsive-header {
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: clamp(1rem, 3vw, 3rem);
+  width: 100%;
+}
+
+.container {
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 3vw;
+  max-width: 100%;
+}
+
+.container span {
+  display: inline-block;
+  width: 100%;
+  font-size: clamp(1rem, 3vw, 3rem);
+}
+
+.subheader {
+  font-family: DINCondensed;
+  color: #d0d0d0;
+  font-size: 2vw;
+  text-transform: uppercase;
+  text-shadow: .02vw .01vw rgba(0, 0, 0, 0.2);
+  line-height: 1;
+}
+
+.img-class {
+  width: 28vw;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  align-self: end;
+  display: flex;
+  margin: -11vh 0 0 0;
+  z-index: 2;
 }
