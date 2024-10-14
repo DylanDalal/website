@@ -1,15 +1,15 @@
-.modal {
+.video-modal {
     align-items: center;
     display: flex;
     justify-content: center;
 }
 
-.modal-content {
+.video-modal-content {
     object-fit: contain;
     display: flex;
 }
 
-.modal-content iframe {
+.video-modal-content iframe {
     aspect-ratio: 17 / 9;
     width: 100%;
 }

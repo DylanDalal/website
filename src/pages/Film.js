@@ -43,7 +43,7 @@ const VideoDesc = ({ video, onClose }) => {
 
 const VideoModal = ({ video, onClose }) => {
   return (
-      <div className="modal-content">
+      <div className="video-modal-content">
         <iframe
           src={`https://www.youtube.com/embed/${video.videoId}`}
           title={video.title}
@@ -132,11 +132,6 @@ const videos = [
     Production volume.`,
     thumbnailUrl: fmf,
     thumbnailUrlGif: fmfgif,
-  },
-  {
-    videoId: 'temp',
-    title: "Ebenezer Has Something To Show You",
-    role: "Writer | Editor | StageCraft Technician"
   }
 ];
 
