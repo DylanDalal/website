@@ -90,14 +90,17 @@
    align-items: left;
    flex-wrap: nowrap;
    padding-bottom: 0;
+   white-space:nowrap;
 }
 
 .tech-logo {
    max-height: 30px;
    margin-right: 10px;
-   flex-grow: 1;
+   flex-grow: 0;
    flex-shrink: 1;
-   min-height: 10px;
+   flex-basis: auto;
+   width: auto;
+   max-width: 10vw;
 }
 
 .carousel {
