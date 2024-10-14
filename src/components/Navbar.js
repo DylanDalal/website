@@ -11,8 +11,6 @@ import FadeDiv from './FadeDiv';
 import pluralize from 'pluralize';
 
 
-
-
 function Navbar({ onSelectPage }) {
     const [texts, setTexts] = useState(['Blog', 'Film', 'Story', 'Tech', 'Art']);
     const [fade, setFade] = useState(false);
