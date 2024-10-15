@@ -34,7 +34,7 @@
 }
 
 .second_home {
-    background: linear-gradient(#000630, #447bae);
+    background: #000630;
     height: 70vh;
     width: 100vw;
     align-items: center;
@@ -45,12 +45,44 @@
 }
 
 .third_home {
-    background-color: #fcdf40;
-    height: 100vh;
+    background-color: #000630;
+    height: 60vh;
     width: 100%;
     align-items: center;
+    justify-content: center;
+    object-fit: contain;
+    display: flex;
+}
+
+.fourth_home {
+    background-color: #000630;
+    height: 70vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
     object-fit: contain;
     display: flex;
     flex-direction: column;
     position: absolute;
+}
+
+.fifth_home {
+    background-color: black;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+.sixth_home {
+    background-color: #000630;
+    height: 130vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
 }
