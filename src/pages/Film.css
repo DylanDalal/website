@@ -30,10 +30,10 @@
 
 .first_film {
     align-items: center;
-    background: linear-gradient(#040a32, #000630);
+    background: #000630;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 55vh;
     width: 100%;
     object-fit: contain;
     position: absolute;
@@ -79,6 +79,120 @@
     grid-template-columns: repeat(2, 35vw);
     padding-bottom: 5vh;
 }
+
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: middle;
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0 auto;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px 0px 10px 0px;
+    scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-item, .carousel-item2 {
+    flex: none;
+    height: 100%;
+    position: relative;
+    transition: transform 0.3s ease;
+    scroll-snap-align: start;
+}
+
+.carousel-item {
+    position: relative;
+    border-radius: 15px;
+    width: 280px;
+    margin: 0 10px;
+}
+
+.carousel-item2 {
+    width: 160px;
+    margin: 0 .1vw;
+}
+
+.carousel-item img {
+    border-radius: 15px;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.carousel-item:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.carousel-item2 {
+    flex: none;
+    scroll-snap-align: start;
+    overflow: hidden;
+}
+
+.carousel-item2 img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.carousel-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-item:hover::before {
+    opacity: 0.5;
+}
+
+.carousel-text {
+    font-family: Futura;
+    fontSize: 3vw;
+    color: #efefef;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 1rem;
+    padding: 5px;
+    border-radius: 5px;
+    text-shadow: .1vw .1vw rgba(0, 0, 0, 0.5);
+}
+
+.carousel-plus {
+    position: absolute;
+    bottom: 13px;
+    right: 13px;
+    height: 35px !important;
+    width: 35px !important;
+    z-index: 2;
+}
+
+.carousel {
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-item {
+  cursor: pointer;
+}
+
 
 .slate_background {
     align-items: center;

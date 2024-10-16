@@ -48,6 +48,14 @@ import {
   ContentReviewComponent
 } from '../resources/computer-science/ModalContent';
 
+const vanai1 = `Vanity AI is a production-ready solution that I worked on at MARZ VFX that delivers large volumes of high-end
+                2D aging, de-aging, cosmetic, wig, and prosthetic fixes at up to 300x normal production speeds. As a
+                Machine Learning Pipeline Intern, I learned a great deal about `;
+
+const vanai2 = ``;
+
+const vanai3 = ``;
+
 const reims = `My first project at the College of Motion Picture Arts was leading the software development of a VR
                tour of France’s Notre Dame de Reims Cathedral. We partnered with the University of Alabama, who took
                a Matterport 3D scan of the cathedral, which my teammate then cleaned up in Blender while I wrote the
@@ -188,8 +196,8 @@ function Film() {
         <div style={{  alignItems: 'center'  }}>
             <div className="column-container">
               <div style={{ margin: '0 0 0 4.5vw' }}>
-                <div className="body_no_padding" style={{ color: 'black' }}>{reims}</div>
-                <div className="body_no_padding" style={{ color: 'black' }}>{reims}</div>
+                <div className="body_no_padding" style={{ color: 'black' }}>{vanai1}</div>
+                <div className="body_no_padding" style={{ color: 'black' }}>{vanai2}</div>
                 <div style={{ textAlign: 'center' }}>
                   <VisitWebsiteButton url="https://monstersaliensrobotszombies.com/vanityai" />
                 </div>
@@ -257,7 +265,7 @@ function Film() {
                   </div>
                 </div>
                 <div className="header_pipeline" style={{ paddingBottom: '10px', fontSize: "3.5vw" }}>
-                    THE FIRST ACADEMIC LED STAGE
+                    THE FIRST ACADEMIC VP STAGE
                 </div>
                 <div className="body_no_padding" style={{ color: 'black' }}>{reims}</div>
                 <div className="body_no_padding" style={{ color: 'black' }}>{reims}</div>

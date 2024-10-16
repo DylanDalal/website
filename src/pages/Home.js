@@ -6,14 +6,13 @@ import FadeDiv from '../components/FadeDiv';
 import westchester from '../resources/story/westchester.png';
 import florida from '../resources/story/florida.png';
 
-const p1 = `I was born in West Chester, a Philadelphia suburb, in March
-    of 2001. It never snowed while I lived there. But this is what it looked like in my mind.`
+const p1 = `I was born in West Chester, a Philadelphia suburb, in March of 2001.`
 
-const p2 = `We moved to South Florida not long after, to the house that my mom, dad,
-and brother have lived in ever since.`
+const pp = `It never snowed while I lived there. But this is what it looked like in my mind.`
 
-const p3 = `My passion for filmmaking and technology began when I was seven as a result
-of my childhood obsession with LEGOs.`
+const p2 = `We moved to South Florida not long after, to the house that my mom, dad, and brother have lived in ever since.`
+
+const p3 = `My passion for filmmaking and technology began when I was seven as a result of my childhood obsession with LEGOs.`
 
 const p4 = `I used the original iPhone to create LEGO stop-motion animations using an onion-skinning app...`
 

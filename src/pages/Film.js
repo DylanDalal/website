@@ -69,15 +69,18 @@ const cine_reel = [
 const director_desc = `My Directing credits have come from directing five short films, all using a Virtual
 Production stage but with varying numbers of crew members, as well as one independent animated feature.`;
 
-const vp_reel_desc = `In addition to my time building their Virtual Production system, writing course material for it,
-and training faculty to use it, I was able to help create nine short films during my time as a Virtual Production
-Researcher for Florida State University. `;
+const vp_reel_desc = `As the Senior Virtual Production Researcher at Florida State University, I led a team to build
+the university's virtual production program- using the first VP stage purchased by a public university- including writing
+course material and training faculty. We tested technology from Disguise, RedSpy, Stype, and more to find what best
+suited our needs.`
+
+const vp_reel_desc2 = `Reel coming soon. View the results of our work below.`;
 
 const videos = [
   {
     videoId: 'dCT-SM94qFo',
     title: 'Boss of the Month',
-    role: "Director | Writer | Editor | StageCraft Technician",
+    role: "Director | Writer | Editor | VP Technician",
     description: `Boss of the Month is a comedic short film about a bakery employee that has to deal with a strange-
     yet familiar- customer. It was shot on a Virtual Production volume, and though it has some glaring audio issues,
     it's my personal favorite short film I've made.`,
@@ -87,7 +90,7 @@ const videos = [
   {
     videoId: 'x6IZ6bCGbMg',
     title: 'Monotonous Dejection',
-    role: "Director | Writer | Editor | StageCraft Technician",
+    role: "Director | Writer | Editor | VP Technician",
     description: `Monotonous Dejection is a dramatic short film about a quotidian Uber ride's progression into a
     midnight therapy session. A script that I'd developed years ago, we cut it down to a more suitable length and shot
     it as a screen test for our Jeep prop.`,
@@ -97,16 +100,16 @@ const videos = [
   {
     videoId: 'klEVBSD7k84',
     title: 'The River',
-    role: "Director | Writer | Editor | StageCraft Technician",
+    role: "Director | Writer | Editor | VP Technician",
     description: `The River is a comedic Western short film about the last play in a Poker standoff. It was my first
-    short film and the first narrative test of FSU's StageCraft Virtual Production volume.`,
+    short film and the first narrative test of FSU's Virtual Production volume.`,
     thumbnailUrl: river,
     thumbnailUrlGif: rivergif,
   },
   {
     videoId: '1OaWBCMEDjE',
     title: 'Last Ride',
-    role: "Editor | StageCraft Technician",
+    role: "Editor | VP Technician",
     description: `Last Ride is a comedic skit about an Uber driver's unfortunate ending. It is actually a number of test
     shots that I made into a narrative in the editing room- we didn't bother recording audio for our tests, so, I had
     to get creative.`,
@@ -116,7 +119,7 @@ const videos = [
   {
     videoId: '9iRiZMCntXY',
     title: 'Control',
-    role: "StageCraft Technician",
+    role: "VP Technician",
     description: `Control is an FSU student's thesis film, a music video about a universe-jumping assassin's
     confrontation with her latest target. I was the lead technician for the Virtual Production volume that the
     live-action portions of the film were shot using.`,
@@ -126,9 +129,9 @@ const videos = [
   {
     videoId: 'QFIvwBPdVFc',
     title: 'Find My Friends',
-    role: "Editor | StageCraft Technician",
+    role: "Editor | VP Technician",
     description: `Find My Friends is a comedic horror-inspired short film about a pair of campers' visit to a new
-    campsite. I acted as the editor and lead StageCraft Technician on the project, which was shot on a Virtual
+    campsite. I acted as the editor and lead VP Technician on the project, which was shot on a Virtual
     Production volume.`,
     thumbnailUrl: fmf,
     thumbnailUrlGif: fmfgif,
@@ -220,21 +223,13 @@ const VideoThumbnail = ({ video, onClick }) => {
     return (
         <>
             <div className="first_film" style={{position: "relative", zIndex: 1}}>
-                <FadeDiv text="Reels" className="header2"/>
+                <FadeDiv text="Virtual Production Reel" className="header2"/>
                 <div className="column-container">
                     <div>
-                        <FadeDiv text="Director" className="header3"/>
+                        <FadeDiv text="THE FIRST ACADEMIC VP STAGE" className="header3"/>
                         <div style={{width: "33vw"}}>
-                            <FadeDiv text={director_desc} className="textStyle" />
-                        </div>
-                    </div>
-                    <VideoModal video={vp_reel} onClose={closeModal}/>
-                </div>
-                <div className="column-container">
-                    <div>
-                        <FadeDiv text="Virtual Production Director" className="header3"/>
-                        <div style={{width: "33vw"}}>
-                            <FadeDiv text={vp_reel_desc} className="textStyle" />
+                            <p className="textStyle" style={{padding: "0"}}>{vp_reel_desc}</p>
+                            <p className="textStyle" style={{padding: "0"}}>{vp_reel_desc2}</p>
                         </div>
                     </div>
                     <VideoModal video={cine_reel} onClose={closeModal}/>
