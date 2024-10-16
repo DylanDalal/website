@@ -48,23 +48,35 @@ import {
   ContentReviewComponent
 } from '../resources/computer-science/ModalContent';
 
-const vanai1 = `Vanity AI is a production-ready solution that I worked on at MARZ VFX that delivers large volumes of high-end
-                2D aging, de-aging, cosmetic, wig, and prosthetic fixes at up to 300x normal production speeds. As a
-                Machine Learning Pipeline Intern, I learned a great deal about `;
+const vana1 = `At MARZ VFX, I contributed to the development of Vanity AI, a production-ready solution designed to
+               handle high volumes of advanced 2D visual effects. The tool specializes in cosmetic enhancements,
+               delivering results up to 300x faster than traditional production methods.`;
 
-const vanai2 = ``;
+const vana2 = `As a Machine Learning Pipeline Intern, I learned the fundamentals of building and distributing AI
+               technology, and how to fit that new technology into an existing company pipeline.`;
 
-const vanai3 = ``;
+const reims = `Before we started the Virtual Production volume, I lead the software development of a VR tour of France’s
+               Notre Dame de Reims Cathedral. FSU partnered with the University of Alabama, who took a 3D scan of the
+               cathedral using Matterport, which we had to clean and optimize before implementing gameplay features.`;
+const reim2 = `The tour generated tens of thousands of dollars in funding for the College of Motion Picture Arts
+               for preserving history through technology. It was my introduction to the Software Development Life Cycle
+               and my first major project.`;
 
-const reims = `My first project at the College of Motion Picture Arts was leading the software development of a VR
-               tour of France’s Notre Dame de Reims Cathedral. We partnered with the University of Alabama, who took
-               a Matterport 3D scan of the cathedral, which my teammate then cleaned up in Blender while I wrote the
-               tour's gameplay features.`;
-const reim2 = `The tour generated tens of thousands of dollars in granting for the College of Motion Picture Arts
-               for preserving history through technology.`;
-const reim3 = `It acted as a proof of concept for the College's newest initiative, the Torchlight Center, the campus's
-               hub to merge storytelling and technology.`;
+const virt1 = `In January 2021, the Florida State University College of Motion Picture Arts launched the Torchlight
+               Center, the campus's hub for teaching film technology. I was their first hire and eventually ascended to
+               the role of Senior Virtual Production Researcher with the responsibility of assembling the first Virtual
+               Production volume ever purchased by a public university.`
+
+const virt2 = `I researched technologies from many companies and experimented with a few before we settled on a
+               Disguise-powered system with RedSpy Stype for tracking. On top of wiring and routing data through the
+               volume, I personally wrote all of the documentation that was used for class material, and trained faculty
+               and staff on how to use the equipment.`
+
+const virt3 = `It was my introduction to leading a team in a professional setting, to being a part of the planning,
+               testing, and execution of a major project, and to the intricacies of working in a large organization.`;
+
 const space = `\n`;
+
 const piped = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lobortis  elementum dapibus. Morbi
                accumsan iaculis metus. Nulla nec erat magna.`;
 
@@ -146,7 +158,7 @@ function Film() {
             Pipeline Development
           </div>
           <div className="body_no_padding" style={{ color: 'white', margin: '0 3vw 0 3vw' }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lobortis elementum dapibus. Morbi accumsan iaculis metus. Nulla nec erat magna.
+            Optimizing workflows has become a stramgely
           </div>
         </div>
         {/* Carousel */}
@@ -196,8 +208,8 @@ function Film() {
         <div style={{  alignItems: 'center'  }}>
             <div className="column-container">
               <div style={{ margin: '0 0 0 4.5vw' }}>
-                <div className="body_no_padding" style={{ color: 'black' }}>{vanai1}</div>
-                <div className="body_no_padding" style={{ color: 'black' }}>{vanai2}</div>
+                <div className="body_no_padding" style={{ color: 'black' }}>{vana1}</div>
+                <div className="body_no_padding" style={{ color: 'black' }}>{vana2}</div>
                 <div style={{ textAlign: 'center' }}>
                   <VisitWebsiteButton url="https://monstersaliensrobotszombies.com/vanityai" />
                 </div>
@@ -267,11 +279,9 @@ function Film() {
                 <div className="header_pipeline" style={{ paddingBottom: '10px', fontSize: "3.5vw" }}>
                     THE FIRST ACADEMIC VP STAGE
                 </div>
-                <div className="body_no_padding" style={{ color: 'black' }}>{reims}</div>
-                <div className="body_no_padding" style={{ color: 'black' }}>{reims}</div>
-                <div style={{ textAlign: 'center' }}>
-                  <VisitWebsiteButton url="https://monstersaliensrobotszombies.com/vanityai" />
-                </div>
+                <div className="body_no_padding" style={{ color: 'black' }}>{virt1}</div>
+                <div className="body_no_padding" style={{ color: 'black' }}>{virt2}</div>
+                <div className="body_no_padding" style={{ color: 'black' }}>{virt3}</div>
             </div>
         </div>
       </div>
@@ -288,9 +298,9 @@ function Film() {
                     PRESERVING HISTORY WITH VR
                 </div>
                 <div className="body_no_padding" style={{ color: 'black' }}>{reims}</div>
-                <div className="body_no_padding" style={{ color: 'black' }}>{reims}</div>
+                <div className="body_no_padding" style={{ color: 'black' }}>{reim2}</div>
                 <div style={{ textAlign: 'center' }}>
-                    <VisitWebsiteButton url="https://monstersaliensrobotszombies.com/vanityai" />
+                    <VisitWebsiteButton url="https://www.jenniferfeltman.com/vrcathedral" />
                 </div>
             </div>
             <div class="image-container">

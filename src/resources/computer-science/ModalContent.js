@@ -266,14 +266,14 @@ export const AnimationComponent = () => {
 export const VisualEffectsComponent = () => (
   <div>
     <h3>Visual Effects</h3>
-    <p>This is the Visual Effects content. Share insights about VFX processes, tools, or projects here.</p>
+    <p>Sorry- I'm working on this right now!</p>
   </div>
 );
 
 export const AssetOptimizationComponent = () => (
   <div>
     <h3>Asset Optimization</h3>
-    <p>This is the Asset Optimization content. Information about optimizing assets for projects can go here.</p>
+    <p>Sorry- I'm working on this right now!</p>
   </div>
 );
 
