@@ -91,7 +91,7 @@ function Home() {
                     <FadeDiv/>
                 </div>
             </div>
-            <div className="fourth_home" style={{position: "relative", zIndex: 1, height: "120vh"}}>
+            <div className="sixth_home" style={{position: "relative", zIndex: 1, height: "140vh"}}>
                 <p className="bodyText" style={{padding: "10vw"}}>{p9}</p>
                 <p className="bodyText" style={{padding: "0 10vw 3vh 10vw"}}>{p10}</p>
                 <p className="bodyText" style={{padding: "0 10vw 3vh 10vw"}}>{p11}</p>
