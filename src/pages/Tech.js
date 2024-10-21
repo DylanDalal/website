@@ -75,6 +75,8 @@ const virt2 = `I researched technologies from many companies and experimented wi
 const virt3 = `It was my introduction to leading a team in a professional setting, to being a part of the planning,
                testing, and execution of a major project, and to the intricacies of working in a large organization.`;
 
+const data1 = `My research at the FSU Department of Psychology centered around removing participant biases from our
+               experiment by `
 const space = `\n`;
 
 const piped = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lobortis  elementum dapibus. Morbi
@@ -158,7 +160,8 @@ function Film() {
             Pipeline Development
           </div>
           <div className="body_no_padding" style={{ color: 'white', margin: '0 3vw 0 3vw' }}>
-            Optimizing workflows has become a stramgely
+            Optimizing workflows has been the undercurrent on many of my projects, and I've been directly employed
+            as a Pipeline Developer at two companies. Choose a topic below for more information.
           </div>
         </div>
         {/* Carousel */}
