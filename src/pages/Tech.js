@@ -68,7 +68,7 @@ const virt1 = `In January 2021, the Florida State University College of Motion P
                Production volume ever purchased by a public university.`
 
 const virt2 = `I researched technologies from many companies and experimented with a multitude before we settled on a
-               Disguise-powered system with RedSpy Stype for tracking. On top of wiring and routing data through the
+               Disguise-powered system with RedSpy Stype tracking. On top of wiring and routing data through the
                volume, I personally contributed to documentation that's been used for class material and trained faculty
                and staff on how to use the equipment.`
 

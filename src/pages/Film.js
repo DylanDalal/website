@@ -66,13 +66,11 @@ const cine_reel = [
     }
 ]
 
-const director_desc = `My Directing credits have come from directing five short films, all using a Virtual
-Production stage but with varying numbers of crew members, as well as one independent animated feature.`;
-
-const vp_reel_desc = `As the Senior Virtual Production Researcher at Florida State University, I led a team to build
-the university's virtual production program- using the first VP stage purchased by a public university- including writing
-course material and training faculty. We tested technology from Disguise, RedSpy, Stype, and more to find what best
-suited our needs.`
+const vp_reel_desc  = `As a Senior Virtual Production Researcher at Florida State University, I researched technologies
+                       from many companies and experimented with a multitude before settling on a Disguise-powered
+                       system with RedSpy Stype tracking. On top of wiring and routing data through the volume, I
+                       personally contributed to documentation that's been used for class material and trained faculty
+                       and staff on how to use the equipment.`
 
 const vp_reel_desc2 = `Reel coming soon. View the results of our work below.`;
 
@@ -226,10 +224,10 @@ const VideoThumbnail = ({ video, onClick }) => {
                 <FadeDiv text="Virtual Production Reel" className="header2"/>
                 <div className="column-container">
                     <div>
-                        <FadeDiv text="THE FIRST ACADEMIC VP STAGE" className="header3"/>
-                        <div style={{width: "33vw"}}>
-                            <p className="textStyle" style={{padding: "0"}}>{vp_reel_desc}</p>
-                            <p className="textStyle" style={{padding: "0"}}>{vp_reel_desc2}</p>
+                        <h3 className="header5">THE FIRST ACADEMIC VP STAGE</h3>
+                        <div style={{width: "33vw", transform: "translate(0, -3.5vh)"}}>
+                            <p className="textStyle">{vp_reel_desc}</p>
+                            <p className="textStyle">{vp_reel_desc2}</p>
                         </div>
                     </div>
                     <VideoModal video={cine_reel} onClose={closeModal}/>
