@@ -267,13 +267,22 @@ export const VisualEffectsComponent = () => (
   <div>
     <h3>Visual Effects</h3>
     <p>Sorry- I'm working on this right now!</p>
+    <p>I was involved in a complete recreation of the visual effects pipeline at Monsters / Aliens / Robots / Zombies VFX.
+    I led development on automatically ingesting the edit reference, which is a version of the film or sequence provided
+    by the editorial team reflecting the current state of the cut. I automated the process to generate bids for projects
+    that were sent to massive production companies such as Disney and the process for ingesting main plate color files.
+    Finally, I spent much of my time working on tools artists needed in Nuke and Houdini.
+    </p>
   </div>
 );
 
 export const AssetOptimizationComponent = () => (
   <div>
     <h3>Asset Optimization</h3>
-    <p>Sorry- I'm working on this right now!</p>
+    <p>Sorry- I'm working on this page right now!</p>
+    <p>I built a custom Blender-to-Unreal Engine pipelines to optimize assets for their use in the Virtual Reality
+    game I built for the Florida State University College of Motion Picture Arts. This dramatically reduced polygons
+    in the assets which were acquired through photogrammetry.</p>
   </div>
 );
 
