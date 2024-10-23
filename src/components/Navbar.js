@@ -34,8 +34,8 @@ function Navbar({ onSelectPage }) {
     when I was six. Scroll down to view my reels and complete portfolio.`
 
     const myTech = `My fascination with technology started with a LEGO Mindstorms set when I was seven years old. I
-    shifted to building real computers and playing with software about four years after. Scroll down for my projects
-    or click here for my resume.`
+    shifted to building real computers and playing with software about four years after. Scroll down to view of the
+    projects I've worked on.'`
 
     const myBlog = `Blog coming soon, sorry for the mess!`
 
