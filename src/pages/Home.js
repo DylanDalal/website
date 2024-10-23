@@ -5,6 +5,7 @@ import './Home.css';
 import FadeDiv from '../components/FadeDiv';
 import westchester from '../resources/story/westchester.png';
 import florida from '../resources/story/florida.png';
+import youtube from '../resources/story/youtube.png';
 
 const p1 = `I was born in West Chester, a Philadelphia suburb, in March of 2001.`
 
@@ -88,7 +89,7 @@ function Home() {
             <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
                  <div className="columns-container">
                     <FadeDiv text={p8} className="bodyText"/>
-                    <FadeDiv/>
+                    <img src={youtube} style={{height: "70vh", width: "30vw"}} className="image-style"/>
                 </div>
             </div>
             <div className="sixth_home" style={{position: "relative", zIndex: 1, height: "140vh"}}>
