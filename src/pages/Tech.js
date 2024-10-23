@@ -67,16 +67,35 @@ const virt1 = `In January 2021, the Florida State University College of Motion P
                the role of Senior Virtual Production Researcher with the responsibility of assembling the first Virtual
                Production volume ever purchased by a public university.`
 
-const virt2 = `I researched technologies from many companies and experimented with a few before we settled on a
+const virt2 = `I researched technologies from many companies and experimented with a multitude before we settled on a
                Disguise-powered system with RedSpy Stype for tracking. On top of wiring and routing data through the
-               volume, I personally wrote all of the documentation that was used for class material, and trained faculty
+               volume, I personally contributed to documentation that's been used for class material and trained faculty
                and staff on how to use the equipment.`
 
-const virt3 = `It was my introduction to leading a team in a professional setting, to being a part of the planning,
-               testing, and execution of a major project, and to the intricacies of working in a large organization.`;
+const virt3 = `It was my introduction to leading a team in a professional setting; to being a part of the planning,
+               testing, and execution of a major project; and to the intricacies of working in a large organization.`;
 
-const data1 = `My research at the FSU Department of Psychology centered around removing participant biases from our
-               experiment by `
+const psych1 = `My research at the FSU Department of Psychology centered around removing participant biases from our
+               experiment results by doing in-depth data analysis on respondent datasets. The goal was to determine
+               if and how people use the properties of math when completing math problems.`
+
+const psych2 = `I never finished the project, which I immensely regret. It was my first long-form software engineering
+                project consisting entirely of writing code. Each property was written with a different method, ranging
+                from Binary Expression Tree navigation to simple string processing. It taught me to research the correct
+                tools for the job and how to write a half-decent algorithm.`
+
+const svm1 = `My Machine Learning course at school tasked us with creating a support vector machine from scratch that
+              would draw the most precise line separating two overlapping datasets.`
+
+const svm2 = `By far the most challenging project I worked on during college, I learned a great deal about supervised
+              machine learning algorithms.`
+
+const webapp1 = `The resulty of the entirety of my Introduction to C# course, the TaskManager Application provides a
+                full User Interface written in Xamarin.Forms for local user interaction with a WebAPI.`
+
+const webapp2 = `The WebAPI is written using the .NET framework and locally saves inputted tasks to a JSON file for
+                 persistent usage of the API.`
+
 const space = `\n`;
 
 const piped = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lobortis  elementum dapibus. Morbi
@@ -160,8 +179,8 @@ function Film() {
             Pipeline Development
           </div>
           <div className="body_no_padding" style={{ color: 'white', margin: '0 3vw 0 3vw' }}>
-            Optimizing workflows has been the undercurrent on many of my projects, and I've been directly employed
-            as a Pipeline Developer at two companies. Choose a topic below for more information.
+            Many of my projects have focused on optimizing workflows, and I have been specifically employed as a
+            Pipeline Developer at three companies. Choose a topic below for more details.
           </div>
         </div>
         {/* Carousel */}
@@ -320,49 +339,33 @@ function Film() {
       <div className="fourth_tech" style={{ position: 'relative', zIndex: 1 }}>
         <div class="grid">
           <div class="grid-item">
-            <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', padding: "20px 0px 0px 0px"}}>
-              <div>
-                <img className="tech-logo" src={python_b} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
-                <img className="tech-logo" src={ue} alt="Unreal Engine" style={{ margin: "0 5px 0 5px" }} />
-              </div>
-            </div>
-            <h3>DCC Shelf Deployment System</h3>
-            <p>{reims}</p>
-            <p>{reims}</p>
-            <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url="https://monstersaliensrobotszombies.com/vanityai" />
-            </div>
-          </div>
-          <div class="grid-item dark">
             <div className="tech-logos" style={{ display: 'flex', padding: "20px 0 0 0"}}>
               <div>
-                <img className="tech-logo" src={python_w} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
+                <img className="tech-logo" src={python_b} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
                 <img className="tech-logo" src={r_logo} alt="Maya" style={{ margin: "0 5px 0 5px" }} />
               </div>
             </div>
             <h3>Mathematical Property Algorithms</h3>
-            <p>{reims}</p>
-            <p>{reims}</p>
+            <p>{psych1}</p>
+            <p>{psych2}</p>
             <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url="https://monstersaliensrobotszombies.com/vanityai" />
-            </div>
-          </div>
-          <div class="grid-item">
-            <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', padding: "20px 0px 0px 0px"}}>
-              <div>
-                <img className="tech-logo" src={python_b} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
-                <img className="tech-logo" src={ue} alt="Unreal Engine" style={{ margin: "0 5px 0 5px" }} />
-                <img className="tech-logo" src={maya} alt="Maya" style={{ margin: "0 5px 0 5px" }} />
-              </div>
-            </div>
-            <h3>Support Vector Machine Classifier</h3>
-            <p>{reims}</p>
-            <p>{reims}</p>
-            <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url="https://monstersaliensrobotszombies.com/vanityai" />
+              <VisitWebsiteButton url="https://github.com/DylanDalal/my-work/tree/main/Python/Commutativity" />
             </div>
           </div>
           <div class="grid-item dark">
+            <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', padding: "20px 0px 0px 0px"}}>
+              <div>
+                <img className="tech-logo" src={python_b} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
+              </div>
+            </div>
+            <h3>Support Vector Machine Classifier</h3>
+            <p>{svm1}</p>
+            <p>{svm2}</p>
+            <div style={{ margin: "1vh 0 2vh 0" }}>
+              <VisitWebsiteButton url="https://github.com/DylanDalal/my-work/tree/1ff8072fd3791ffd3b56d6aa14412e097cb729b8/Python/Support-Vector-Machine" />
+            </div>
+          </div>
+          <div class="grid-item">
             <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', padding: "20px 0px 0px 0px"}}>
               <div>
                 <img className="tech-logo" src={csharp} alt="C#" style={{ margin: "0 5px 0 5px" }}/>
@@ -370,22 +373,31 @@ function Film() {
               </div>
             </div>
             <h3>C# Webapp Implementation</h3>
-            <p>{reims}</p>
-            <p>{reims}</p>
+            <p>{webapp1}</p>
+            <p>{webapp2}</p>
             <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url="https://monstersaliensrobotszombies.com/vanityai" />
+              <VisitWebsiteButton url="https://github.com/DylanDalal/my-work/tree/main/C%23/TaskManagerUI-WebAPI" />
+            </div>
+          </div>
+          <div class="grid-item dark">
+            <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', padding: "20px 0px 0px 0px"}}>
+              <div>
+              </div>
+            </div>
+            <h3>Coming soon!</h3>
+            <div style={{ margin: "1vh 0 2vh 0" }}>
             </div>
           </div>
           <div class="grid-item">
             <h3>Classwork</h3>
             <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url="https://monstersaliensrobotszombies.com/vanityai" />
+              <VisitWebsiteButton url="https://github.com/DylanDalal/my-work" />
             </div>
           </div>
           <div class="grid-item dark">
             <h3>This Website</h3>
             <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url="https://monstersaliensrobotszombies.com/vanityai" />
+              <VisitWebsiteButton url="https://github.com/DylanDalal/website" />
             </div>
           </div>
         </div>
