@@ -37,11 +37,9 @@ function Navbar({ onSelectPage }) {
     shifted to building real computers and playing with software about four years after. Scroll down for my projects
     or click here for my resume.`
 
-    const myBlog = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut egestas nisi ac mi feugiat aliquet.
-    Quisque euismod lectus at aliquet cursus. Aliquam lobortis metus in tortor faucibus.`
+    const myBlog = `Blog coming soon, sorry for the mess!`
 
-    const myArt = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porttitor sem eu neque vehicula,
-    eget condimentum lectus commodo. Aenean vitae ligula vel elit placerat rutrum non ac nulla. Mauris porta.`
+    const myArt = `Art coming soon, sorry for the mess!`
 
     const dict = new Map();
     dict.set('Blog', myBlog);
