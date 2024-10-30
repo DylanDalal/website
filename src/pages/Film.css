@@ -80,6 +80,20 @@
     padding-bottom: 5vh;
 }
 
+.column-container > * {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+@media (orientation: portrait) {
+    .column-container {
+        grid-template-columns: 1fr; /* Switches to a single column */
+    }
+}
+
 .carousel-container {
     display: flex;
     justify-content: center;
