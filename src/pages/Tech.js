@@ -218,9 +218,9 @@ function Film() {
         <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', paddingBottom: "0" }}>
           <div>
             <img className="tech-logo" src={python_b} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
-            <img className="tech-logo" src={tensorflow} alt="TensorFlow" style={{ margin: "0 5px 3px 5px" }} />
+            <img className="tech-logo" src={tensorflow} alt="TensorFlow" style={{ margin: "0 5px 7px 5px" }} />
             <img className="tech-logo" src={sql} alt="SQL" style={{ margin: "0 5px 0 5px" }} />
-            <img className="tech-logo" src={mariadb} alt="MariaDB" style={{ margin: "0 5px 0 5px" }} />
+            <img className="tech-logo" src={mariadb} alt="MariaDB" style={{ margin: "0 5px 2px 5px" }} />
             <img className="tech-logo" src={opencv} alt="OpenCV" style={{ margin: "0 5px 0 5px" }} />
           </div>
         </div>
@@ -229,14 +229,14 @@ function Film() {
         </div>
         <div style={{  alignItems: 'center'  }}>
             <div className="column-container">
-              <div style={{ margin: '0 0 0 4.5vw' }}>
+              <div style={{width: "35vw"}}>
                 <div className="body_no_padding" style={{ color: 'black' }}>{vana1}</div>
                 <div className="body_no_padding" style={{ color: 'black' }}>{vana2}</div>
                 <div style={{ textAlign: 'center' }}>
                   <VisitWebsiteButton url="https://monstersaliensrobotszombies.com/vanityai" />
                 </div>
               </div>
-              <div style={{ margin: '0px', paddingBottom: '0px' }}>
+              <div style={{ margin: '0px', paddingBottom: '0px'}}>
                 <div
                   id="autoscroll"
                   className="carousel-container"
@@ -292,7 +292,7 @@ function Film() {
                 <div className="tech-logos">
                   <div>
                     <img className="tech-logo" src={python_b} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
-                    <img className="tech-logo" src={ue} alt="Unreal Engine" style={{ margin: "0 5px 0px 5px" }} />
+                    <img className="tech-logo" src={ue} alt="Unreal Engine" style={{ margin: "0 5px 4px 5px" }} />
                     <img className="tech-logo" src={disguise} alt="Disguise" style={{ margin: "0 5px 0 5px" }} />
                     <img className="tech-logo" src={mosys} alt="Mo-Sys" style={{ margin: "0 5px 0 5px" }} />
                     <img className="tech-logo" src={stype} alt="Stype" style={{ margin: "0 5px 0 5px" }} />
