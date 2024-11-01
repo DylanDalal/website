@@ -68,7 +68,24 @@
 
 @media (orientation: portrait) {
     .header_pipeline {
-        font-size: 6vw;
+        font-size: 7vw;
+    }
+}
+
+.header2_pipeline {
+    font-family: DINCondensed;
+    font-size: 3.5vw;
+    padding-top: 0.5vw;
+    padding-bottom: 0vh;
+    text-transform: uppercase;
+    text-shadow: .15vw .05vw rgba(0, 0, 0, 0.2);
+    text-align: left;
+    line-height: 1;
+}
+
+@media (orientation: portrait) {
+    .header2_pipeline {
+        font-size: 7vw;
     }
 }
 
@@ -84,7 +101,6 @@
     display: flex;
     justify-content: center;
     align-items: middle;
-    width: 100%;
     overflow-x: hidden;
     margin: 0 auto;
 }
@@ -94,13 +110,21 @@
    align-items: center;
    justify-content: space-between; /* Spreads the logos evenly */
    padding-bottom: 0;
-   max-width: 40vw;
+   max-width: 70vw;
    overflow: hidden;
 }
 
 .tech-logo {
    max-height: 30px;
-   max-width: 6vw;
+   max-width: 10vw;
+   width: auto;
+   flex-shrink: 1;
+   object-fit: contain; /* Ensures logos fit within their container */
+}
+
+.tech-logo {
+   max-height: 30px;
+   max-width: 10vw;
    width: auto;
    flex-shrink: 1;
    object-fit: contain; /* Ensures logos fit within their container */
@@ -232,12 +256,27 @@
   margin-bottom: 15px;
 }
 
+
+@media (orientation: portrait) {
+    .grid-item h3 {
+        font-size: 7vw; /* Adjust font size for portrait mode */
+    }
+}
+
 .grid-item p {
   font-family: Futura;
   fontSize: 3vw;
   font-size: 1rem;
   margin: 5px 2vw 15px 2vw;
   text-align: center;
+}
+
+
+@media (orientation: portrait) {
+    .grid {
+        grid-template-columns: 1fr; /* Switches to a single column */
+        width: 95%;
+    }
 }
 
 .image-container {

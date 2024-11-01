@@ -184,7 +184,7 @@ function Film() {
           </div>
         </div>
         {/* Carousel */}
-        <div className="carousel-container" style={{ paddingBottom: "5vh" }}>
+        <div className="carousel-container" style={{ paddingBottom: "5vh", margin: "0 0 0 0" }}>
           <ul className="carousel">
             <li className="carousel-item" onClick={() => openModal('Data Transfer')}>
               <img className="carousel-plus" src={plus} alt="Plus" />
@@ -228,8 +228,8 @@ function Film() {
           Saving $8 Million with VanityAI
         </div>
         <div style={{  alignItems: 'center'  }}>
-            <div className="column-container">
-              <div style={{width: "35vw"}}>
+            <div className="column-container2" style={{gap: "2vw"}}>
+              <div style={{maxWidth: "75vw"}}>
                 <div className="body_no_padding" style={{ color: 'black' }}>{vana1}</div>
                 <div className="body_no_padding" style={{ color: 'black' }}>{vana2}</div>
                 <div style={{ textAlign: 'center' }}>
@@ -240,10 +240,10 @@ function Film() {
                 <div
                   id="autoscroll"
                   className="carousel-container"
-                  style={{ margin: '0vw 0vw 0vw 2vw', width: '82%', paddingBottom: '0px'}}
+                  style={{}}
                   ref={carouselRef}
                 >
-                  <ul className="carousel" style={{paddingBottom: '10px', margin: '0px' }}>
+                  <ul className="carousel" style={{paddingBottom: '10px', margin: '0px', maxWidth: "80vw" }}>
                     <li className="carousel-item2">
                       <img src={p_str} alt="Stranger Things Season 4" />
                     </li>
@@ -278,7 +278,7 @@ function Film() {
         </div>
       </div>
       <div className="third_tech" style={{ position: 'relative', display: 'flex', alignItems: 'center', paddingTop: '6vh' }}>
-        <div className="column-container" style={{ gap: '5vw', paddingBottom: '0'  }}>
+        <div className="column-container" style={{ gap: '5vw', paddingBottom: '0', alignItems: 'center' }}>
             <div class="image-container">
               <img src={vp} alt="Virtual Production"/>
               <div style={{ position: "relative", width: "100%", height: "100%" }}>
@@ -288,41 +288,45 @@ function Film() {
                 </div>
             </div>
             </div>
-            <div style={{ alignItems: 'center' }}>
+            <div style={{ maxWidth: "75vw"}}>
                 <div className="tech-logos">
                   <div>
                     <img className="tech-logo" src={python_b} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
-                    <img className="tech-logo" src={ue} alt="Unreal Engine" style={{ margin: "0 5px 4px 5px" }} />
+                    <img className="tech-logo" src={ue} alt="Unreal Engine" style={{ margin: "0 5px 0 5px" }} />
                     <img className="tech-logo" src={disguise} alt="Disguise" style={{ margin: "0 5px 0 5px" }} />
                     <img className="tech-logo" src={mosys} alt="Mo-Sys" style={{ margin: "0 5px 0 5px" }} />
                     <img className="tech-logo" src={stype} alt="Stype" style={{ margin: "0 5px 0 5px" }} />
                   </div>
                 </div>
-                <div className="header_pipeline" style={{ paddingBottom: '10px', fontSize: "3.5vw" }}>
+                <div className="header2_pipeline" style={{ paddingBottom: '10px'}}>
                     THE FIRST ACADEMIC VP STAGE
                 </div>
-                <div className="body_no_padding" style={{ color: 'black' }}>{virt1}</div>
-                <div className="body_no_padding" style={{ color: 'black' }}>{virt2}</div>
-                <div className="body_no_padding" style={{ color: 'black' }}>{virt3}</div>
+                <div style={{maxWidth: "75vw", alignItems: "center"}}>
+                    <div className="body_no_padding" style={{ color: 'black' }}>{virt1}</div>
+                    <div className="body_no_padding" style={{ color: 'black' }}>{virt2}</div>
+                    <div className="body_no_padding" style={{ color: 'black' }}>{virt3}</div>
+                </div>
             </div>
         </div>
       </div>
       <div className="third_tech" style={{ position: 'relative', display: "flex", alignItems: "center", paddingTop: "0" }}>
-        <div className="column-container" style={{ gap: '5vw' }}>
-            <div>
+        <div className="column-container2" style={{ gap: '5vw' }}>
+                <div style={{maxWidth: "80vw"}}>
                 <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', paddingBottom: "0"}}>
                   <div>
                     <img className="tech-logo" src={cplusplus} alt="C++" style={{ margin: "0 5px 0 5px" }}/>
-                    <img className="tech-logo" src={ue} alt="Unreal Engine" style={{ margin: "0 5px 0 5px" }} />
+                    <img className="tech-logo" src={ue} alt="Unreal Engine" style={{ margin: "0 5px 2px 5px" }} />
                   </div>
                 </div>
-                <div className="header_pipeline" style={{ color: 'black', alignItems: 'left', fontSize: "3.5vw" }}>
+                <div className="header2_pipeline" style={{ color: 'black', alignItems: 'left'}}>
                     PRESERVING HISTORY WITH VR
                 </div>
-                <div className="body_no_padding" style={{ color: 'black' }}>{reims}</div>
-                <div className="body_no_padding" style={{ color: 'black' }}>{reim2}</div>
-                <div style={{ textAlign: 'center' }}>
-                    <VisitWebsiteButton url="https://www.jenniferfeltman.com/vrcathedral" />
+                <div>
+                    <div className="body_no_padding" style={{ color: 'black' }}>{reims}</div>
+                    <div className="body_no_padding" style={{ color: 'black' }}>{reim2}</div>
+                    <div style={{ textAlign: 'center' }}>
+                        <VisitWebsiteButton url="https://www.jenniferfeltman.com/vrcathedral" />
+                    </div>
                 </div>
             </div>
             <div class="image-container">
@@ -355,7 +359,7 @@ function Film() {
           <div class="grid-item dark">
             <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', padding: "20px 0px 0px 0px"}}>
               <div>
-                <img className="tech-logo" src={python_b} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
+                <img className="tech-logo" src={python_w} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
               </div>
             </div>
             <h3>Support Vector Machine Classifier</h3>
