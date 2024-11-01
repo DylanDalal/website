@@ -85,7 +85,6 @@
     align-items: center;
     width: 100%;
     margin: 0 auto;
-    text-align: center;
 }
 
 @media (orientation: portrait) {
@@ -93,6 +92,35 @@
         grid-template-columns: 1fr; /* Switches to a single column */
     }
 }
+
+.column-container2 {
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 35vw);
+    padding-bottom: 5vh;
+}
+
+.column-container2 > * {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media (orientation: portrait) {
+    .column-container2 {
+        grid-template-columns: 1fr;
+    }
+
+    .column-container2 > :nth-child(1) {
+        order: 2;
+    }
+
+    .column-container2 > :nth-child(2) {
+        order: 1;
+    }
+}
+
 
 .carousel-container {
     display: flex;
