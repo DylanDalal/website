@@ -6,6 +6,7 @@ import './App.css';
 import Home from "./pages/Home";
 import Film from "./pages/Film";
 import Tech from "./pages/Tech";
+import Footer from "./components/Footer.js"
 
 function App() {
     const [selectedPage, setSelectedPage] = useState('Story');
@@ -30,6 +31,7 @@ function App() {
                 <Routes>
                     <Route path='/' exact element={getPageComponent()}/>
                 </Routes>
+                <Footer/>
             </Router>
         </div>
     );
