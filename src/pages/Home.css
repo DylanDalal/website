@@ -14,6 +14,7 @@
 
 .image-style {
   width: 36vw;
+  max-width: 80vw;
   padding-top: 3vh;
 }
 
@@ -21,6 +22,13 @@
     font-family: Futura;
     font-size: 1.6vw;
     color: #efefef;
+    margin: 5vw;
+}
+
+@media (orientation: portrait) {
+    .bodyText {
+        font-size: 3.5vw;
+    }
 }
 
 .first_home {

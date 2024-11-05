@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Radium from 'radium';
 import '../App.css';
 import './Home.css';
+import './Film.css';
 import FadeDiv from '../components/FadeDiv';
 import westchester from '../resources/story/westchester.png';
 import florida from '../resources/story/florida.png';
@@ -36,8 +37,8 @@ const p10 = `But in 2020, the Covid-19 Pandemic hit. The university sent us home
 Motion Picture Arts.`
 
 const p11 = `When we returned to FSU in 2021, I went to the Film School to offer them any IT or technical support. They
-offered me the first ever research position at Torchlight Studios, FSU’s new center for teaching innovation in film.
-Over the next three years I would help build the technological division as a combination of my two main passions.`
+offered me the first research position at Torchlight Studios, FSU’s new center for teaching innovation in film.
+Over the next three years I would help build the technological division, combining my two primary interests.`
 
 const p12 = `I've worked for four software development companies throughout my career, three of which were in the
 entertainment industry.`
@@ -54,13 +55,13 @@ function Home() {
         <>
             <div className="first_home" style={{position: "relative", zIndex: 1, justifyContent: "center",
                         alignItems: "center"}}>
-                <div className="columns-container">
+                <div className="column-container">
                     <FadeDiv text={p1} className="bodyText"/>
                     <img src={westchester} className="image-style"/>
                 </div>
             </div>
             <div className="second_home" style={{position: "relative", zIndex: 1}}>
-                <div className="columns-container">
+                <div className="column-container">
                     <FadeDiv text={p2} className="bodyText"/>
                     <img src={florida} className="image-style"/>
                 </div>
@@ -69,13 +70,13 @@ function Home() {
                 <p className="bodyText" style={{padding: "10vw"}}>{p3}</p>
             </div>
             <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
-                 <div className="columns-container">
+                 <div className="column-container">
                     <FadeDiv/>
                     <FadeDiv text={p4} className="bodyText"/>
                 </div>
             </div>
             <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
-                 <div className="columns-container">
+                 <div className="column-container">
                     <FadeDiv/>
                     <FadeDiv text={p5} className="bodyText"/>
                 </div>
@@ -87,9 +88,9 @@ function Home() {
                 <p className="bodyText" style={{padding: "10vw"}}>{p7}</p>
             </div>
             <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
-                 <div className="columns-container">
+                 <div className="column-container">
                     <FadeDiv text={p8} className="bodyText"/>
-                    <img src={youtube} style={{height: "70vh", width: "30vw"}} className="image-style"/>
+                    <img src={youtube} style={{height: "70vh", width: "auto"}} className="image-style"/>
                 </div>
             </div>
             <div className="sixth_home" style={{position: "relative", zIndex: 1, height: "140vh"}}>
