@@ -406,8 +406,6 @@ function Film() {
           </div>
         </div>
       </div>
-      <div className="fifth_tech" style={{zIndex: 1 }} >
-      </div>
       <Modal
         isOpen={isModalOpen}
         headerText={modalHeader}
