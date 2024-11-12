@@ -90,10 +90,10 @@ function Home() {
             <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
                  <div className="column-container">
                     <FadeDiv text={p8} className="bodyText"/>
-                    <img src={youtube} style={{height: "70vh", width: "auto"}} className="image-style"/>
+                    <img src={youtube} style={{height: "70vh", width: "auto"}}/>
                 </div>
             </div>
-            <div className="sixth_home" style={{position: "relative", zIndex: 1, height: "140vh"}}>
+            <div className="sixth_home" style={{position: "relative", zIndex: 1}}>
                 <p className="bodyText" style={{padding: "10vw"}}>{p9}</p>
                 <p className="bodyText" style={{padding: "0 10vw 3vh 10vw"}}>{p10}</p>
                 <p className="bodyText" style={{padding: "0 10vw 3vh 10vw"}}>{p11}</p>

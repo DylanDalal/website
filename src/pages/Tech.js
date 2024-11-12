@@ -107,7 +107,7 @@ const asoj_intro = [
   }
 ];
 
-function Film() {
+function Tech() {
   const [selectedContent, setSelectedContent] = useState(null);
   const [modalContent, setModalContent] = useState(null);
   const [modalHeader, setModalHeader] = useState('');
@@ -431,4 +431,4 @@ function startAutoscroll(carousel, scrollAmount = 160, interval = 2000) {
   }, interval);
 }
 
-export default Radium(Film);
+export default Radium(Tech);
