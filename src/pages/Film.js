@@ -192,7 +192,6 @@ function Film() {
         setGifsPreloaded(true);
       });
 
-      // Your existing interval code for switching thumbnails
       const interval = setInterval(() => {
         const randomIndex = Math.floor(Math.random() * videos.length);
         toggleThumbnailState(randomIndex);
