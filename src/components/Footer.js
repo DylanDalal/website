@@ -28,7 +28,7 @@ function Footer({ onSelectPage }) {
                 <div className="footer-text" onClick={() => handleClick('Tech')}>Tech Portfolio</div>
             </div>
             <div style={{ display: "flex", alignItems: "center", margin: "0 0 0 10vw" }}>
-                <div className="footer-text" onClick={() => handleClick('Contact')}>Contact</div>
+                <a href="mailto:dylanmax@gmail.com" className="footer-text">Contact</a>
             </div>
         </div>
     );
