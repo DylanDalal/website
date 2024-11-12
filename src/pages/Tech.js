@@ -180,7 +180,7 @@ function Film() {
           </div>
           <div className="body_no_padding" style={{ color: 'white', margin: '0 3vw 0 3vw' }}>
             Many of my projects have focused on optimizing workflows, and I have been specifically employed as a
-            Pipeline Developer at three companies. Choose a topic below for more details.
+            Pipeline Developer at three companies. Choose a specialization for more details.
           </div>
         </div>
         {/* Carousel */}

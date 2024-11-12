@@ -20,7 +20,7 @@ import fmfgif from '../resources/film/fmf.gif';
 
 const VideoDesc = ({ video, onClose }) => {
     return (
-            <div className="desc-content">
+            <div className="desc-content"> // Take this and make all of them into CSS styles then update for mobile
                 <div style={{fontFamily: "DINCondensed",
                              fontSize: "3vw",
                              textTransform: "uppercase",
