@@ -129,8 +129,8 @@ function Tech() {
         setModalHeader('Visual Effects');
         setModalContent(<VisualEffectsComponent />); // Importing component from ModalContent.js
         break;
-      case 'Asset Optimization':
-        setModalHeader('Asset Optimization');
+      case 'Game Development':
+        setModalHeader('Game Development');
         setModalContent(<AssetOptimizationComponent />); // Importing component from ModalContent.js
         break;
       case 'Content Review':
@@ -201,10 +201,10 @@ function Tech() {
               <img src={vfx} alt="Visual Effects" />
               <div className="carousel-text">visual effects</div>
             </li>
-            <li className="carousel-item" onClick={() => openModal('Asset Optimization')}>
+            <li className="carousel-item" onClick={() => openModal('Game Development')}>
               <img className="carousel-plus" src={plus} alt="Plus" />
-              <img src={asset} alt="Asset Optimization" />
-              <div className="carousel-text">asset optimization</div>
+              <img src={asset} alt="Game Development" />
+              <div className="carousel-text">game development</div>
             </li>
             <li className="carousel-item" onClick={() => openModal('Content Review')}>
               <img className="carousel-plus" src={plus} alt="Plus" />
