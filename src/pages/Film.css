@@ -265,6 +265,24 @@
     overflow: hidden;
 }
 
+@media (orientation: portrait) {
+    .slate_background {
+        width: 80vw;
+    }
+}
+
+@media (orientation: portrait) {
+    .slate_background2 {
+        width: 76vw;
+    }
+}
+
+@media (orientation: portrait) {
+    .slate_background2 {
+        width: 76vw;
+    }
+}
+
 .thumbnail {
     display: flex;
     align-items: center;

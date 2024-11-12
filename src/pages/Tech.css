@@ -1,6 +1,5 @@
 .first_tech {
     background-color: #000630;
-    height: 73vh;
     width: 100%;
     align-items: center;
     object-fit: contain;
@@ -8,6 +7,7 @@
     flex-direction: column;
     position: absolute;
     padding-top: 7vh;
+    padding: 7vh 0 0 10px
 }
 
 .second_tech {
@@ -153,12 +153,21 @@
 .carousel-item {
     position: relative;
     border-radius: 15px;
+    height: auto;
     width: 280px;
     margin: 0 10px;
 }
 
+@media (orientation: portrait) {
+    .carousel-item {
+        width: 180px;
+        margin: 0 0px;
+    }
+}
+
 .carousel-item2 {
     width: 160px;
+    height: auto;
     margin: 0 .1vw;
 }
 
