@@ -1,19 +1,23 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Radium, { StyleRoot } from 'radium';
-import { Link } from 'react-router-dom';
-import Particles from 'react-tsparticles';
-import ParticleConfig from "../config/particle-config";
-import TextTransition, { presets } from 'react-text-transition';
 import './Navbar.scss';
-import Aos from "aos";
-import "aos/dist/aos.css";
 import FadeDiv from './FadeDiv';
 import pluralize from 'pluralize';
 
-
-function Navbar({ onSelectPage }) {
+function Navbar({ onSelectPage, selectedPage }) {
     const [texts, setTexts] = useState(['Blog', 'Film', 'Story', 'Tech', 'Art']);
     const [fade, setFade] = useState(false);
+
+    useEffect(() => {
+        // Update the displayed page in Navbar when selectedPage changes
+        if (texts.includes(selectedPage)) {
+            const newTexts = [...texts];
+            const selectedIndex = newTexts.indexOf(selectedPage);
+            newTexts[selectedIndex] = texts[2];
+            newTexts[2] = selectedPage;
+            setTexts(newTexts);
+        }
+    }, [selectedPage]);
 
     const handleElementClick = (index) => {
         const newTexts = [...texts];
@@ -23,23 +27,18 @@ function Navbar({ onSelectPage }) {
         onSelectPage(newTexts[2]);
     };
 
-    useEffect(() => {
-        setFade(false); // Trigger fade out when texts[2] changes
-    }, [texts[2]]);
-
     const myStoryString = `Welcome! My name is Dylan Dalal, a recently graduated software engineer and amateur filmmaker.
-    You can navigate to my blog and portfolios by clicking the words above or scroll down to read my story.`
+    You can navigate to my blog and portfolios by clicking the words above or scroll down to read my story.`;
 
-    const myFilms = `I had always loved movies as a child, but I didn't start making films until my dad got an iPhone
-    when I was six. Scroll down to view my reels and complete portfolio.`
+    const myFilms = `I had always loved movies as a child, and I started making films using the first iPhone when I was
+    six. Scroll down to view my complete portfolio.`;
 
     const myTech = `My fascination with technology started with a LEGO Mindstorms set when I was seven years old. I
-    shifted to building real computers and playing with software about four years after. Scroll down to view of the
-    projects I've worked on.'`
+    shifted to building real computers and playing with software about four years after. Scroll down to view the
+    projects I've worked on.`;
 
-    const myBlog = `Blog coming soon, sorry for the mess!`
-
-    const myArt = `Art coming soon, sorry for the mess!`
+    const myBlog = `Blog coming soon, sorry for the mess!`;
+    const myArt = `Art coming soon, sorry for the mess!`;
 
     const dict = new Map();
     dict.set('Blog', myBlog);
@@ -51,14 +50,13 @@ function Navbar({ onSelectPage }) {
     return (
         <StyleRoot>
             <div style={{ width: '100%', height: '250vh'}}>
-                <Particles params={ParticleConfig}/>
                 <div className="page">
                     <div style={{
                         display: "flex",
-                         width: "100%",
-                         height: "100%",
-                         alignItems: "center",
-                         justifyContent: "center"}}>
+                        width: "100%",
+                        height: "100%",
+                        alignItems: "center",
+                        justifyContent: "center"}}>
                         <div className="header">Dylan Dalal</div>
                     </div>
                 </div>
@@ -85,14 +83,12 @@ function Navbar({ onSelectPage }) {
                                             : `My ${text}`
                                         : text;
                                     return (
-                                    <>
-                                        <FadeDiv
-                                            key={index}
-                                            text={displayText}
-                                            className={index === 2 ? "header" : "unused"}
-                                            onClick={() => handleElementClick(index)}
-                                        />
-                                    </>
+                                    <FadeDiv
+                                        key={index}
+                                        text={displayText}
+                                        className={index === 2 ? "header" : "unused"}
+                                        onClick={() => handleElementClick(index)}
+                                    />
                                     );
                                 })}
                             </div>

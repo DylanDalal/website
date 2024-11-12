@@ -20,24 +20,12 @@ import fmfgif from '../resources/film/fmf.gif';
 
 const VideoDesc = ({ video, onClose }) => {
     return (
-            <div className="desc-content"> // Take this and make all of them into CSS styles then update for mobile
-                <div style={{fontFamily: "DINCondensed",
-                             fontSize: "3vw",
-                             textTransform: "uppercase",
-                             paddingTop: "5%",
-                             }}> {video.title} </div>
-                <div style={{ width: '100%', color: "white", borderBottom: '1px solid #000' }}></div>
-                <div style={{fontFamily: "DINCondensed",
-                             fontSize: "1.5vw",
-                             paddingTop: "0",
-                             textTransform: "uppercase",
-                             }}> {video.role} </div>
-                <div style={{fontFamily: "Futura",
-                             fontSize: "1vw",
-                             paddingLeft: "3vw",
-                             paddingRight: "3vw"
-                             }}> {video.description} </div>
-            </div>
+        <div className="desc-content">
+            <div className="desc-title">{video.title}</div>
+            <div className="desc-divider"></div>
+            <div className="desc-role">{video.role}</div>
+            <div className="desc-description">{video.description}</div>
+        </div>
     );
 };
 
@@ -221,13 +209,10 @@ const VideoThumbnail = ({ video, onClick }) => {
         <>
             <div className="first_film" style={{position: "relative", zIndex: 1}}>
                 <FadeDiv text="Virtual Production Reel" className="header2"/>
-                <div className="column-container">
+                <div className="column-container" style={{gap: "3vw", maxWidth: "80vw"}}>
                     <div>
-                        <h3 className="header5">THE FIRST ACADEMIC VP STAGE</h3>
-                        <div style={{width: "33vw", transform: "translate(0, -3.5vh)"}}>
-                            <p className="textStyle">{vp_reel_desc}</p>
-                            <p className="textStyle">{vp_reel_desc2}</p>
-                        </div>
+                        <p className="textStyle">{vp_reel_desc}</p>
+                        <p className="textStyle">{vp_reel_desc2}</p>
                     </div>
                     <VideoModal video={cine_reel} onClose={closeModal}/>
                 </div>

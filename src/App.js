@@ -1,38 +1,49 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar.js';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-//import ReactDOM from 'react-dom';
 import './App.css';
 import Home from "./pages/Home";
 import Film from "./pages/Film";
 import Tech from "./pages/Tech";
-import Footer from "./components/Footer.js"
+import Footer from "./components/Footer.js";
+import Particles from 'react-tsparticles';
+import ParticleConfig from "./config/particle-config";
 
 function App() {
     const [selectedPage, setSelectedPage] = useState('Story');
 
+    // Dynamically render the selected page component
     const getPageComponent = () => {
         switch (selectedPage) {
             case 'Story':
-                return <Home/>;
+                return <Home />;
             case 'Film':
-                return <Film/>;
+                return <Film />;
             case 'Tech':
-                return <Tech/>;
+                return <Tech />;
+            case 'Art':
+                return;
+            case 'Blog':
+                return;
             default:
-                return null;
+                return <Home />; // Default to Home if none match
         }
     };
 
     return (
         <div className="App">
-            <Router>
-                <Navbar onSelectPage={setSelectedPage}/>
-                <Routes>
-                    <Route path='/' exact element={getPageComponent()}/>
-                </Routes>
-                <Footer/>
-            </Router>
+            <div className="particles-background">
+                <Particles params={ParticleConfig} />
+            </div>
+            {/* Pass setSelectedPage and selectedPage to Navbar and Footer */}
+            <Navbar onSelectPage={setSelectedPage} selectedPage={selectedPage} />
+
+            {/* Render the selected page component */}
+            <div className="page-content">
+                {getPageComponent()}
+            </div>
+
+            {/* Pass setSelectedPage to Footer as well */}
+            <Footer onSelectPage={setSelectedPage} />
         </div>
     );
 }
