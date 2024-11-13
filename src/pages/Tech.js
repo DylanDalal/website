@@ -281,12 +281,12 @@ function Tech() {
         <div className="column-container" style={{ gap: '5vw', paddingBottom: '0', alignItems: 'center' }}>
             <div class="image-container">
               <img src={vp} alt="Virtual Production"/>
-              <div style={{ position: "relative", width: "100%", height: "100%" }}>
-                <div style={{ position: "absolute", top: "50%", left: "50%", textAlign: "center", color: "white" }}>
-                    <div class="overlay-text" style={{ fontSize: "8vw", transform: "translate(-80%, -245%)" }}>VIRTUAL</div>
-                    <div class="overlay-text" style={{ fontSize: "6vw", transform: "translate(-69%, -235%)" }}>PRODUCTION</div>
+                <div className="vp-container">
+                  <div className="vp-content">
+                    <div className="vp-text">VIRTUAL</div>
+                    <div className="vp-text small">PRODUCTION</div>
+                  </div>
                 </div>
-            </div>
             </div>
             <div style={{ maxWidth: "75vw"}}>
                 <div className="tech-logos">
@@ -331,12 +331,12 @@ function Tech() {
             </div>
             <div class="image-container">
               <img src={vr} alt="Virtual Reality"/>
-              <div style={{ position: "relative", width: "100%", height: "100%" }}>
-                <div style={{ position: "absolute", top: "50%", left: "50%", textAlign: "center", color: "white" }}>
-                    <div class="overlay-text" style={{ fontSize: "8vw", transform: "translate(-80%, -245%)" }}>VIRTUAL</div>
-                    <div class="overlay-text" style={{ fontSize: "6vw", transform: "translate(-106%, -235%)" }}>REALITY</div>
+                <div className="vr-container">
+                  <div className="vr-content">
+                    <div className="vr-text">VIRTUAL</div>
+                    <div className="vr-text small">REALITY</div>
+                  </div>
                 </div>
-              </div>
             </div>
         </div>
       </div>
