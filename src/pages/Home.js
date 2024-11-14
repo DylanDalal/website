@@ -7,6 +7,8 @@ import FadeDiv from '../components/FadeDiv';
 import westchester from '../resources/story/westchester.png';
 import florida from '../resources/story/florida.png';
 import youtube from '../resources/story/youtube.png';
+import games from '../resources/story/games.png';
+import iphone from '../resources/story/iphone.png';
 
 const p1 = `I was born in West Chester, a Philadelphia suburb, in March of 2001.`
 
@@ -23,8 +25,8 @@ const p5 = `...and I learned the Adobe suite to make decals for custom figures a
 const p6 = `I am very fortunate that my family introduced me to creating art and traveling early in
 my life, and they’ve remained two of my strongest interests.`
 
-const p7 = `Video games quickly took over my free time and modding them started my fascination with
-programming.`
+const p7 = `Along with my first LEGO Mindstorms NXT set, modding video games and hosting servers sparked my fascination
+with programming.`
 
 const p8 = `Though I eventually moved on from making LEGO videos, I’ve continued making YouTube videos as a hobby to
 this day, with over 318 uploads to the platform (some are now private).`
@@ -36,12 +38,12 @@ year. I started a degree pursuing my other interest, Computer Science, in the me
 const p10 = `But in 2020, the Covid-19 Pandemic hit. The university sent us home. I did not apply for the College of
 Motion Picture Arts.`
 
-const p11 = `When we returned to FSU in 2021, I went to the Film School to offer them any IT or technical support. They
+const p11 = `When we returned to FSU in 2021, I went to the Film School to offer them IT and technical support. They
 offered me the first research position at Torchlight Studios, FSU’s new center for teaching innovation in film.
 Over the next three years I would help build the technological division, combining my two primary interests.`
 
-const p12 = `I've worked for four software development companies throughout my career, three of which were in the
-entertainment industry.`
+const p12 = `In addition to my research, I've worked for four software development companies throughout my career,
+three of which were in the entertainment industry.`
 
 const p13 = `In 2024, I left FSU to focus on my role at Premise Entertainment and travel through Europe. I spent four
 months exploring sixty European cities across nineteen countries as my contract ended. I am now working on my own
@@ -71,11 +73,11 @@ function Home() {
             </div>
             <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
                  <div className="column-container">
-                    <FadeDiv/>
+                    <img src={iphone}/>
                     <FadeDiv text={p4} className="bodyText"/>
                 </div>
             </div>
-            <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
+            <div className="fourth_home" style={{position: "relative", zIndex: 1, padding: ""}}>
                  <div className="column-container">
                     <FadeDiv/>
                     <FadeDiv text={p5} className="bodyText"/>
@@ -85,7 +87,8 @@ function Home() {
                 <p className="bodyText" style={{padding: "10vw"}}>{p6}</p>
             </div>
             <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
-                <p className="bodyText" style={{padding: "10vw"}}>{p7}</p>
+                <img src={games} className="games-image"/>
+                <p className="bodyText" style={{padding: "0 10vw 12vh 10vw"}}>{p7}</p>
             </div>
             <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
                  <div className="column-container">

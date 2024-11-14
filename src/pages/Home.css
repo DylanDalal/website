@@ -18,6 +18,18 @@
   padding-top: 3vh;
 }
 
+.games-image {
+    position: relative;
+    padding: 15vh 0 0 0;
+    width: 50vw;
+}
+
+@media (orientation: portrait) {
+    .games-image {
+        width: 70vw;
+    }
+}
+
 .bodyText {
     font-family: Futura;
     font-size: 1.6vw;
@@ -64,7 +76,6 @@
 
 .fourth_home {
     background-color: #000630;
-    height: 70vh;
     width: 100%;
     align-items: center;
     justify-content: center;
