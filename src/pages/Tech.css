@@ -89,6 +89,8 @@
 }
 
 .body_no_padding {
+    display: flex;
+    flex-direction: column;
     color: #353535;
     padding-top: 0;
     padding-bottom: 3vh;
@@ -169,11 +171,6 @@
     }
 }
 
-.carousel-item2 {
-    width: 160px;
-    margin: 0 .1vw;
-}
-
 .carousel-item img {
     border-radius: 15px;
     display: block;
@@ -188,6 +185,8 @@
 }
 
 .carousel-item2 {
+    width: 160px;
+    margin: 0 .1vw;
     flex: none;
     scroll-snap-align: start;
     overflow: hidden;
@@ -217,7 +216,7 @@
 
 .carousel-text {
     font-family: Futura;
-    fontSize: 3vw;
+    font-size: 20px;
     color: #efefef;
     position: absolute;
     bottom: 10px;
@@ -225,6 +224,13 @@
     padding: 5px;
     text-shadow: .1vw .1vw rgba(0, 0, 0, 0.5);
 }
+
+@media (orientation: portrait) {
+    .carousel-text {
+        font-size: 14px;
+    }
+}
+
 
 .carousel-plus {
     position: absolute;
@@ -234,6 +240,14 @@
     width: 35px !important;
     z-index: 2;
 }
+
+@media (orientation: portrait) {
+    .carousel-plus {
+        height: 22px !important;
+        width: 22px !important;
+    }
+}
+
 
 .carousel {
   display: flex;

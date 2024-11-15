@@ -312,27 +312,11 @@ export const ContentReviewComponent = () => {
           <img className="tech-logo" src={opencv} alt="OpenCV" style={{ margin: '0 5px 0 5px' }} />
         </div>
       </div>
-      <div className="modal-subheader" style={{ paddingBottom: '1vh' }}>
+      <div className="modal-subheader" style={{}}>
         SQL AND noSQL DATABASES FOR SHOT REVIEW
       </div>
-        <div style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "relative", // Ensure proper positioning of the gradient overlay
-              height: '38vh',
-              width: "auto",
-            }}>
-            <img
-                src={frames}
-                alt="concept art"
-                style={{
-                  height: '100%',
-                  zIndex: 1,
-                  display: 'flex',
-                  margin: 0,
-                }}
-              />
+        <div className="content-review-frames">
+            <img src={frames} alt="concept art" style={{width: "58vw", zIndex: 1, display: 'flex', position: "absolute", }}/>
             <div style={{
               position: 'absolute',
               width: "120%",
@@ -340,6 +324,7 @@ export const ContentReviewComponent = () => {
               background: 'linear-gradient(to right, rgba(0, 0, 0, 0), #efefef)',
               zIndex: 2,
             }} />
+            <img src={beforeafter} alt="before and after" style={{zIndex: 2, width: "44vw"}}/>
         </div>
       <div>
         <p className="body_no_padding" style={{paddingBottom: "0"}}>{contr1}</p>

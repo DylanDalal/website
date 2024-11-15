@@ -30,10 +30,10 @@ function Navbar({ onSelectPage, selectedPage }) {
     const myStoryString = `Welcome! My name is Dylan Dalal, a recently graduated software engineer and amateur filmmaker.
     You can navigate to my blog and portfolios by clicking the words above or scroll down to read my story.`;
 
-    const myFilms = `I had always loved movies as a child, and I started making films using the first iPhone when I was
-    six. Scroll down to view my complete portfolio.`;
+    const myFilms = `I started making films using LEGOs and the first iPhone when I was eight. Scroll down to view my
+    modern short film portfolio.`;
 
-    const myTech = `My fascination with technology started with a LEGO Mindstorms set when I was seven years old. I
+    const myTech = `My fascination with technology started with a LEGO Mindstorms set when I was seven. I
     shifted to building real computers and playing with software about four years after. Scroll down to view the
     projects I've worked on.`;
 
