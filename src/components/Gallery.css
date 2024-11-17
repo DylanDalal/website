@@ -1,0 +1,34 @@
+/* Black background for the Gallery */
+.gallery {
+  zIndex: 1;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  overflow: hidden;
+}
+
+/* Floating image styles */
+.gallery-image {
+  position: absolute;
+  width: 20vw; /* Limit the maximum width */
+  height: auto; /* Maintain aspect ratio */
+  aspect-ratio: 3 / 2; /* Specify aspect ratio as a fallback */
+  background-size: cover; /* Cover the container */
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, z-index 0.3s ease;
+}
+
+/* Add hover effect for interactivity */
+.gallery-image:hover {
+  transform: scale(1.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+@media (orientation: portrait) {
+    .gallery-image {
+        width: 30vw;
+    }
+}
