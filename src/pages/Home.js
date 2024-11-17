@@ -11,6 +11,7 @@ import youtube from '../resources/story/youtube.png';
 import games from '../resources/story/games.png';
 import iphone from '../resources/story/iphone2.png';
 import laptop from '../resources/story/laptop.png';
+import fsu from '../resources/story/fsu.png';
 
 const p1 = `I was born in West Chester, a Philadelphia suburb, in March of 2001.`
 
@@ -37,7 +38,7 @@ const p9 = `I started college at Florida State University in 2019. I wasn’t ac
 Arts, but I still went there with hopes of transferring into their prestigious Film Production program for my Sophomore
 year. I started a degree pursuing my other interest, Computer Science, in the mean time.`
 
-const p10 = `But in 2020, the Covid-19 Pandemic hit. The university sent us home. I did not apply for the College of
+const p10 = `But in 2020, the Covid-19 pandemic hit. The university sent us home. I did not apply for the College of
 Motion Picture Arts.`
 
 const p11 = `When we returned to FSU in 2021, I went to the Film School to offer them IT and technical support. They
@@ -89,7 +90,7 @@ function Home() {
             <div style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
                 <Gallery />
                 <p className="bodyText" style={{
-                        position: "absolute", top: "40%", left: "50%", transform: "translate(-50%, -50%)",
+                        position: "absolute", top: "40%", left: "50%", transform: "translate(-60%, -50%)",
                         zIndex: 2, textAlign: "center", textShadow: "2px 2px 1px rgba(0, 0, 0, 0.4)"}}>
                     {p6}
                 </p>
@@ -104,12 +105,15 @@ function Home() {
                     <img src={youtube} style={{height: "70vh", width: "auto"}}/>
                 </div>
             </div>
-            <div className="sixth_home" style={{position: "relative", zIndex: 1}}>
-                <p className="bodyText" style={{padding: "10vw"}}>{p9}</p>
-                <p className="bodyText" style={{padding: "0 10vw 3vh 10vw"}}>{p10}</p>
-                <p className="bodyText" style={{padding: "0 10vw 3vh 10vw"}}>{p11}</p>
-                <p className="bodyText" style={{padding: "0 10vw 3vh 10vw"}}>{p12}</p>
-                <p className="bodyText" style={{padding: "0 10vw 3vh 10vw"}}>{p13}</p>
+            <div className="sixth_home" style={{ position: "relative", zIndex: 1 }}>
+                <img src={fsu} className="fsu-image" style={{ }} />
+                <div className="fsu_wrapper">
+                    <p className="bodyText">{p9}</p>
+                </div>
+                <p className="bodyText" style={{padding: "15vh 10vw 3vh 10vw"}}>{p10}</p>
+                <p className="bodyText" style={{padding: "0 10vw 0vh 10vw"}}>{p11}</p>
+                <p className="bodyText" style={{padding: "0 10vw 0vh 10vw"}}>{p12}</p>
+                <p className="bodyText" style={{padding: "0 10vw 0vh 10vw"}}>{p13}</p>
             </div>
         </>
     );

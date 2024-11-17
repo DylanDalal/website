@@ -7,10 +7,11 @@ const images = [
   { id: 3, src: '/images/NorwayCat2.jpg', alt: 'Description 4' },
   { id: 4, src: '/images/boats.jpg', alt: 'Description 6' },
   { id: 5, src: '/images/baywatch.jpg', alt: 'Description 8' },
-  { id: 6, src: '/images/nyc.jpg', alt: 'Description 7' },
+  { id: 6, src: '/images/mont_st.jpg', alt: 'Description 7' },
   { id: 7, src: '/images/volcano.jpg', alt: 'Description 8' },
   { id: 8, src: '/images/space_needle.jpg', alt: 'Description 8' },
   { id: 9, src: '/images/SeattleEye.jpg', alt: 'Description 8' },
+  { id: 10, src: '/images/myk.jpg', alt: 'Description 8' }
 ];
 
 const generatePositions = (count) => {

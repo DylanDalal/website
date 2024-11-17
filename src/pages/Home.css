@@ -24,9 +24,38 @@
     width: 50vw;
 }
 
+.fsu-image {
+    position: relative;
+    padding: 15vh 0 0 0;
+    width: 50vw;
+    zIndex: 0;
+    opacity: 30%;
+    transform: translate(0%, -8%);
+}
+
+@media (orientation: portrait) {
+    .fsu-image {
+        width: 100vw;
+        transform: translate(0%, -3%);
+    }
+}
+
 @media (orientation: portrait) {
     .games-image {
         width: 70vw;
+    }
+}
+
+.fsu_wrapper {
+    transform: translate(0%, -175%);
+    position: absolute;
+    zIndex: 1;
+    padding: 0 10vw 3vh 10vw;
+}
+
+@media (orientation: portrait) {
+    .fsu_wrapper {
+        transform: translate(0, -150%);
     }
 }
 
