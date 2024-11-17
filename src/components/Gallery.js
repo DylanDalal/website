@@ -17,7 +17,7 @@ const images = [
 const generatePositions = (count) => {
   return Array.from({ length: count }, (_, i) => ({
     x: (i) * (90 / count), // Evenly distribute x values
-    y: Math.random() * 80 + 60,   // Random y values
+    y: Math.random() * 80 + 55,   // Random y values
   }));
 };
 
