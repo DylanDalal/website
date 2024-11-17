@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import './Gallery.css';
 
 const images = [
-  { id: 1, src: '/images/buoy.jpg', alt: 'Los Angeles, CA' },
-  { id: 2, src: '/images/morocco.jpg', alt: 'Description 3' },
-  { id: 3, src: '/images/NorwayCat2.jpg', alt: 'Description 4' },
-  { id: 4, src: '/images/boats.jpg', alt: 'Description 6' },
-  { id: 5, src: '/images/baywatch.jpg', alt: 'Description 8' },
-  { id: 6, src: '/images/mont_st.jpg', alt: 'Description 7' },
-  { id: 7, src: '/images/volcano.jpg', alt: 'Description 8' },
-  { id: 8, src: '/images/space_needle.jpg', alt: 'Description 8' },
-  { id: 9, src: '/images/SeattleEye.jpg', alt: 'Description 8' },
-  { id: 10, src: '/images/myk.jpg', alt: 'Description 8' }
+  { id: 1, src: '/images/buoy.jpg', alt: 'Juneau, Alaska' },
+  { id: 2, src: '/images/morocco.jpg', alt: 'The Sahara Desert in Morocco' },
+  { id: 3, src: '/images/NorwayCat2.jpg', alt: 'a cat I saw in Norway lol' },
+  { id: 4, src: '/images/boats.jpg', alt: 'Boats off of Cape Cod' },
+  { id: 5, src: '/images/baywatch.jpg', alt: 'Venice Beach, CA' },
+  { id: 6, src: '/images/mont_st.jpg', alt: 'Mont St. Michel, France' },
+  { id: 7, src: '/images/volcano.jpg', alt: 'Arenal Volcano, Costa Rica' },
+  { id: 8, src: '/images/space_needle.jpg', alt: 'Space Needle, Seattle, WA' },
+  { id: 9, src: '/images/SeattleEye.jpg', alt: 'Seattle, WA' },
+  { id: 10, src: '/images/myk.jpg', alt: 'Mykonos, Greece' }
 ];
 
 const generatePositions = (count) => {
