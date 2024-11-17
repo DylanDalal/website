@@ -3,12 +3,14 @@ import Radium from 'radium';
 import '../App.css';
 import './Home.css';
 import './Film.css';
+import Gallery from '../components/Gallery';
 import FadeDiv from '../components/FadeDiv';
 import westchester from '../resources/story/westchester.png';
 import florida from '../resources/story/florida.png';
 import youtube from '../resources/story/youtube.png';
 import games from '../resources/story/games.png';
-import iphone from '../resources/story/iphone.png';
+import iphone from '../resources/story/iphone2.png';
+import laptop from '../resources/story/laptop.png';
 
 const p1 = `I was born in West Chester, a Philadelphia suburb, in March of 2001.`
 
@@ -22,8 +24,8 @@ const p4 = `I used the original iPhone to create LEGO stop-motion animations usi
 
 const p5 = `...and I learned the Adobe suite to make decals for custom figures and to edit YouTube videos.`
 
-const p6 = `I am very fortunate that my family introduced me to creating art and traveling early in
-my life, and they’ve remained two of my strongest interests.`
+const p6 = `I am very fortunate that my family introduced me to traveling and photography early in my life, and they’ve
+remained two of my strongest interests.`
 
 const p7 = `Along with my first LEGO Mindstorms NXT set, modding video games and hosting servers sparked my fascination
 with programming.`
@@ -55,36 +57,42 @@ function Home() {
 
     return (
         <>
-            <div className="first_home" style={{position: "relative", zIndex: 1, justifyContent: "center",
-                        alignItems: "center"}}>
+            <div className="first_home" style={{padding: "15vh 0 0 0"}}>
                 <div className="column-container">
                     <FadeDiv text={p1} className="bodyText"/>
                     <img src={westchester} className="image-style"/>
                 </div>
             </div>
-            <div className="second_home" style={{position: "relative", zIndex: 1}}>
-                <div className="column-container">
-                    <FadeDiv text={p2} className="bodyText"/>
-                    <img src={florida} className="image-style"/>
+            <div className="first_home" style={{position: "relative", padding: "2vh 0 0 0"}}>
+                <div>
+                    <div className="column-container">
+                        <FadeDiv text={p2} className="bodyText"/>
+                        <img src={florida} className="image-style"/>
+                    </div>
                 </div>
             </div>
-            <div className="third_home" style={{position: "relative", zIndex: 1}}>
+            <div className="second_home">
                 <p className="bodyText" style={{padding: "10vw"}}>{p3}</p>
             </div>
-            <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
-                 <div className="column-container">
-                    <img src={iphone}/>
+            <div className="phone_home">
+                 <div className="column-container2">
+                    <img src={iphone} style={{maxWidth: "60vw"}}/>
                     <FadeDiv text={p4} className="bodyText"/>
                 </div>
             </div>
-            <div className="fourth_home" style={{position: "relative", zIndex: 1, padding: ""}}>
-                 <div className="column-container">
-                    <FadeDiv/>
+            <div className="laptop_home">
+                 <div className="column-container2">
+                    <img src={laptop} style={{maxWidth: "60vw"}}/>
                     <FadeDiv text={p5} className="bodyText"/>
                 </div>
             </div>
-            <div className="fifth_home" style={{position: "relative", zIndex: 1}}>
-                <p className="bodyText" style={{padding: "10vw"}}>{p6}</p>
+            <div style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
+                <Gallery />
+                <p className="bodyText" style={{
+                        position: "absolute", top: "40%", left: "50%", transform: "translate(-50%, -50%)",
+                        zIndex: 2, textAlign: "center", textShadow: "2px 2px 1px rgba(0, 0, 0, 0.4)"}}>
+                    {p6}
+                </p>
             </div>
             <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
                 <img src={games} className="games-image"/>

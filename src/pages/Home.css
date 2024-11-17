@@ -44,13 +44,15 @@
 }
 
 .first_home {
-    background: linear-gradient(#040a32, #000630);
-    height: 100vh;
-    width: 100vw;
+    background: #000630;
+    height: 75vh;
+    width: 100%;
     align-items: center;
     object-fit: contain;
     display: flex;
-    position: absolute;
+    position: relative;
+    z-index: 1;
+    justify-content: center;
 }
 
 .second_home {
@@ -61,7 +63,15 @@
     object-fit: contain;
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: relative;
+    padding: 5vh 0 15vh 0;
+}
+
+@media (orientation: portrait) {
+    .second_home {
+        height: 50vh;
+        padding: 0 0 0 0;
+    }
 }
 
 .third_home {
@@ -74,6 +84,31 @@
     display: flex;
 }
 
+.phone_home {
+    background-color: #000630;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0 0 2vh 0;
+}
+
+.laptop_home {
+    height: 60vh;
+    padding: 0vh 0 10vh 0;
+    background-color: #000630;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
 .fourth_home {
     background-color: #000630;
     width: 100%;
@@ -82,8 +117,10 @@
     object-fit: contain;
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: relative;
+    padding: 0 0 2vh 0;
 }
+
 
 .fifth_home {
     background-color: black;
