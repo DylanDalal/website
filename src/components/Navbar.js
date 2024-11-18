@@ -27,8 +27,9 @@ function Navbar({ onSelectPage, selectedPage }) {
         onSelectPage(newTexts[2]);
     };
 
-    const myStoryString = `Welcome! My name is Dylan Dalal, software engineer and amateur filmmaker. You can navigate to
-    my portfolios by clicking the words above or scroll down to read my story. This website is a WIP, sorry for the mess!`;
+    const myStoryString = `Welcome! My name is Dylan Dalal, professional software engineer and amateur filmmaker. You
+    can navigate to my portfolios by clicking the words above or scroll down to read my story. This website is a WIP,
+    sorry for the mess!`;
 
     const myFilms = `I started making films using LEGOs and the first iPhone when I was eight. Scroll down to view my
     modern short film portfolio.`;
