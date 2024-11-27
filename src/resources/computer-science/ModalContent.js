@@ -52,7 +52,7 @@ const anima4 = `My production company, Maximus, is combining a multitude of AI/M
                 company’s first project is creating realistic LEGO animations, selected
                 due to the mathematical properties of the interlocking brick system.`;
 
-const aniurl = ``;
+const aniurl = `https://www.cartoonbrew.com/feature-film/premise-entertainment-concept-development-artwork-jesus-235716.html`;
 
 const datat1 = `The College of Motion Picture Arts’ Virtual Production program used
                 a multitude of different software packages to enable communication
@@ -94,6 +94,12 @@ const contr3 = `When Premise Entertainment shifted to ftrack from ShotGrid, one 
                 Maya and Houdini publishers to fit the company’s needs, which included building a reviewable
                 withevery publish. I worked with the Editorial, Layout, Animation, and Crowds departments in
                 order to create overlays on this reviewable.`
+
+const visfx1 = `The Degrain project is a machine learning-powered visual editing process that we used on every frame
+                ingested at Monsters / Aliens / Robots / Zombies. I worked first on training the algorithm and then on
+                implementing it into the pipeline for the company’s internal frame storage databases.`
+
+const visfx2 = `It was my introduction to `
 
 export const DataTransferComponent = () => {
   const [aspectRatio, setAspectRatio] = useState(window.innerHeight / window.innerWidth);
@@ -263,18 +269,83 @@ export const AnimationComponent = () => {
   );
 };
 
-export const VisualEffectsComponent = () => (
-  <div>
-    <h3>Visual Effects</h3>
-    <p>Sorry- I'm working on this right now!</p>
-    <p>I was involved in a complete recreation of the visual effects pipeline at Monsters / Aliens / Robots / Zombies VFX.
-    I led development on automatically ingesting the edit reference, which is a version of the film or sequence provided
-    by the editorial team reflecting the current state of the cut. I automated the process to generate bids for projects
-    that were sent to massive production companies such as Disney and the process for ingesting main plate color files.
-    Finally, I spent much of my time working on tools artists needed in Nuke and Houdini.
-    </p>
-  </div>
-);
+export const VisualEffectsComponent = () => {
+  const [aspectRatio, setAspectRatio] = useState(window.innerHeight / window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Update the aspect ratio on window resize
+      setAspectRatio(window.innerHeight / window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return (
+    <div>
+      <div className="tech-logos">
+        <div>
+          <img className="tech-logo" src={python_b} alt="Python" style={{ margin: '0 5px 0 5px' }} />
+          <img className="tech-logo" src={ue} alt="Unreal Engine" style={{ margin: '0 5px 0 5px' }} />
+          <img className="tech-logo" src={disguise} alt="Disguise" style={{ margin: '0 5px 0 5px' }} />
+          <img className="tech-logo" src={mosys} alt="Mo-Sys" style={{ margin: '0 5px 0 5px' }} />
+          <img className="tech-logo" src={stype} alt="Stype" style={{ margin: '0 5px 0 5px' }} />
+        </div>
+      </div>
+      <div className="modal-subheader" style={{ paddingBottom: '1vh' }}>
+        Machine Learning Degrain Project
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+
+      </div>
+      <div>
+        <p className="body_no_padding">{visfx1}</p>
+        <p className="body_no_padding">{visfx2}</p>
+      </div>
+      <div>
+      <div className="modal-subheader" style={{ paddingBottom: '1vh' }}>
+        MIGRATING FROM UBUNTU TO CENTOS
+      </div>
+      <p className="body_no_padding">{datat2}</p>
+      <div className="tech-logos">
+        <div>
+          <img className="tech-logo" src={python_b} alt="Python" style={{ margin: '0 5px 0 5px' }} />
+          <img className="tech-logo" src={maya} alt="Maya" style={{ margin: '0 5px 0 5px' }} />
+          <img className="tech-logo" src={houdini} alt="Houdini" style={{ margin: '0 5px 0 5px' }} />
+        </div>
+      </div>
+      <div className="modal-subheader" style={{ paddingBottom: '1vh' }}>
+        SCENE BUILD PROCESSES
+      </div>
+        <p className="body_no_padding">{datat3}</p>
+      </div>
+      <div className="tech-logos">
+        <div>
+          <img className="tech-logo" src={python_b} alt="Python" style={{ margin: '0 5px 0 5px' }} />
+          <img className="tech-logo" src={maya} alt="Maya" style={{ margin: '0 5px 0 5px' }} />
+        </div>
+      </div>
+      <div className="modal-subheader" style={{ paddingBottom: '1vh' }}>
+        STANDARDIZING CONFIGURATION FILES
+      </div>
+        <p className="body_no_padding">{datat4}</p>
+      <div className="tech-logos">
+        <div>
+          <img className="tech-logo" src={python_b} alt="Python" style={{ margin: '0 5px 0 5px' }} />
+        </div>
+      </div>
+      <div className="modal-subheader" style={{ paddingBottom: '1vh' }}>
+        INGESTING THE EDIT REFERENCE
+      </div>
+        <p className="body_no_padding">{datat5}</p>
+      </div>
+  );
+};
+
 
 export const AssetOptimizationComponent = () => (
   <div>
