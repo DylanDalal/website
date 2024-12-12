@@ -160,14 +160,12 @@
     position: relative;
     border-radius: 15px;
     width: 280px;
-    margin: 0 0px;
 }
 
 
 @media (orientation: portrait) {
     .carousel-item {
         width: 180px;
-        margin: 0 0px;
     }
 }
 
@@ -186,7 +184,6 @@
 
 .carousel-item2 {
     width: 160px;
-    margin: 0 .1vw;
     flex: none;
     scroll-snap-align: start;
     overflow: hidden;
