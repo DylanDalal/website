@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Radium from 'radium';
 import '../App.css';
 import './Home.css';
 import './Film.css';
@@ -119,4 +118,4 @@ function Home() {
     );
 }
 
-export default Radium(Home);
+export default Home;
