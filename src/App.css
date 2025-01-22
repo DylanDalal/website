@@ -1,1 +1,29 @@
+.full-screen-view {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    color: white;
+    transition: all 1s ease;
+}
+
+.iphone-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    height: 100vh;
+    transition: all 1s ease;
+}
+
+.iphone-frame {
+    width: 300px;
+    height: 600px;
+    background: lightgray;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
 
