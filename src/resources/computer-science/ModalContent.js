@@ -96,10 +96,13 @@ const contr3 = `When Premise Entertainment shifted to ftrack from ShotGrid, one 
                 order to create overlays on this reviewable.`
 
 const visfx1 = `The Degrain project is a machine learning-powered visual editing process that we used on every frame
-                ingested at Monsters / Aliens / Robots / Zombies. I worked first on training the algorithm and then on
-                implementing it into the pipeline for the company’s internal frame storage databases.`
+                ingested at Monsters / Aliens / Robots / Zombies. Every image has grain in it, and we would re-add it to
+                ship back to clients, but this grain would impact other machine learning models such as VanityAI.
+                I worked first on training the algorithm and then on implementing it into the pipeline for the company’s
+                internal frame storage databases.`
 
-const visfx2 = `It was my introduction to `
+const visfx2 = `It was my introduction to training an artificial intelligence model to be used on a large scale. I
+                learned about the importance of implementing pipeline changes instead of technical updates. `
 
 export const DataTransferComponent = () => {
   const [aspectRatio, setAspectRatio] = useState(window.innerHeight / window.innerWidth);
