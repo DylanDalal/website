@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Radium from 'radium';
 import '../App.css';
 import './Film.css';
@@ -19,46 +19,46 @@ import fmf from '../resources/film/fmf.jpg';
 import fmfgif from '../resources/film/fmf.gif';
 
 const VideoDesc = ({ video, onClose }) => {
-    return (
-        <div className="desc-content">
-            <div className="desc-title">{video.title}</div>
-            <div className="desc-divider"></div>
-            <div className="desc-role">{video.role}</div>
-            <div className="desc-description">{video.description}</div>
-        </div>
-    );
+  return (
+    <div className="desc-content">
+      <div className="desc-title">{video.title}</div>
+      <div className="desc-divider"></div>
+      <div className="desc-role">{video.role}</div>
+      <div className="desc-description">{video.description}</div>
+    </div>
+  );
 };
 
 const VideoModal = ({ video, onClose }) => {
   return (
-      <div className="video-modal-content">
-        <iframe
-          src={`https://www.youtube.com/embed/${video.videoId}`}
-          title={video.title}
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
-      </div>
+    <div className="video-modal-content">
+      <iframe
+        src={`https://www.youtube.com/embed/${video.videoId}`}
+        title={video.title}
+        frameBorder="0"
+        allowFullScreen
+      ></iframe>
+    </div>
   );
 };
 
 const vp_reel = [
-    {
-        videoId: 'P80XtLAZBOY',
-    }
-]
+  {
+    videoId: 'P80XtLAZBOY',
+  },
+];
 
 const cine_reel = [
-    {
-        videoId: 'P80XtLAZBOY',
-    }
-]
+  {
+    videoId: 'P80XtLAZBOY',
+  },
+];
 
-const vp_reel_desc  = `As a Senior Virtual Production Researcher at Florida State University, I researched technologies
+const vp_reel_desc = `As a Senior Virtual Production Researcher at Florida State University, I researched technologies
                        from many companies and experimented with a multitude before settling on a Disguise-powered
                        system with RedSpy Stype tracking. On top of wiring and routing data through the volume, I
                        personally contributed to documentation that's been used for class material and trained faculty
-                       and staff on how to use the equipment.`
+                       and staff on how to use the equipment.`;
 
 const vp_reel_desc2 = `Reel coming soon. View the results of our work below.`;
 
@@ -66,7 +66,7 @@ const videos = [
   {
     videoId: 'dCT-SM94qFo',
     title: 'Boss of the Month',
-    role: "Director | Writer | Editor | VP Technician",
+    role: 'Director | Writer | Editor | VP Technician',
     description: `Boss of the Month is a comedic short film about a bakery employee that has to deal with a strange-
     yet familiar- customer. It was shot on a Virtual Production volume, and though it has some glaring audio issues,
     it's my personal favorite short film I've made.`,
@@ -76,7 +76,7 @@ const videos = [
   {
     videoId: 'x6IZ6bCGbMg',
     title: 'Monotonous Dejection',
-    role: "Director | Writer | Editor | VP Technician",
+    role: 'Director | Writer | Editor | VP Technician',
     description: `Monotonous Dejection is a dramatic short film about a quotidian Uber ride's progression into a
     midnight therapy session. A script that I'd developed years ago, we cut it down to a more suitable length and shot
     it as a screen test for our Jeep prop.`,
@@ -86,7 +86,7 @@ const videos = [
   {
     videoId: 'klEVBSD7k84',
     title: 'The River',
-    role: "Director | Writer | Editor | VP Technician",
+    role: 'Director | Writer | Editor | VP Technician',
     description: `The River is a comedic Western short film about the last play in a Poker standoff. It was my first
     short film and the first narrative test of FSU's Virtual Production volume.`,
     thumbnailUrl: river,
@@ -95,7 +95,7 @@ const videos = [
   {
     videoId: '1OaWBCMEDjE',
     title: 'Last Ride',
-    role: "Editor | VP Technician",
+    role: 'Editor | VP Technician',
     description: `Last Ride is a comedic skit about an Uber driver's unfortunate ending. It is actually a number of test
     shots that I made into a narrative in the editing room- we didn't bother recording audio for our tests, so, I had
     to get creative.`,
@@ -105,7 +105,7 @@ const videos = [
   {
     videoId: '9iRiZMCntXY',
     title: 'Control',
-    role: "VP Technician",
+    role: 'VP Technician',
     description: `Control is an FSU student's thesis film, a music video about a universe-jumping assassin's
     confrontation with her latest target. I was the lead technician for the Virtual Production volume that the
     live-action portions of the film were shot using.`,
@@ -115,137 +115,157 @@ const videos = [
   {
     videoId: 'QFIvwBPdVFc',
     title: 'Find My Friends',
-    role: "Editor | VP Technician",
+    role: 'Editor | VP Technician',
     description: `Find My Friends is a comedic horror-inspired short film about a pair of campers' visit to a new
     campsite. I acted as the editor and lead VP Technician on the project, which was shot on a Virtual
     Production volume.`,
     thumbnailUrl: fmf,
     thumbnailUrlGif: fmfgif,
-  }
+  },
 ];
 
-
 function Film() {
-    const [randomN, setRandom] = useState(.8);
-    const randomizer = () => setRandom(Math.random());
+  const [defaultVideo, setDefaultVideo] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [hoveredVideo, setHoveredVideo] = useState(null);
 
-    const [defaultVideo, setDefaultVideo] = useState(null);
-    const [selectedVideo, setSelectedVideo] = useState(null);
-    const [hoveredVideo, setHoveredVideo] = useState(null);
+  const hoverVideo = (video) => {
+    setHoveredVideo(video);
+  };
 
-    const hoverVideo = (video) => {
-        setHoveredVideo(video);
-    };
+  const unhoverVideo = () => {
+    setHoveredVideo(null);
+  };
 
-    const unhoverVideo = () => {
-        setHoveredVideo(null);
-    };
+  const openModal = (video) => {
+    setSelectedVideo(video);
+    setDefaultVideo(video);
+  };
 
-    const openModal = (video) => {
-        setSelectedVideo(video);
-        setDefaultVideo(video);
-    };
+  const closeModal = () => {
+    setSelectedVideo(null);
+    setDefaultVideo(null);
+  };
 
-    const closeModal = () => {
-        setSelectedVideo(null);
-        setDefaultVideo(null);
-    };
+  const [randomNumbers, setRandomNumbers] = useState([]);
 
-    const [randomNumbers, setRandomNumbers] = useState([]);
+  useEffect(() => {
+    const newRandomNumbers = Array.from({ length: videos.length }, () =>
+      Math.floor((Math.random() * 2 - 1) * 2.5)
+    );
+    setRandomNumbers(newRandomNumbers);
+  }, []);
 
-    useEffect(() => {
-        const newRandomNumbers = Array.from({ length: 20 }, () => Math.floor((Math.random() * 2 - 1) * 2.5));
-        setRandomNumbers(newRandomNumbers);
-    }, []);
+  /* Thumbnail to gif overlay */
+  // Preload GIFs
+  const preloadedGifs = videos.map((video) => {
+    const image = new Image();
+    image.src = video.thumbnailUrlGif;
+    return image;
+  });
 
-    /* Thumbnail to gif */
-    const preloadedGifs = videos.map((video) => {
-      const image = new Image();
-      image.src = video.thumbnailUrlGif;
-      return image;
+  const [thumbnailStates, setThumbnailStates] = useState(videos.map(() => 'jpeg')); // Initialize all thumbnails as JPEG
+  const [gifsPreloaded, setGifsPreloaded] = useState(false);
+
+  const toggleThumbnailState = (index) => {
+    const newThumbnailStates = [...thumbnailStates];
+    newThumbnailStates[index] = thumbnailStates[index] === 'jpeg' ? 'gif' : 'jpeg';
+    setThumbnailStates(newThumbnailStates);
+  };
+
+  useEffect(() => {
+    // Preload the GIFs
+    Promise.all(preloadedGifs.map((image) => image.decode())).then(() => {
+      setGifsPreloaded(true);
     });
 
-    const [thumbnailStates, setThumbnailStates] = useState(videos.map(() => 'jpeg')); // Initialize all thumbnails as JPEG
-    const [gifsPreloaded, setGifsPreloaded] = useState(false);
+    const interval = setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * videos.length);
+      toggleThumbnailState(randomIndex);
+    }, 5000);
 
-    const toggleThumbnailState = (index) => {
-      const newThumbnailStates = [...thumbnailStates];
-      newThumbnailStates[index] = thumbnailStates[index] === 'jpeg' ? 'gif' : 'jpeg';
-      setThumbnailStates(newThumbnailStates);
-    };
+    return () => clearInterval(interval);
+  }, []);
 
-    useEffect(() => {
-      // Preload the GIFs
-      Promise.all(preloadedGifs.map((image) => image.decode())).then(() => {
-        setGifsPreloaded(true);
-      });
-
-      const interval = setInterval(() => {
-        const randomIndex = Math.floor(Math.random() * videos.length);
-        toggleThumbnailState(randomIndex);
-      }, 5000);
-
-      return () => clearInterval(interval);
-    }, []);
-
-const VideoThumbnail = ({ video, onClick }) => {
-  const index = videos.findIndex((v) => v.videoId === video.videoId);
-  const currentThumbnailState = thumbnailStates[index];
-
-  // Only display the GIF if it's preloaded, otherwise display the JPEG
-  const imageUrl =
-    currentThumbnailState === 'gif'
-      ? video.thumbnailUrlGif
-      : video.thumbnailUrl;
-
-  return (
-    <div className="thumbnail" onClick={() => onClick(video)}>
-      <img src={imageUrl} alt={video.title} className="thumbnail-image" />
-    </div>
-  );
-};
+  // Updated VideoThumbnail: Always display the JPEG and overlay the GIF when active.
+  const VideoThumbnail = ({ video, onClick }) => {
+    const index = videos.findIndex((v) => v.videoId === video.videoId);
+    const currentThumbnailState = thumbnailStates[index];
 
     return (
-        <>
-            <div className="first_film" style={{position: "relative", zIndex: 1}}>
-                <FadeDiv text="Virtual Production Reel" className="header2"/>
-                <div className="column-container" style={{gap: "3vw", maxWidth: "80vw"}}>
-                    <div>
-                        <p className="textStyle">{vp_reel_desc}</p>
-                        <p className="textStyle">{vp_reel_desc2}</p>
-                    </div>
-                    <VideoModal video={cine_reel} onClose={closeModal}/>
-                </div>
+      <div
+        className="thumbnail"
+        onClick={() => onClick(video)}
+        style={{ position: 'relative', display: 'inline-block' }}
+      >
+        {/* Base JPEG image */}
+        <img
+          src={video.thumbnailUrl}
+          alt={video.title}
+          className="thumbnail-image"
+          style={{ position: 'relative', zIndex: 1 }}
+        />
+        {/* Overlay the GIF if it's active and preloaded */}
+        {gifsPreloaded && currentThumbnailState === 'gif' && (
+          <img
+            src={video.thumbnailUrlGif}
+            alt={video.title}
+            className="thumbnail-image"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              zIndex: 2,
+            }}
+          />
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <>
+      <div className="first_film" style={{ position: 'relative', zIndex: 1 }}>
+        <FadeDiv text="Virtual Production Reel" className="header2" />
+        <div className="column-container" style={{ gap: '3vw', maxWidth: '80vw' }}>
+          <div>
+            <p className="textStyle">{vp_reel_desc}</p>
+            <p className="textStyle">{vp_reel_desc2}</p>
+          </div>
+          <VideoModal video={cine_reel} onClose={closeModal} />
+        </div>
+      </div>
+      <div className="third_film" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="header2">Complete Portfolio</div>
+        <div className="column-container" style={{ gap: '5vw' }}>
+          <div className="slate_background">
+            <div className="slate_background2">
+              {(hoveredVideo || defaultVideo) && (
+                <VideoDesc video={hoveredVideo || defaultVideo} onClose={unhoverVideo} />
+              )}
             </div>
-            <div className="third_film" style={{position: "relative", zIndex: 1}}>
-                <div className="header2">Complete Portfolio</div>
-                <div className="column-container" style={{gap: "5vw"}}>
-                    <div className="slate_background">
-                        <div className="slate_background2">
-                            {(hoveredVideo || defaultVideo) && <VideoDesc video={hoveredVideo || defaultVideo} onClose={unhoverVideo} />}
-                        </div>
-                    </div>
-                    <div className="slate_background">
-                        <div className="slate_background2">
-                            {selectedVideo && <VideoModal video={selectedVideo} onClose={closeModal} />}
-                        </div>
-                    </div>
-                </div>
-                <div className="video-grid">
-                    {videos.map((video, index) => (
-                        <div
-                            key={video.videoId}
-                            style={{ transform: `rotate(${randomNumbers[index]}deg)` }}
-                            onMouseEnter={() => hoverVideo(video)}
-                            onMouseLeave={unhoverVideo}
-                        >
-                            <VideoThumbnail video={video} onClick={openModal}  />
-                        </div>
-                    ))}
-                </div>
+          </div>
+          <div className="slate_background">
+            <div className="slate_background2">
+              {selectedVideo && <VideoModal video={selectedVideo} onClose={closeModal} />}
             </div>
-        </>
-        );
-    };
+          </div>
+        </div>
+        <div className="video-grid">
+          {videos.map((video, index) => (
+            <div
+              key={video.videoId}
+              style={{ transform: `rotate(${randomNumbers[index]}deg)` }}
+              onMouseEnter={() => hoverVideo(video)}
+              onMouseLeave={unhoverVideo}
+            >
+              <VideoThumbnail video={video} onClick={openModal} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
 
 export default Radium(Film);
