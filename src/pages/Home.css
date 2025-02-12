@@ -173,3 +173,23 @@
     flex-direction: column;
     position: absolute;
 }
+
+.logo-row {
+  display: flex;
+  justify-content: center; /* Center the logos horizontally */
+  align-items: center;    /* Center the logos vertically if needed */
+  gap: 3vw;               /* 3vw gap between logos */
+  padding: 20px;          /* Optional padding */
+}
+
+.logo-image {
+  width: 15vw;
+  height: auto;
+  opacity: .25;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-image:hover {
+  transform: scale(1.05);
+  opacity: 0.5;
+}

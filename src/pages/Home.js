@@ -11,6 +11,10 @@ import games from '../resources/story/games.png';
 import iphone from '../resources/story/iphone2.png';
 import laptop from '../resources/story/laptop.png';
 import fsu from '../resources/story/fsu.png';
+import logoClip from '../resources/story/clip.png';
+import logoMarz from '../resources/story/marz.png';
+import logoCglj from '../resources/story/cglumberjack.png';
+import logoPrem from '../resources/story/premise.png';
 
 const p1 = `I was born in West Chester, a Philadelphia suburb, in March of 2001.`
 
@@ -50,6 +54,13 @@ three of which were in the entertainment industry.`
 const p13 = `In 2024, I left FSU to focus on my role at Premise Entertainment and travel through Europe. I spent four
 months exploring sixty European cities across nineteen countries as my contract ended. I am now working on my own
 real-time production company while seeking a full-time position at a company that aligns with my interests.`
+
+const logos = [
+    { src: logoClip, link: 'https://clipmoney.com/' },
+    { src: logoCglj, link: 'https://www.cglumberjack.com/' },
+    { src: logoMarz, link: 'https://monstersaliensrobotszombies.com/' },
+    { src: logoPrem, link: 'https://premiseentertainment.com/' },
+  ];
 
 
 function Home() {
@@ -112,7 +123,14 @@ function Home() {
                 <p className="bodyText" style={{padding: "15vh 10vw 3vh 10vw"}}>{p10}</p>
                 <p className="bodyText" style={{padding: "0 10vw 0vh 10vw"}}>{p11}</p>
                 <p className="bodyText" style={{padding: "0 10vw 0vh 10vw"}}>{p12}</p>
-                <p className="bodyText" style={{padding: "0 10vw 0vh 10vw"}}>{p13}</p>
+                <div className="logo-row">
+                  {logos.map((logo, index) => (
+                    <a href={logo.link} key={index} target="_blank" rel="noopener noreferrer">
+                      <img src={logo.src} alt={`Logo ${index + 1}`} className="logo-image" />
+                    </a>
+                  ))}
+                </div>
+                <p className="bodyText" style={{padding: "0 10vw 5vh 10vw"}}>{p13}</p>
             </div>
         </>
     );
