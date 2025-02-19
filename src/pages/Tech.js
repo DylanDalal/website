@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Radium from 'radium';
+import { Helmet } from "react-helmet";
 import '../App.css';
 import './Film.css';
 import './Tech.css';
@@ -168,11 +169,35 @@ function Tech() {
 
     return (
     <>
+    <Helmet>
+        <title>Dylan Dalal | Technical Portfolio</title>
+        <meta name="description" content="Explore Dylan Dalal's software engineering and tech projects in AI, pipeline development, and virtual production." />
+
+        {/* Schema Markup */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Dylan Dalal",
+            "url": "https://dylandalal.com",
+            "image": "https://dylandalal.com/profile.jpg",
+            "jobTitle": "Software Engineer & Pipeline Developer",
+            "sameAs": [
+              "https://linkedin.com/in/dylandalal",
+              "https://github.com/dylandalal",
+              "https://twitter.com/dylandalal"
+            ]
+          }
+          `}
+        </script>
+      </Helmet>
+
       <div className="first_tech" style={{ position: 'relative', zIndex: 1 }}>
         <div style={{ alignItems: 'left' }}>
           <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', margin: '0 3vw 0 3vw', paddingBottom: "0" }}>
             <div>
-              <img className="tech-logo" src={python_w} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
+              <img className="tech-logo" src={python_w} alt="Dylan Dalal Python" style={{ margin: "0 5px 0 5px" }}/>
             </div>
           </div>
           <div className="header_pipeline" style={{ color: 'white', margin: '0 3vw 0 3vw', alignItems: 'left' }}>
@@ -187,28 +212,28 @@ function Tech() {
         <div className="carousel-container" style={{ paddingBottom: "5vh", margin: "0 0 0 0" }}>
           <ul className="carousel">
             <li className="carousel-item" onClick={() => openModal('Data Transfer')}>
-              <img className="carousel-plus" src={plus} alt="Plus" />
-              <img src={data} alt="Data Transfer" />
+              <img className="carousel-plus" src={plus} alt="Dylan Dalal" />
+              <img src={data} alt="Dylan Dalal Data Transfer" />
               <div className="carousel-text">data transfer</div>
             </li>
             <li className="carousel-item" onClick={() => openModal('Animation')}>
-              <img className="carousel-plus" src={plus} alt="Plus" />
-              <img src={animation} alt="Animation" />
+              <img className="carousel-plus" src={plus} alt="Dylan Dalal" />
+              <img src={animation} alt="Dylan Dalal Animation" />
               <div className="carousel-text">animation</div>
             </li>
             <li className="carousel-item" onClick={() => openModal('Visual Effects')}>
-              <img className="carousel-plus" src={plus} alt="Plus" />
-              <img src={vfx} alt="Visual Effects" />
+              <img className="carousel-plus" src={plus} alt="Dylan Dalal" />
+              <img src={vfx} alt="Dylan Dalal Visual Effects" />
               <div className="carousel-text">visual effects</div>
             </li>
             <li className="carousel-item" onClick={() => openModal('Game Development')}>
-              <img className="carousel-plus" src={plus} alt="Plus" />
-              <img src={asset} alt="Game Development" />
+              <img className="carousel-plus" src={plus} alt="Dylan Dalal" />
+              <img src={asset} alt="Dylan Dalal Game Development" />
               <div className="carousel-text">game development</div>
             </li>
             <li className="carousel-item" onClick={() => openModal('Content Review')}>
-              <img className="carousel-plus" src={plus} alt="Plus" />
-              <img src={content} alt="Content Review" />
+              <img className="carousel-plus" src={plus} alt="Dylan Dalal" />
+              <img src={content} alt="Dylan Dalal Content Review" />
               <div className="carousel-text">content review</div>
             </li>
           </ul>
@@ -217,11 +242,11 @@ function Tech() {
       <div className="second_tech" style={{ position: 'relative', zIndex: 1 }}>
         <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', paddingBottom: "0" }}>
           <div>
-            <img className="tech-logo" src={python_b} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
-            <img className="tech-logo" src={tensorflow} alt="TensorFlow" style={{ margin: "0 5px 7px 5px" }} />
-            <img className="tech-logo" src={sql} alt="SQL" style={{ margin: "0 5px 0 5px" }} />
-            <img className="tech-logo" src={mariadb} alt="MariaDB" style={{ margin: "0 5px 2px 5px" }} />
-            <img className="tech-logo" src={opencv} alt="OpenCV" style={{ margin: "0 5px 0 5px" }} />
+            <img className="tech-logo" src={python_b} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
+            <img className="tech-logo" src={tensorflow} alt="Dylan Dalal" style={{ margin: "0 5px 7px 5px" }} />
+            <img className="tech-logo" src={sql} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }} />
+            <img className="tech-logo" src={mariadb} alt="Dylan Dalal" style={{ margin: "0 5px 2px 5px" }} />
+            <img className="tech-logo" src={opencv} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }} />
           </div>
         </div>
         <div className="header_pipeline" style={{ color: 'black', alignItems: 'left', paddingBottom: '10px' }}>
@@ -245,28 +270,28 @@ function Tech() {
                 >
                   <ul className="carousel" style={{paddingBottom: '10px', margin: '0px', maxWidth: "80vw" }}>
                     <li className="carousel-item2">
-                      <img src={p_str} alt="Stranger Things Season 4" />
+                      <img src={p_str} alt="Dylan Dalal worked on Stranger Things Season 4" />
                     </li>
                     <li className="carousel-item2">
-                      <img src={p_spi} alt="Spider-Man: No Way Home" />
+                      <img src={p_spi} alt="Dylan Dalal worked on Spider-Man: No Way Home" />
                     </li>
                     <li className="carousel-item2">
-                      <img src={p_pcj} alt="Percy Jackson and the Olympians" />
+                      <img src={p_pcj} alt="Dylan Dalal worked on Percy Jackson and the Olympians" />
                     </li>
                     <li className="carousel-item2">
-                      <img src={p_twd} alt="The Walking Dead" />
+                      <img src={p_twd} alt="Dylan Dalal worked on The Walking Dead" />
                     </li>
                     <li className="carousel-item2">
-                      <img src={p_aby} alt="Anyone But You" />
+                      <img src={p_aby} alt="Dylan Dalal worked on Anyone But You" />
                     </li>
                     <li className="carousel-item2">
-                      <img src={p_see} alt="See" />
+                      <img src={p_see} alt="Dylan Dalal worked on See" />
                     </li>
                     <li className="carousel-item2">
-                      <img src={p_zoe} alt="Zoe's Extraordinary Playlist" />
+                      <img src={p_zoe} alt="Dylan Dalal worked on Zoe's Extraordinary Playlist" />
                     </li>
                     <li className="carousel-item2">
-                      <img src={p_fam} alt="For All Mankind" />
+                      <img src={p_fam} alt="Dylan Dalal worked on For All Mankind" />
                     </li>
                   </ul>
                 </div>
@@ -280,7 +305,7 @@ function Tech() {
       <div className="third_tech" style={{ position: 'relative', display: 'flex', alignItems: 'center', paddingTop: '6vh' }}>
         <div className="column-container" style={{ gap: '5vw', paddingBottom: '0', alignItems: 'center' }}>
             <div class="image-container">
-              <img src={vp} alt="Virtual Production"/>
+              <img src={vp} alt="Dylan Dalal Virtual Production"/>
                 <div className="vp-container">
                   <div className="vp-content">
                     <div className="vp-text">VIRTUAL</div>
@@ -291,11 +316,11 @@ function Tech() {
             <div style={{ maxWidth: "75vw"}}>
                 <div className="tech-logos">
                   <div>
-                    <img className="tech-logo" src={python_b} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
-                    <img className="tech-logo" src={ue} alt="Unreal Engine" style={{ margin: "0 5px 0 5px" }} />
-                    <img className="tech-logo" src={disguise} alt="Disguise" style={{ margin: "0 5px 0 5px" }} />
-                    <img className="tech-logo" src={mosys} alt="Mo-Sys" style={{ margin: "0 5px 0 5px" }} />
-                    <img className="tech-logo" src={stype} alt="Stype" style={{ margin: "0 5px 0 5px" }} />
+                    <img className="tech-logo" src={python_b} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
+                    <img className="tech-logo" src={ue} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }} />
+                    <img className="tech-logo" src={disguise} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }} />
+                    <img className="tech-logo" src={mosys} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }} />
+                    <img className="tech-logo" src={stype} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }} />
                   </div>
                 </div>
                 <div className="header2_pipeline" style={{ paddingBottom: '10px'}}>
@@ -314,8 +339,8 @@ function Tech() {
                 <div style={{maxWidth: "80vw"}}>
                 <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', paddingBottom: "0"}}>
                   <div>
-                    <img className="tech-logo" src={cplusplus} alt="C++" style={{ margin: "0 5px 0 5px" }}/>
-                    <img className="tech-logo" src={ue} alt="Unreal Engine" style={{ margin: "0 5px 2px 5px" }} />
+                    <img className="tech-logo" src={cplusplus} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
+                    <img className="tech-logo" src={ue} alt="Dylan Dalal" style={{ margin: "0 5px 2px 5px" }} />
                   </div>
                 </div>
                 <div className="header2_pipeline" style={{ color: 'black', alignItems: 'left'}}>
@@ -330,7 +355,7 @@ function Tech() {
                 </div>
             </div>
             <div class="image-container">
-              <img src={vr} alt="Virtual Reality"/>
+              <img src={vr} alt="Dylan Dalal Virtual Reality"/>
                 <div className="vr-container">
                   <div className="vr-content">
                     <div className="vr-text">VIRTUAL</div>
@@ -345,8 +370,8 @@ function Tech() {
           <div class="grid-item">
             <div className="tech-logos" style={{ display: 'flex', padding: "20px 0 0 0"}}>
               <div>
-                <img className="tech-logo" src={python_b} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
-                <img className="tech-logo" src={r_logo} alt="Maya" style={{ margin: "0 5px 0 5px" }} />
+                <img className="tech-logo" src={python_b} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
+                <img className="tech-logo" src={r_logo} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }} />
               </div>
             </div>
             <h3>Mathematical Property Algorithms</h3>
@@ -359,7 +384,7 @@ function Tech() {
           <div class="grid-item dark">
             <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', padding: "20px 0px 0px 0px"}}>
               <div>
-                <img className="tech-logo" src={python_w} alt="Python" style={{ margin: "0 5px 0 5px" }}/>
+                <img className="tech-logo" src={python_w} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
               </div>
             </div>
             <h3>Support Vector Machine Classifier</h3>
@@ -372,8 +397,8 @@ function Tech() {
           <div class="grid-item">
             <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', padding: "20px 0px 0px 0px"}}>
               <div>
-                <img className="tech-logo" src={csharp} alt="C#" style={{ margin: "0 5px 0 5px" }}/>
-                <img className="tech-logo" src={sql} alt="SQL" style={{ margin: "0 5px 0 5px" }} />
+                <img className="tech-logo" src={csharp} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
+                <img className="tech-logo" src={sql} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }} />
               </div>
             </div>
             <h3>C# Webapp Implementation</h3>
