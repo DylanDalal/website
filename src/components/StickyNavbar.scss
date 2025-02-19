@@ -1,0 +1,47 @@
+.stickyNavbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+
+  /* Start with a fully transparent background. */
+  background: rgba(1, 6, 46, 0);
+  transition: background 0.5s ease-in-out; /* Fade background smoothly */
+
+  &.hide {
+    /* Keep background transparent until threshold is reached. */
+    background: rgba(1, 6, 46, 0);
+  }
+
+  &.show {
+    background: rgba(1, 6, 46, 1);
+  }
+
+  .navLinks {
+    /* Right-justify: half the navbar width, 7% gap between links */
+    display: grid;
+    width: 50%;
+    grid-template-columns: repeat(3, max-content);
+    justify-content: end;
+    gap: 7%;
+    margin-left: auto;
+    margin-right: 7%;
+    padding: 1rem;
+
+    .navLink {
+      cursor: pointer;
+      color: #fff;
+      font-family: Futura, sans-serif;
+      font-size: 1.2rem;
+
+      /* Slightly transparent on normal state for emphasis on hover. */
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+        text-decoration: underline;
+        transition: opacity 0.5s;
+      }
+    }
+  }
+}
