@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Navbar from './components/Navbar.js';
 import './App.css';
 import Home from "./pages/Home";
 import Film from "./pages/Film";
 import Tech from "./pages/Tech";
+import StickyNavbar from "./components/Sticky.js";
 import Footer from "./components/Footer.js";
 import Particles from 'react-tsparticles';
 import ParticleConfig from "./config/particle-config";
 
 function App() {
     const [selectedPage, setSelectedPage] = useState('Story');
+    const pageContentRef = useRef(null);
 
     // Dynamically render the selected page component
     const getPageComponent = () => {
@@ -34,15 +36,19 @@ function App() {
             <div className="particles-background">
                 <Particles params={ParticleConfig} />
             </div>
-            {/* Pass setSelectedPage and selectedPage to Navbar and Footer */}
+
+            {/* Standard Navbar (always visible) */}
             <Navbar onSelectPage={setSelectedPage} selectedPage={selectedPage} />
 
-            {/* Render the selected page component */}
-            <div className="page-content">
+            {/* Sticky Navbar that changes background after scrolling past .page-content */}
+            <StickyNavbar pageContentRef={pageContentRef} onSelectPage={setSelectedPage} />
+
+            {/* Main content, referenced by pageContentRef */}
+            <div className="page-content" ref={pageContentRef}>
                 {getPageComponent()}
             </div>
 
-            {/* Pass setSelectedPage to Footer as well */}
+            {/* Footer */}
             <Footer onSelectPage={setSelectedPage} />
         </div>
     );
