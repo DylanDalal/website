@@ -23,6 +23,7 @@ import houdini from './houdini.png';
 import frames from './moon_knight_frames.png';
 import ca1 from './im_conceptart1.jpg';
 import ca2 from './im_conceptart2.jpg';
+import degrain from './degrain.jpg';
 
 const anima1 = `I spent my first full-time position as a Machine Learning
                 Pipeline TD at Premise Entertainment LLC, where I served
@@ -95,11 +96,11 @@ const contr3 = `When Premise Entertainment shifted to ftrack from ShotGrid, one 
                 withevery publish. I worked with the Editorial, Layout, Animation, and Crowds departments in
                 order to create overlays on this reviewable.`
 
-const visfx1 = `The Degrain project is a machine learning-powered visual editing process that we used on every frame
-                ingested at Monsters / Aliens / Robots / Zombies. Every image has grain in it, and we would re-add it to
-                ship back to clients, but this grain would impact other machine learning models such as VanityAI.
-                I worked first on training the algorithm and then on implementing it into the pipeline for the company’s
-                internal frame storage databases.`
+const visfx1 = `The Degrain project is a machine learning-powered visual effects process that we used on every frame
+                ingested at Monsters / Aliens / Robots / Zombies. Every image has some amount of grain in it, and we
+                would re-add that to ship back to clients, but grain can impact the performance of other machine
+                learning models such as VanityAI. I worked first on training the algorithm and then on implementing it
+                into the pipeline for the company’s internal frame storage databases.`
 
 const visfx2 = `It was my introduction to training an artificial intelligence model to be used on a large scale. I
                 learned about the importance of implementing pipeline changes instead of technical updates. `
@@ -303,7 +304,7 @@ export const VisualEffectsComponent = () => {
         Machine Learning Degrain Project
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-
+        <img src={degrain}/>
       </div>
       <div>
         <p className="body_no_padding">{visfx1}</p>
