@@ -391,17 +391,24 @@ export const ContentReviewComponent = () => {
         SQL AND noSQL DATABASES FOR SHOT REVIEW
       </div>
         <div className="content-review-frames">
-            <img src={frames} alt="concept art" style={{width: "58vw", zIndex: 1, display: 'flex', position: "absolute", }}/>
+            <img src={frames} alt="concept art" style={{width: "58vw",
+                                                        zIndex: 1,
+                                                        display: 'flex',
+                                                        position: "absolute",
+                                                        transform: "translate(0, 3vw)"}}/>
             <div style={{
               position: 'absolute',
               width: "120%",
-              top: 0, left: 0, right: 0, bottom: 0,
+              top: 0, left: 0, right: 0, bottom: 50,
               background: 'linear-gradient(to right, rgba(0, 0, 0, 0), #efefef)',
               zIndex: 2,
+              transform: "translate(0, 3vw)"
             }} />
-            <img src={beforeafter} alt="before and after" style={{zIndex: 2, width: "44vw"}}/>
+            <img src={beforeafter} alt="before and after" style={{zIndex: 2,
+                                                                  width: "44vw",
+                                                                  transform: "translate(0, 3vw)"}}/>
         </div>
-      <div>
+      <div style={{margin: "8vw 0 0 0"}}>
         <p className="body_no_padding" style={{paddingBottom: "0"}}>{contr1}</p>
         <p className="body_no_padding">{contr2}</p>
       </div>
