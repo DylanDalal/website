@@ -15,6 +15,7 @@ import logoClip from '../resources/story/clip.png';
 import logoMarz from '../resources/story/marz.png';
 import logoCglj from '../resources/story/cglumberjack.png';
 import logoPrem from '../resources/story/premise.png';
+import { Helmet } from "react-helmet";
 
 const p1 = `I was born in West Chester, a Philadelphia suburb, in March of 2001.`
 
@@ -68,17 +69,55 @@ function Home() {
 
     return (
         <>
+                <Helmet>
+                  {/* Title & Description */}
+                  <title>Dylan Dalal | Software Engineer, Filmmaker, Artist</title>
+                  <meta name="description" content="The personal website of Dylan Dalal, showcasing software engineering projects, short films, and mixed media art." />
+
+                  {/* Open Graph (Facebook, LinkedIn) */}
+                  <meta property="og:title" content="Dylan Dalal Portfolio" />
+                  <meta property="og:description" content="Explore Dylan Dalal's filmmaking and software engineering portfolios." />
+                  <meta property="og:image" content="https://dylandalal.com/favicon.png" />
+                  <meta property="og:url" content="https://dylandalal.com/" />
+                  <meta property="og:type" content="website" />
+
+                  {/* Twitter Cards */}
+                  <meta name="twitter:card" content="summary_large_image" />
+                  <meta name="twitter:title" content="Dylan Dalal Portfolio" />
+                  <meta name="twitter:description" content="Explore Dylan Dalal's filmmaking and software engineering portfolios" />
+                  <meta name="twitter:image" content="https://dylandalal.com/favicon.png" />
+
+                {/* Schema Markup */}
+                <script type="application/ld+json">
+                    {`
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "Person",
+                        "name": "Dylan Dalal",
+                        "url": "https://dylandalal.com",
+                        "image": "https://dylandalal.com/profile.jpg",
+                        "jobTitle": "Software Engineer & Photographer",
+                        "sameAs": [
+                            "https://linkedin.com/in/dylandalal",
+                            "https://github.com/dylandalal",
+                            "https://twitter.com/dylandalal"
+                        ]
+                    }
+                    `}
+                </script>
+            </Helmet>
+
             <div className="first_home" style={{padding: "15vh 0 0 0"}}>
                 <div className="column-container">
                     <FadeDiv text={p1} className="bodyText"/>
-                    <img src={westchester} className="image-style"/>
+                    <img src={westchester} className="image-style" alt="Dylan Dalal's home in Philly" />
                 </div>
             </div>
             <div className="first_home" style={{position: "relative", padding: "2vh 0 0 0"}}>
                 <div>
                     <div className="column-container">
                         <FadeDiv text={p2} className="bodyText"/>
-                        <img src={florida} className="image-style"/>
+                        <img src={florida} className="image-style" alt="Dylan Dalal's home in Florida" />
                     </div>
                 </div>
             </div>
@@ -87,13 +126,13 @@ function Home() {
             </div>
             <div className="phone_home">
                  <div className="column-container2">
-                    <img src={iphone} style={{maxWidth: "60vw"}}/>
+                    <img src={iphone} style={{maxWidth: "60vw"}} alt="Dylan Dalal working on an iphone" />
                     <FadeDiv text={p4} className="bodyText"/>
                 </div>
             </div>
             <div className="laptop_home">
                  <div className="column-container2">
-                    <img src={laptop} style={{maxWidth: "60vw"}}/>
+                    <img src={laptop} style={{maxWidth: "60vw"}} alt="Dylan Dalal working on a laptop" />
                     <FadeDiv text={p5} className="bodyText"/>
                 </div>
             </div>
@@ -106,17 +145,17 @@ function Home() {
                 </p>
             </div>
             <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
-                <img src={games} className="games-image"/>
+                <img src={games} className="games-image" alt="Dylan Dalal's favorite games'" />
                 <p className="bodyText" style={{padding: "0 10vw 12vh 10vw"}}>{p7}</p>
             </div>
             <div className="fourth_home" style={{position: "relative", zIndex: 1}}>
                  <div className="column-container">
                     <FadeDiv text={p8} className="bodyText"/>
-                    <img src={youtube} style={{height: "70vh", width: "auto"}}/>
+                    <img src={youtube} style={{height: "70vh", width: "auto"}} alt="Dylan Dalal's YouTube Channel" />
                 </div>
             </div>
             <div className="sixth_home" style={{ position: "relative", zIndex: 1 }}>
-                <img src={fsu} className="fsu-image" style={{ }} />
+                <img src={fsu} className="fsu-image" alt="Florida State University, Dylan Dalal" />
                 <div className="fsu_wrapper">
                     <p className="bodyText">{p9}</p>
                 </div>
@@ -126,7 +165,7 @@ function Home() {
                 <div className="logo-row">
                   {logos.map((logo, index) => (
                     <a href={logo.link} key={index} target="_blank" rel="noopener noreferrer">
-                      <img src={logo.src} alt={`Logo ${index + 1}`} className="logo-image" />
+                      <img src={logo.src} alt={`Dylan Dalal Logo ${index + 1}`} className="logo-image" />
                     </a>
                   ))}
                 </div>
