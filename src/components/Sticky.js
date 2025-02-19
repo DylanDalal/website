@@ -36,11 +36,11 @@ function StickyNavbar({ pageContentRef, onSelectPage }) {
   return (
     <div className={`stickyNavbar ${isVisible ? 'show' : 'hide'}`}>
       <div className="navLinks">
-        <div className="navLink" onClick={() => handleClick('Film')}>
-          Film Portfolio
-        </div>
         <div className="navLink" onClick={() => handleClick('Story')}>
           Home
+        </div>
+        <div className="navLink" onClick={() => handleClick('Film')}>
+          Film Portfolio
         </div>
         <div className="navLink" onClick={() => handleClick('Tech')}>
           Tech Portfolio
