@@ -46,7 +46,7 @@ const Gallery = () => {
         const position = positions[index];
         const currentZIndex = hoveredImage === image.id ? 100 : image.zIndex; // Bring to front on hover
         const parallaxFactor = image.zIndex; // Use zIndex for parallax factor
-        const translateY = scrollY  * (parallaxFactor * 0.013) - 70 ; // Adjust multiplier for effect
+        const translateY = scrollY  * (parallaxFactor * 0.015) - 20 ; // Adjust multiplier for effect
 
         return (
           <div

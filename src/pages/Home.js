@@ -141,7 +141,7 @@ function Home() {
                 </div>
             </div>
             <div className="sixth_home" style={{ position: "relative", zIndex: 1 }}>
-                <img src={fsu} className="fsu-image" alt="Florida State University, Dylan Dalal" />
+                <img src={fsu} className="fsu-image" alt="Florida State University where Dylan Dalal attended" />
                 <div className="fsu_wrapper">
                     <p className="bodyText">{p9}</p>
                 </div>
