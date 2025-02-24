@@ -107,20 +107,6 @@ function Home() {
                 </script>
             </Helmet>
 
-            <div className="first_home" style={{padding: "15vh 0 0 0"}}>
-                <div className="column-container">
-                    <FadeDiv text={p1} className="bodyText"/>
-                    <img src={westchester} className="image-style" alt="Dylan Dalal's home in Philly" />
-                </div>
-            </div>
-            <div className="first_home" style={{position: "relative", padding: "2vh 0 0 0"}}>
-                <div>
-                    <div className="column-container">
-                        <FadeDiv text={p2} className="bodyText"/>
-                        <img src={florida} className="image-style" alt="Dylan Dalal's home in Florida" />
-                    </div>
-                </div>
-            </div>
             <div className="second_home">
                 <p className="bodyText" style={{padding: "10vw"}}>{p3}</p>
             </div>
