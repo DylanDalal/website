@@ -11,6 +11,8 @@ import md from '../resources/film/MonotonousDejection.jpg';
 import mdgif from '../resources/film/md.gif';
 import river from '../resources/film/the_river.jpg';
 import rivergif from '../resources/film/river.gif';
+import airtab from '../resources/film/airtab.jpg';
+import airtabgif from '../resources/film/airtab.gif';
 import control from '../resources/film/control.jpg';
 import controlgif from '../resources/film/control.gif';
 import lastride from '../resources/film/LastRideTN.jpg';
@@ -93,14 +95,13 @@ const videos = [
     thumbnailUrlGif: rivergif,
   },
   {
-    videoId: '1OaWBCMEDjE',
-    title: 'Last Ride',
-    role: 'Editor | VP Technician',
-    description: `Last Ride is a comedic skit about an Uber driver's unfortunate ending. It is actually a number of test
-    shots that I made into a narrative in the editing room- we didn't bother recording audio for our tests, so, I had
-    to get creative.`,
-    thumbnailUrl: lastride,
-    thumbnailUrlGif: lastridegif,
+    videoId: '4Ce2VZi9YGI',
+    title: 'Airtab Media Teaser',
+    role: 'Editor',
+    description: `The teaser displayed in the hero section of the Airtab Media website. I edited it using clips from
+    various Airtab Media-organized concerts to show the wide range of events that Airtab organizes.`,
+    thumbnailUrl: airtab,
+    thumbnailUrlGif: airtabgif,
   },
   {
     videoId: '9iRiZMCntXY',
@@ -111,6 +112,16 @@ const videos = [
     live-action portions of the film were shot using.`,
     thumbnailUrl: control,
     thumbnailUrlGif: controlgif,
+  },
+  {
+    videoId: '1OaWBCMEDjE',
+    title: 'Last Ride',
+    role: 'Editor | VP Technician',
+    description: `Last Ride is a comedic skit about an Uber driver's unfortunate ending. It is actually a number of test
+    shots that I made into a narrative in the editing room- we didn't bother recording audio for our tests, so, I had
+    to get creative.`,
+    thumbnailUrl: lastride,
+    thumbnailUrlGif: lastridegif,
   },
   {
     videoId: 'QFIvwBPdVFc',
