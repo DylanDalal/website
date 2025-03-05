@@ -23,6 +23,10 @@ import p_btr from '../resources/computer-science/p_btr.png';
 import p_fam from '../resources/computer-science/p_fam.png';
 import p_see from '../resources/computer-science/p_see.png';
 import p_wed from '../resources/computer-science/p_wed.png';
+import p_tur from '../resources/computer-science/p_turnerhooch.jpeg';
+import p_dun from '../resources/computer-science/p_dune.jpg';
+import p_rop from '../resources/computer-science/p_rop.jpeg';
+import p_kit from '../resources/computer-science/p_kitz.jpg';
 import ue from '../resources/computer-science/unreal_engine.png';
 import vp from '../resources/computer-science/virtual_production.png';
 import vr from '../resources/computer-science/virtual_reality.png';
@@ -282,6 +286,12 @@ function Tech() {
                       <img src={p_twd} alt="Dylan Dalal worked on The Walking Dead" />
                     </li>
                     <li className="carousel-item2">
+                      <img src={p_rop} alt="Dylan Dalal worked on Rings of Power" />
+                    </li>
+                    <li className="carousel-item2">
+                      <img src={p_dun} alt="Dylan Dalal worked on Dune: Prophecy" />
+                    </li>
+                    <li className="carousel-item2">
                       <img src={p_aby} alt="Dylan Dalal worked on Anyone But You" />
                     </li>
                     <li className="carousel-item2">
@@ -292,6 +302,12 @@ function Tech() {
                     </li>
                     <li className="carousel-item2">
                       <img src={p_fam} alt="Dylan Dalal worked on For All Mankind" />
+                    </li>
+                    <li className="carousel-item2">
+                      <img src={p_tur} alt="Dylan Dalal worked on Turner & Hooch" />
+                    </li>
+                    <li className="carousel-item2">
+                      <img src={p_kit} alt="Dylan Dalal worked on Kitz" />
                     </li>
                   </ul>
                 </div>
