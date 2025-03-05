@@ -250,7 +250,7 @@ function Tech() {
           </div>
         </div>
         <div className="header_pipeline" style={{ color: 'black', alignItems: 'left', paddingBottom: '10px' }}>
-          Saving $8 Million with VanityAI
+          Saving $8 Million with Vanity A.I.
         </div>
         <div style={{  alignItems: 'center'  }}>
             <div className="column-container2" style={{gap: "2vw"}}>
