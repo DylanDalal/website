@@ -106,7 +106,57 @@ function Home() {
                     `}
                 </script>
             </Helmet>
-
+            <div className="mission" style={{position: "relative", zIndex: 1}}>
+                <div>
+                    <FadeDiv
+                      className="mission_text" style={{padding: "0"}}
+                      text={
+                        <>
+                          I USE TECHNOLOGY TO<br />
+                          ELEVATE CREATIVE PROCESSES—<br />
+                          YOURS AND MINE.
+                        </>
+                      }
+                    />
+                </div>
+                <div className="ticker" style={{zIndex: 2}}>
+                  <div className="ticker__move">
+                    <span className="ticker__item bodyText">
+                      film &nbsp; gaming &nbsp; animation &nbsp; product development &nbsp;
+                      company infrastructure &nbsp; brand creation &nbsp;
+                    </span>
+                    <span className="ticker__item bodyText">
+                      film &nbsp; gaming &nbsp; animation &nbsp; product development &nbsp;
+                      company infrastructure &nbsp; brand creation &nbsp;
+                    </span>
+                  </div>
+                </div>
+                <div style={{padding: "15vh 0vw 0vw 0", width: "100%", textAlign: "right"}}>
+                    <FadeDiv
+                      className="mission_text"
+                      text={
+                        <>
+                          IN LIFTING YOUR <br />
+                          CREATIVITY, I INSPIRE<br />
+                          MY OWN.
+                        </>
+                      }
+                    />
+                </div>
+                <div className="ticker" style={{zIndex: 2}}>
+                  <div className="ticker__move">
+                    <span className="ticker__item bodyText">
+                      filmmaking &nbsp; photography &nbsp; mixed media &nbsp;
+                    </span>
+                    <span className="ticker__item bodyText">
+                      filmmaking &nbsp; photography &nbsp; mixed media &nbsp;
+                    </span>
+                    <span className="ticker__item bodyText">
+                      filmmaking &nbsp; photography &nbsp; mixed media &nbsp;
+                    </span>
+                  </div>
+                </div>
+            </div>
             <div className="second_home">
                 <p className="bodyText" style={{padding: "10vw"}}>{p3}</p>
             </div>

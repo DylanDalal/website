@@ -86,7 +86,7 @@
 
 .second_home {
     background: #000630;
-    height: 70vh;
+    height: 55vh;
     width: 100vw;
     align-items: center;
     object-fit: contain;
@@ -100,6 +100,24 @@
     .second_home {
         height: 50vh;
         padding: 0 0 0 0;
+    }
+}
+
+.mission {
+    background: #000630;
+    min-height: 88vh;
+    width: 84vw;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 40vh 8vw 0 8vw;
+}
+
+@media (orientation: portrait) {
+    .mission {
+        min-height: 82vh;
+        padding: 40vh 20vw 0 8vw;
     }
 }
 
@@ -192,4 +210,71 @@
 .logo-image:hover {
   transform: scale(1.05);
   opacity: 0.5;
+}
+
+.mission_text {
+    color: white;
+    font-family: DINCondensed;
+    font-size: 5vw;
+    text-transform: uppercase;
+    text-shadow: .15vw .05vw rgba(0, 0, 0, 0.2);
+}
+
+@media (orientation: portrait) {
+    .mission_text {
+        font-size: 8vw;
+    }
+}
+
+.ticker {
+  width: 100%;
+  height: 150%;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+
+  /* Start invisible, then animate in */
+  opacity: 0;
+  animation: fadeInTicker 2s ease forwards;
+}
+
+@keyframes fadeInTicker {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.ticker__move {
+  display: inline-block;
+  /* This total animation time sets the scroll speed. Adjust to your liking. */
+  animation: ticker-scroll 15s linear infinite;
+}
+
+.ticker__item {
+  display: inline-block;
+  padding: 0 5vw; /* space between repeated text sets your gap */
+  font-size: 2vw; /* your bodyText style could be here or in your .bodyText class */
+  margin: 0;
+  color: white;
+  opacity: 60%;
+}
+
+@media (orientation: portrait) {
+    .ticker__item {
+        font-size: 4vw;
+    }
+}
+
+/* Keyframes to shift the entire text block left by 50% */
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* move left by half of the container's total width (since we duplicated text) */
+    transform: translateX(-50%);
+  }
 }
