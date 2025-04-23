@@ -1,0 +1,25 @@
+.wps-track{
+  display:flex;
+  gap:.1vw;
+  padding:0rem 0;
+  scroll-snap-type:x mandatory;
+}
+.wps-track::-webkit-scrollbar{display:none;}
+.wps-track{scrollbar-width:none;}
+
+.wps-slice{
+  flex:13vw;
+  height:34vh;
+  transform:skewX(-8deg);
+  overflow:scroll;
+  border-radius:3px;
+  box-shadow:3px 3px rgba(0,0,0,.25);
+}
+
+.wps-shot{
+  width:140%;              /* slightly bigger so corners stay filled */
+  height:100%;
+  object-fit:cover;
+  transform:skewX(8deg) scale(1.05); /* un‑tilt + gentle zoom */
+  pointer-events:none;
+}
