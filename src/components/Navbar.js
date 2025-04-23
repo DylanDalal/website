@@ -59,8 +59,11 @@ function Navbar() {
   const blurbs = {
     Blog:  "Blog coming soon, sorry for the mess!",
     Film:  `I started making films using LEGOs and the first iPhone when I was eight. Scroll down to view my modern short film portfolio.`,
-    Story: `Welcome! My name is Dylan Dalal, professional software engineer and amateur filmmaker…`,
-    Tech:  `My fascination with technology started with a LEGO Mindstorms set when I was seven…`,
+    Story: `Welcome! My name is Dylan Dalal, professional software engineer and amateur filmmaker. You
+     can navigate to my portfolios by clicking the words above or scroll down to read my story. This website is a WIP,
+     sorry for the mess!`,
+    Tech:  `My fascination with technology started with a LEGO Mindstorms set when I was seven. I shifted to building
+    real computers and about four years after. Scroll down to view the projects I've worked on.`,
     Art:   "Art coming soon, sorry for the mess!",
   };
 
@@ -119,6 +122,7 @@ function Navbar() {
                   style={{
                     textAlign: "center",
                     width: "50vw",
+                    margin: "0 auto",
                   }}
                 >
                   <FadeDiv

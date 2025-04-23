@@ -24,7 +24,7 @@ const projects = [
     description:
       "Interactive contest platform built in Framer — rapid prototyping, gorgeous animations.",
     tech: ["Framer", "React"],
-    embed: "https://openforanicon.com",
+    embed: "https://static-fade-239041.framer.app/",
   },
   {
     name: "AirTab Media",

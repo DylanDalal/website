@@ -1,15 +1,16 @@
 .wps-track{
   display:flex;
   gap:.1vw;
-  padding:0rem 0;
+  padding:0 0 3vh 0;
   scroll-snap-type:x mandatory;
 }
 .wps-track::-webkit-scrollbar{display:none;}
 .wps-track{scrollbar-width:none;}
 
 .wps-slice{
-  flex:13vw;
+  flex:40vw;
   height:34vh;
+  width: 13vw;
   transform:skewX(-8deg);
   overflow:scroll;
   border-radius:3px;

@@ -247,7 +247,7 @@ function Film() {
         </div>
       </div>
       <div className="third_film" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="header2">Complete Portfolio</div>
+        <div className="header2">Professional Portfolio</div>
         <div className="column-container" style={{ gap: '5vw' }}>
           <div className="slate_background">
             <div className="slate_background2">

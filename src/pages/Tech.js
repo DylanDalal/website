@@ -413,7 +413,7 @@ function Tech() {
           <WebsitePreviewSlider images={website_previews} />
           <div style={{maxWidth: "55vw"}}>
             <div className="body_no_padding" style={{ color: 'black' }}>{websi}</div>
-            <div style={{ textAlign: 'center' }}>
+            <div style={{ textAlign: 'center'}}>
               <VisitWebsiteButton url="/web" newTab={true} />
             </div>
           </div>
