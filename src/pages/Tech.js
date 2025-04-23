@@ -11,7 +11,7 @@ import asset from '../resources/computer-science/asset.png';
 import content from '../resources/computer-science/content.png';
 import data from '../resources/computer-science/data_transfer.png';
 import vfx from '../resources/computer-science/vfx.png';
-import VisitWebsiteButton from '../resources/VisitWebsiteButton';
+import VisitWebsiteButton from '../components/VisitWebsiteButton';
 import Modal from '../resources/Modal';
 import p_aby from '../resources/computer-science/p_aby.png';
 import p_spi from '../resources/computer-science/p_spi.png';
@@ -43,8 +43,17 @@ import mariadb from '../resources/computer-science/mariadb.png';
 import opencv from '../resources/computer-science/opencv.png';
 import maya from '../resources/computer-science/maya.png';
 import r_logo from '../resources/computer-science/R.png';
+import javascript from '../resources/computer-science/javascript.png';
+import html from '../resources/computer-science/html.png';
+import react from '../resources/computer-science/react.png';
+import framer from '../resources/computer-science/framer.png';
 import csharp from '../resources/computer-science/csharp.png';
 import plus from '../resources/computer-science/plus.png';
+import WebsitePreviewSlider from "../components/WebsitePreviewSlider";
+import website_1 from "../resources/computer-science/website_1.jpg";
+import website_2 from "../resources/computer-science/website_5.jpg";
+import website_3 from "../resources/computer-science/website_3.jpg";
+import website_4 from "../resources/computer-science/website_4.jpg";
 import {
   DataTransferComponent,
   AnimationComponent,
@@ -80,6 +89,10 @@ const virt2 = `I researched technologies from many companies and experimented wi
 const virt3 = `It was my introduction to leading a team in a professional setting; to being a part of the planning,
                testing, and execution of a major project; and to the intricacies of working in a large organization.`;
 
+const websi = `My passion for art and design makes creating dynamic websites a very interesting pastime. In addition to
+               building their websites, I usually take on the role of graphic designer, video editor, and brand manager.
+               I've worked with a few companies on complete brand redesigns that you can explore below.`
+
 const psych1 = `My research at the FSU Department of Psychology centered around removing participant biases from our
                experiment results by doing in-depth data analysis on respondent datasets. The goal was to determine
                if and how people use the properties of math when completing math problems.`
@@ -105,6 +118,9 @@ const space = `\n`;
 
 const piped = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lobortis  elementum dapibus. Morbi
                accumsan iaculis metus. Nulla nec erat magna.`;
+
+
+const website_previews = [website_1, website_2, website_3, website_4]
 
 const asoj_intro = [
   {
@@ -379,6 +395,28 @@ function Tech() {
                   </div>
                 </div>
             </div>
+        </div>
+      </div>
+      <div className="second_tech" style={{ position: 'relative', zIndex: 1, paddingTop: "6vh", alignItems: 'center', paddingBottom: "6vh"}}>
+        <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', paddingBottom: "0" }}>
+          <div>
+            <img className="tech-logo" src={react} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
+            <img className="tech-logo" src={javascript} alt="Dylan Dalal" style={{ margin: "0 5px 0px 5px" }} />
+            <img className="tech-logo" src={html} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }} />
+            <img className="tech-logo" src={framer} alt="Dylan Dalal" style={{ margin: "0 5px 2px 5px" }} />
+          </div>
+        </div>
+        <div className="header_pipeline" style={{ color: 'black', alignItems: 'center', paddingBottom: '10px' }}>
+          Websites that Elevate Your Brand
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: 'center', justifyContent: 'center' }}>
+          <WebsitePreviewSlider images={website_previews} />
+          <div style={{maxWidth: "55vw"}}>
+            <div className="body_no_padding" style={{ color: 'black' }}>{websi}</div>
+            <div style={{ textAlign: 'center' }}>
+              <VisitWebsiteButton url="/web" newTab={true} />
+            </div>
+          </div>
         </div>
       </div>
       <div className="fourth_tech" style={{ position: 'relative', zIndex: 1 }}>
