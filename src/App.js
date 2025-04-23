@@ -1,57 +1,29 @@
-import React, { useState, useRef } from 'react';
-import Navbar from './components/Navbar.js';
-import './App.css';
-import Home from "./pages/Home";
-import Film from "./pages/Film";
-import Tech from "./pages/Tech";
-import StickyNavbar from "./components/Sticky.js";
-import Footer from "./components/Footer.js";
-import Particles from 'react-tsparticles';
-import ParticleConfig from "./config/particle-config";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import MainLayout from "./components/MainLayout";
 
-function App() {
-    const [selectedPage, setSelectedPage] = useState('Story');
-    const pageContentRef = useRef(null);
+import Home  from "./pages/Home";
+import Film  from "./pages/Film";
+import Tech  from "./pages/Tech";
+import Web   from "./pages/Web";
 
-    // Dynamically render the selected page component
-    const getPageComponent = () => {
-        switch (selectedPage) {
-            case 'Story':
-                return <Home />;
-            case 'Film':
-                return <Film />;
-            case 'Tech':
-                return <Tech />;
-            case 'Art':
-                return;
-            case 'Blog':
-                return;
-            default:
-                return <Home />; // Default to Home if none match
-        }
-    };
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* ----- main web flow, always shows layout chrome ----- */}
+        <Route element={<MainLayout />}>
+          <Route index element={<Home />} />        {/* “/” */}
+          <Route path="film" element={<Film />} />
+          <Route path="tech" element={<Tech />} />
+          {/* add “art”, “blog”, etc. here */}
+        </Route>
 
-    return (
-        <div className="App">
-            <div className="particles-background">
-                <Particles params={ParticleConfig} />
-            </div>
+        {/* ----- one‑off pages without navbar / footer / particles ----- */}
+        <Route path="web" element={<Web />} />
 
-            {/* Standard Navbar (always visible) */}
-            <Navbar onSelectPage={setSelectedPage} selectedPage={selectedPage} />
-
-            {/* Sticky Navbar that changes background after scrolling past .page-content */}
-            <StickyNavbar pageContentRef={pageContentRef} onSelectPage={setSelectedPage} />
-
-            {/* Main content, referenced by pageContentRef */}
-            <div className="page-content" ref={pageContentRef}>
-                {getPageComponent()}
-            </div>
-
-            {/* Footer */}
-            <Footer onSelectPage={setSelectedPage} />
-        </div>
-    );
+        {/* any unknown URL → home */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App;
