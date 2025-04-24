@@ -1,26 +1,48 @@
+/* ------------- layout wrapper ------------- */
+.wps-wrapper{
+  width:100%;
+  display:flex;
+  justify-content:center;   /* keeps the whole slider centered */
+}
+
+/* ------------- slider strip ------------- */
 .wps-track{
   display:flex;
-  gap:.1vw;
+  justify-content: center;
+  gap:.5vw;
   padding:0 0 3vh 0;
+  width:fit-content;        /* shrink to content so wrapper can center it */
   scroll-snap-type:x mandatory;
 }
 .wps-track::-webkit-scrollbar{display:none;}
 .wps-track{scrollbar-width:none;}
 
+/* ------------- individual slice ------------- */
 .wps-slice{
-  flex:40vw;
+  flex:0 0 10vw;            /* fixed width column      */
   height:34vh;
-  width: 13vw;
   transform:skewX(-8deg);
-  overflow:scroll;
+  overflow:hidden;
   border-radius:3px;
   box-shadow:3px 3px rgba(0,0,0,.25);
 }
 
+@media (orientation: portrait) {
+    .wps-slice {
+        flex: 0 0 15vw;
+    }
+
+    .wps-track {
+        gap: 1vw;
+    }
+}
+
+/* ------------- image ------------- */
 .wps-shot{
-  width:140%;              /* slightly bigger so corners stay filled */
-  height:100%;
+  width:140%;
+  height:140%;
   object-fit:cover;
-  transform:skewX(8deg) scale(1.05); /* un‑tilt + gentle zoom */
+  transform:skewX(8deg) scale(1.05) translateY(-10px); /* initial position */
   pointer-events:none;
+  will-change:transform;
 }

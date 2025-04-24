@@ -17,8 +17,9 @@
   h1 {
     font-family: DINCondensed;
     margin: 0;
-    font-size: 4vw;
+    font-size:clamp(2.25rem,4vw,4rem);
     text-transform: uppercase;
+    color: white;
     text-shadow: .15vw .05vw rgba(0, 0, 0, 0.2);
   }
 
@@ -38,6 +39,7 @@
   gap: 3vw;
   background: #ffffff;
   border-radius: 15px;
+  border-left:2px solid #4f46e5;
   padding: 2.5vw 2vw;
   box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.14);
   transition: transform .25s ease, box-shadow .25s ease;
@@ -131,5 +133,40 @@
   &:hover {
     text-decoration: underline;
     color: #1d4ed8;
+  }
+}
+
+/* ---- gradient block ------------------------------------------------ */
+.web-exp--gradient{
+  position:relative;               /* anchor pseudo-elements & canvas */
+  isolation:isolate;               /* ⬅ keeps blend modes tidy       */
+
+  /* full-width gradient bar (adjust colours to taste) */
+  &::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(180deg,#97d1d6 10%,#0b133a 100%);
+    z-index:-3;
+  }
+
+  /* subtle inner radial glow */
+  &::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(70% 60% at 50% 30%,rgba(255,255,255,.05) 0%,transparent 70%);
+    z-index:-2;
+  }
+
+  /* particle canvas */
+  .web-exp__particles{
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    mix-blend-mode:screen;         /* let light particles pop on dark */
+    opacity: .7;
   }
 }

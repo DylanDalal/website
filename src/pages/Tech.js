@@ -90,7 +90,7 @@ const virt3 = `It was my introduction to leading a team in a professional settin
                testing, and execution of a major project; and to the intricacies of working in a large organization.`;
 
 const websi = `My passion for art and design makes creating dynamic websites a very interesting pastime. In addition to
-               building their websites, I usually take on the role of graphic designer, video editor, and brand manager.
+               coding the websites, I usually take on the role of graphic designer, video editor, and brand manager.
                I've worked with a few companies on complete brand redesigns that you can explore below.`
 
 const psych1 = `My research at the FSU Department of Psychology centered around removing participant biases from our
