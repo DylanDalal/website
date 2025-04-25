@@ -96,8 +96,8 @@ function WebCard({ project }) {
           <SitePreview
             src={project.embed}
             title={project.name}
-            width={320}
-            height={180}
+            width={400}
+            height={225}
           />
         ) : (
           <div className="scroll-preview">
@@ -117,8 +117,8 @@ function WebCard({ project }) {
           )}
         </div>
 
-        <h2 className="web-card__title">{project.name}</h2>
-        <p className="web-card__desc">{project.description}</p>
+        <h2 className="web-card__title" style={{margin: '0', padding: '0'}}>{project.name}</h2>
+        <p className="web-card__desc" >{project.description}</p>
 
         <a
           href={project.url}
@@ -145,15 +145,16 @@ export default function Web() {
       <header className="web-exp__header">
         <h1 style={{ margin: "3vh 0 0" }}>Web Development Portfolio</h1>
         <p style={{ margin: "0 0 3vh" }}>
-          A snapshot of sites I’ve built — spanning custom React code, Framer
-          prototypes, and GoDaddy builders.
+          I build websites with clear, coherent messaging and a strong focus on brand identity.
         </p>
       </header>
-
-      {/* project cards */}
-      {projects.map((p) => (
-        <WebCard key={p.url} project={p} />
-      ))}
+      <div style={{width: "95vw", height: "80vh", overflowX: "show", overflowY: "show", padding: "0 0 0 5svw"}}>
+          <div className="web-exp__carousel">
+              {projects.map((p) => (
+                <WebCard key={p.url} project={p} />
+              ))}
+          </div>
+      </div>
     </section>
   );
 }
