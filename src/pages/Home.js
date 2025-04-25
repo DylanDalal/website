@@ -176,7 +176,7 @@ function Home() {
                 <Gallery />
                 <p className="bodyText" style={{
                         position: "absolute", top: "40%", left: "50%", transform: "translate(-60%, -50%)",
-                        zIndex: 2, textAlign: "center", textShadow: "2px 2px 1px rgba(0, 0, 0, 0.4)"}}>
+                        zIndex: 10, textAlign: "center", textShadow: "2px 2px 1px rgba(0, 0, 0, 0.4)"}}>
                     {p6}
                 </p>
             </div>
