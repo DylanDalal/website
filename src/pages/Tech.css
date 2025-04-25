@@ -94,7 +94,8 @@
     color: #353535;
     padding-top: 0;
     padding-bottom: 3vh;
-    font-family: Futura;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
     fontSize: clamp(1rem, 3vw);
 }
 
@@ -294,7 +295,8 @@
 }
 
 .grid-item p {
-  font-family: Futura;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
   fontSize: 3vw;
   font-size: 1rem;
   margin: 5px 2vw 15px 2vw;
