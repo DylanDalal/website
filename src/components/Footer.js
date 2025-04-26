@@ -1,37 +1,42 @@
-import React from 'react';
-import './Navbar.scss';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "./Navbar.scss";       // keeps your .footer-text styles
 
-function Footer({ onSelectPage }) {
-    const vhAmount = 250;
-    const scrollPosition = window.innerHeight * (vhAmount / 100);
+export default function Footer() {
+  return (
+    <footer
+      style={{
+        backgroundColor: "#09153d",
+        height: "15vh",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontFamily: "Futura",
+        fontSize: "2vh",
+        position: "relative",
+        zIndex: 1,
+      }}
+    >
+      {/* left group --------------------------------------------------- */}
+      <div style={{ display: "flex", alignItems: "center", gap: "3vw" }}>
+        <NavLink to="/film" className="footer-text">
+          Film Portfolio
+        </NavLink>
+        <NavLink to="/" className="footer-text">
+          Home
+        </NavLink>
+        <NavLink to="/tech" className="footer-text">
+          Tech Portfolio
+        </NavLink>
+      </div>
 
-    const handleClick = (page) => {
-        onSelectPage(page);
-        window.scrollTo({ top: scrollPosition, behavior: "smooth" });
-    };
-
-    return (
-        <div style={{
-            backgroundColor: "#09153d",
-            height: "15vh",
-            width: "100%",
-            display: "flex",
-            fontFamily: "Futura",
-            justifyContent: "center",
-            fontSize: "2vh",
-            position: "relative",
-            zIndex: 1
-        }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "3vw" }}>
-                <div className="footer-text" onClick={() => handleClick('Film')}>Film Portfolio</div>
-                <div className="footer-text" onClick={() => handleClick('Story')}>Home</div>
-                <div className="footer-text" onClick={() => handleClick('Tech')}>Tech Portfolio</div>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", margin: "0 0 0 10vw" }}>
-                <a href="mailto:dylanmax@gmail.com" className="footer-text">Contact</a>
-            </div>
-        </div>
-    );
+      {/* right group -------------------------------------------------- */}
+      <div style={{ display: "flex", alignItems: "center", marginLeft: "10vw" }}>
+        <a href="mailto:dylanmax@gmail.com" className="footer-text">
+          Contact
+        </a>
+      </div>
+    </footer>
+  );
 }
-
-export default Footer;

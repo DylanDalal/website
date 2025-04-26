@@ -96,6 +96,7 @@ function Navbar() {
                 style={{
                   opacity: fade ? 0 : 1,
                   transition: "opacity 0.5s",
+                  zIndex: 20
                 }}
               >
                 <div className="grid-container">
