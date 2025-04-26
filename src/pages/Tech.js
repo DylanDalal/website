@@ -407,7 +407,7 @@ function Tech() {
           </div>
         </div>
         <div className="header_pipeline" style={{ color: 'black', alignItems: 'center', paddingBottom: '10px' }}>
-          Brand-Elevating Websites
+          Elevating Brands with Elegant Websites
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: 'center', justifyContent: 'center' }}>
           <WebsitePreviewSlider images={website_previews} />
