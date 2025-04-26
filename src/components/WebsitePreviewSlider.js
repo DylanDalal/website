@@ -30,7 +30,7 @@ export default function WebsitePreviewSlider({ images }) {
           skewX(8deg)
           scale(1.05)
           translateY(${prog * baseShift * speeds[i] - 100}px)
-          translateY(-5px)   /* hide bottom sliver */
+          translateX(-10px)   /* hide bottom sliver */
         `;
       });
     };

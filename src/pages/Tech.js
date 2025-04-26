@@ -229,8 +229,8 @@ function Tech() {
           </div>
         </div>
         {/* Carousel */}
-        <div className="carousel-container" style={{ paddingBottom: "5vh", margin: "0 0 0 0" }}>
-          <ul className="carousel">
+        <div className="carousel-container" style={{ paddingBottom: "5vh", overflowX: "show", margin: "0 0 0 0" }}>
+          <ul className="carousel" style={{overflowX: "show"}}>
             <li className="carousel-item" onClick={() => openModal('Data Transfer')}>
               <img className="carousel-plus" src={plus} alt="Dylan Dalal" />
               <img src={data} alt="Dylan Dalal Data Transfer" />

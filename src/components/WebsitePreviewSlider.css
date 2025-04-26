@@ -42,7 +42,7 @@
   width:140%;
   height:140%;
   object-fit:cover;
-  transform:skewX(8deg) scale(1.05) translateY(-10px); /* initial position */
+  transform:skewX(8deg) scale(1.05) translateY(-50px); /* initial position */
   pointer-events:none;
   will-change:transform;
 }
