@@ -1,6 +1,6 @@
 import React from 'react';
 
-const VisitWebsiteButton = ({ url, newTab = true }) => {
+const VisitWebsiteButton = ({ url, text = "Visit website", newTab = true }) => {
     const containerStyle = {
         cursor: 'pointer',
     };
@@ -28,7 +28,7 @@ const VisitWebsiteButton = ({ url, newTab = true }) => {
         target={newTab ? "_blank" : "_self"}
         rel="noopener noreferrer"
       >
-        Visit website
+        {text}
       </a>
   );
 };
