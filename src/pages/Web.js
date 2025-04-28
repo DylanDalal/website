@@ -52,7 +52,9 @@ const projects = [
     name: "Open For An Icon",
     url: "https://openforanicon.com",
     description:
-      "Interactive contest platform built in Framer — rapid prototyping, gorgeous animations.",
+      `Engaging website built for a tech startup's music industry contest. Needed to efficiently convey contest information
+      to both interested artists and potential voters. Features graphic design, video editing, 3D animation, and branding
+      created entirely by me.`,
     tech: ["Framer", "React"],
     embed: "https://static-fade-239041.framer.app/",
   },
@@ -60,7 +62,8 @@ const projects = [
     name: "AirTab Media",
     url: "https://airtabmedia.com",
     description:
-      "Dynamic media-company site in Framer featuring sleek transitions and interactive components.",
+      `Engaging launch page for an umbrella tech startup. Needed to clearly convey the company's wide and complex range
+      of products to potential investors. I created all of the graphics and planned the webflow.`,
     tech: ["Framer", "React"],
     embed: "https://airtabmedia.com",
   },
@@ -68,7 +71,9 @@ const projects = [
     name: "Dylandalal.com",
     url: "https://dylandalal.com",
     description:
-      "Hand-coded portfolio (React) focused on performance, accessibility, and custom design.",
+      `Hand-coded portfolio (React) focused on performance, search engine optimization, and unique design. My initial
+      goal was to build a website that never refreshed between pages, but as the scope increased, I've had to build
+      spinoff pages (like this) for a more streamlined user experience.`,
     tech: ["HTML", "JavaScript", "React"],
     embed: "https://dylandalal.com",
   },
@@ -76,7 +81,7 @@ const projects = [
     name: "Kofsky Law Office",
     url: "https://kofskylawoffice.com",
     description:
-      "Straightforward law-office presence built in GoDaddy Website Builder — clean and accessible.",
+      `Straightforward law-office webpage built to be easily understood and accessible.`,
     tech: ["GoDaddy"],
     embed: null, // will use static screenshot
   },
@@ -112,7 +117,7 @@ function WebCard({ project }) {
           {project.tech.map(
             (t) =>
               logos[t] && (
-                <img key={t} src={logos[t]} alt={t} className="tech-logo" />
+                <img key={t} src={logos[t]} alt={t} className="tech-logo" style={{opacity: ".8", maxWidth: "70px"}} />
               )
           )}
         </div>
@@ -145,15 +150,17 @@ export default function Web() {
       <header className="web-exp__header">
         <h1 style={{ margin: "3vh 0 0" }}>Web Development Portfolio</h1>
         <p style={{ margin: "0 0 3vh" }}>
-          I build websites with clear, coherent messaging and a strong focus on brand identity.
+          I build websites with clear, coherent messaging and a strong focus on brand identity. Scroll on the preview to gain a preview.
         </p>
       </header>
-      <div style={{width: "95vw", height: "80vh", overflowX: "show", overflowY: "show", padding: "0 0 0 5svw"}}>
+      <div className="outer-wrapper">
+        <div className="scroll-container">
           <div className="web-exp__carousel">
               {projects.map((p) => (
                 <WebCard key={p.url} project={p} />
               ))}
           </div>
+        </div>
       </div>
     </section>
   );

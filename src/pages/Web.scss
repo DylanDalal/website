@@ -34,51 +34,58 @@
 
 /* Carousel */
 .web-exp__carousel {
-  width: 95vw;
   display: flex;
   gap: 1vw;
-  overflow-x: auto;
+}
+
+.outer-wrapper {
+  width: 100%;
+  overflow-y: visible;
+}
+
+.scroll-container {
+  display: flex;
+  justify-content: center;
+  gap: 1vw;
+  overflow: visible;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding: 0;
 
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 10px;
-  }
+  &::-webkit-scrollbar { display: none; }   // hide scrollbar
+  scrollbar-width: none;                    // Firefox
 }
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
 
 /* Card */
 .web-card {
   flex: 0 0 auto;
-  width: 480px;             /* CONTROL CARD WIDTH */
+  width: 400px;             /* CONTROL CARD WIDTH */
   height: 60vh;            /* CONTROL CARD HEIGHT */
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   display: flex;
   flex-direction: column;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 1rem;
   box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.14);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   overflow: hidden;        /* clip overflow inside */
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.16);
+    box-shadow: 1.5px 4px 0px rgba(0, 0, 0, 0.16);
+    background: rgba(255, 255, 255, 0.9);
   }
 
 }
 
 /* Preview */
 .web-card__preview {
-  flex: 0 0 54%;
+  flex: 0 0 39%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -139,6 +146,7 @@
     max-height: 24px;
     width: auto;
     object-fit: contain;
+    opacity: .8;
   }
 }
 
@@ -178,6 +186,7 @@
 .web-exp--gradient {
   position: relative;
   isolation: isolate;
+  overflow: visible;
 
   &::before {
     content: "";
@@ -201,6 +210,5 @@
     z-index: -1;
     pointer-events: none;
     mix-blend-mode: screen;
-    opacity: 0.7;
   }
 }
