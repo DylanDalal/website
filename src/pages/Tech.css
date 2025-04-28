@@ -103,7 +103,6 @@
     display: flex;
     justify-content: center;
     align-items: middle;
-    overflow-x: hidden;
     margin: 0 auto;
 }
 
@@ -137,8 +136,6 @@
 .carousel {
     margin: 0 5px 0 5px;
     display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     padding: 10px 0px 10px 0px;
     scrollbar-width: none;
@@ -422,9 +419,6 @@
   }
 }
 
-
-
-
 @media (orientation: portrait) {
     .grid {
         grid-template-columns: 1fr; /* Switches to a single column */
@@ -456,14 +450,5 @@
   text-transform: uppercase;
   padding: 10px;
   border-radius: 5px;
-}
-
-.carousel {
-  display: flex;
-  gap: 10px;
-}
-
-.carousel-item {
-  cursor: pointer;
 }
 

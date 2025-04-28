@@ -5,6 +5,7 @@ import '../App.css';
 import './Film.css';
 import './Tech.css';
 import FadeDiv from '../components/FadeDiv';
+import useAutoScroll from  '../components/useAutoScroll.js'
 import './Home.css';
 import animation from '../resources/computer-science/animation.png';
 import asset from '../resources/computer-science/asset.png';
@@ -133,7 +134,8 @@ function Tech() {
   const [modalContent, setModalContent] = useState(null);
   const [modalHeader, setModalHeader] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const carouselRef = useState(null);
+  const carouselRef = useRef(null);
+  useAutoScroll(carouselRef, 170, 2000);
 
   const openModal = (type) => {
     setIsModalOpen(true);
@@ -168,11 +170,6 @@ function Tech() {
     setModalContent(null); // Clear modal content on close
   };
 
-  useEffect(() => {
-    if (carouselRef.current) {
-      startAutoscroll(carouselRef.current, 160, 2000);
-    }
-  }, []);
   // Build a listener to close pipeline development modal with Escape key
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -229,8 +226,8 @@ function Tech() {
           </div>
         </div>
         {/* Carousel */}
-        <div className="carousel-container" style={{ paddingBottom: "5vh", overflowX: "show", margin: "0 0 0 0" }}>
-          <ul className="carousel" style={{overflowX: "show"}}>
+        <div className="carousel-container" style={{ paddingBottom: "5vh", overflowX: "visible", margin: "0 0 0 0"}}>
+           <ul className="carousel" ref={carouselRef} style={{ overflowX: "auto", overflowY: "hidden" }}>
             <li className="carousel-item" onClick={() => openModal('Data Transfer')}>
               <img className="carousel-plus" src={plus} alt="Dylan Dalal" />
               <img src={data} alt="Dylan Dalal Data Transfer" />
@@ -288,7 +285,16 @@ function Tech() {
                   style={{}}
                   ref={carouselRef}
                 >
-                  <ul className="carousel" style={{paddingBottom: '10px', margin: '0px', maxWidth: "80vw" }}>
+                  <ul className="carousel" style={{paddingBottom: '10px', margin: '0px', maxWidth: "80vw"}}>
+                    <li className="carousel-item2">
+                      <img src={p_tur} alt="Dylan Dalal worked on Turner & Hooch" />
+                    </li>
+                    <li className="carousel-item2">
+                      <img src={p_kit} alt="Dylan Dalal worked on Kitz" />
+                    </li>
+                    <li className="carousel-item2">
+                      <img src={p_dun} alt="Dylan Dalal worked on Dune: Prophecy" />
+                    </li>
                     <li className="carousel-item2">
                       <img src={p_str} alt="Dylan Dalal worked on Stranger Things Season 4" />
                     </li>
@@ -299,16 +305,16 @@ function Tech() {
                       <img src={p_pcj} alt="Dylan Dalal worked on Percy Jackson and the Olympians" />
                     </li>
                     <li className="carousel-item2">
-                      <img src={p_twd} alt="Dylan Dalal worked on The Walking Dead" />
-                    </li>
-                    <li className="carousel-item2">
-                      <img src={p_rop} alt="Dylan Dalal worked on Rings of Power" />
+                      <img src={p_aby} alt="Dylan Dalal worked on Anyone But You" />
                     </li>
                     <li className="carousel-item2">
                       <img src={p_dun} alt="Dylan Dalal worked on Dune: Prophecy" />
                     </li>
                     <li className="carousel-item2">
-                      <img src={p_aby} alt="Dylan Dalal worked on Anyone But You" />
+                      <img src={p_twd} alt="Dylan Dalal worked on The Walking Dead" />
+                    </li>
+                    <li className="carousel-item2">
+                      <img src={p_rop} alt="Dylan Dalal worked on Rings of Power" />
                     </li>
                     <li className="carousel-item2">
                       <img src={p_see} alt="Dylan Dalal worked on See" />
@@ -318,12 +324,6 @@ function Tech() {
                     </li>
                     <li className="carousel-item2">
                       <img src={p_fam} alt="Dylan Dalal worked on For All Mankind" />
-                    </li>
-                    <li className="carousel-item2">
-                      <img src={p_tur} alt="Dylan Dalal worked on Turner & Hooch" />
-                    </li>
-                    <li className="carousel-item2">
-                      <img src={p_kit} alt="Dylan Dalal worked on Kitz" />
                     </li>
                   </ul>
                 </div>
@@ -414,7 +414,7 @@ function Tech() {
           <div style={{maxWidth: "55vw"}}>
             <div className="body_no_padding" style={{ color: 'black' }}>{websi}</div>
             <div style={{ textAlign: 'center'}}>
-              <VisitWebsiteButton url="/web" newTab={true} />
+              <VisitWebsiteButton url="/web" text="View portfolio" newTab={true} />
             </div>
           </div>
         </div>
@@ -495,19 +495,5 @@ function Tech() {
   );
 }
 
-function startAutoscroll(carousel, scrollAmount = 160, interval = 2000) {
-  setInterval(() => {
-    if (carousel.scrollWidth - carousel.scrollLeft <= carousel.clientWidth) {
-      // Reset to the beginning if the end is reached
-      carousel.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      // Scroll by the specified amount
-      carousel.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-  }, interval);
-}
 
 export default Radium(Tech);
