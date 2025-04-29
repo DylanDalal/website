@@ -22,7 +22,7 @@
   flex-direction: column;
   position: relative;
   overflow: hidden; /* Prevent body from scrolling outside the modal */
-  border: 20px solid #ccc; /* Add a border around the entire modal */
+  border: 8px solid #ccc; /* Add a border around the entire modal */
 }
 
 /* Fixed Header */
