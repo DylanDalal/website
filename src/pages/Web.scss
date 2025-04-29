@@ -85,7 +85,7 @@
 
 /* optional hover lift */
 .tile:hover {
-  box-shadow: 0 8px 20px rgba(0 0 0 / .12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
   transform: translateY(-4px) rotate(calc((var(--r, 0) - 0.5) * 2deg));
 }
 
