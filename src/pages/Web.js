@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import Particles from "react-tsparticles";
 import SitePreview from "../components/SitePreview";
 import ParticleConfig from "../config/particle-config";
+import bgCode from '../components/bgCode.js';
+import bgLorem from '../components/loremipsum.js';
 
 import "./Web.scss";
 
@@ -41,12 +43,8 @@ const logos = {
   JavaScript: javascript,
   HTML: html,
   Framer: framer,
-  // "GoDaddy" left undefined → no logo
 };
 
-/* -------------------------------------------------
-   project meta
--------------------------------------------------- */
 const projects = [
   {
     name: "Open For An Icon",
@@ -87,11 +85,75 @@ const projects = [
   },
 ];
 
-/* -------------------------------------------------
-   child component – one card per project
--------------------------------------------------- */
+const introTiles = [
+    {
+      id: 1,
+      size: "wide",                     // spans 2 columns
+      content: (
+        <div   style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",   // top-align vertically
+                alignItems: "flex-start",       // left-align horizontally
+                textAlign: "left",               // make the text itself flush left
+                width: "100%",               // <-- force to fill horizontally
+                height: "100%",
+              }}>
+          <h2>Hello, I’m Dylan Dalal</h2>
+          <p>
+            Welcome to my web development portfolio!
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: 2,
+      size: "tall",                     // spans 2 rows
+      content: (
+        <blockquote>
+          I build websites with clear, coherent messaging and a strong focus on brand identity.
+        </blockquote>
+      ),
+    },
+    {
+      id: 3,
+      size: "square",
+      content: <img src={reactLogo} alt="React" />,
+    },
+    {
+      id: 4,
+      size: "square",
+      content: <img src={framer} alt="Framer" />,
+    },
+    {
+      id: 5,
+      size: "wide",
+      content: (
+        <p>
+          Recent obsessions: three.js, motion-based onboarding flows,
+          and leveraging AI to speed up VFX pipelines.
+        </p>
+      ),
+    },
+  ];
+
 function WebCard({ project }) {
   const revealRef = useReveal();
+
+useEffect(() => {
+  const parallaxBlocks = document.querySelectorAll('[data-parallax]');
+  if (!parallaxBlocks.length) return;
+
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
+    parallaxBlocks.forEach(block => {
+      block.style.transform = `translateY(${scrollY * 0.4}px)`;
+    });
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
   return (
     <article ref={revealRef} className="web-card">
@@ -144,24 +206,53 @@ function WebCard({ project }) {
 export default function Web() {
   return (
     <section className="web-exp web-exp--gradient">
-      {/* local particle layer */}
+
+      {/* –––––– INTRO GRID + BACKGROUND CODE –––––– */}
+      <section className="intro">
+        {/* light blue background code block */}
+        <div id="bg-code">
+          <div className="intro__bg-code" data-parallax style={{ right: "6vw", top: "4vh" }}>
+            {bgCode}
+          </div>
+          <div className="intro__bg-code" data-parallax style={{ right: "50vw", top: "55vh", width: "900px", textWrap: "wrap" }}>
+            {bgLorem}
+          </div>
+        </div>
+
+        {/* your foreground grid */}
+        <div className="grid-wrapper">
+          <div className="intro-grid">
+            {introTiles.map((tile) => (
+              <div key={tile.id} className={`tile tile--${tile.size}`}>
+                {tile.content}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* –––––– PARTICLES + HEADER –––––– */}
       <Particles className="web-exp__particles" params={ParticleConfig} />
 
       <header className="web-exp__header">
         <h1 style={{ margin: "3vh 0 0" }}>Web Development Portfolio</h1>
         <p style={{ margin: "0 0 3vh" }}>
-          I build websites with clear, coherent messaging and a strong focus on brand identity. Scroll on the preview to gain a preview.
+          Scroll on the website thumbnail for a preview.
         </p>
       </header>
+
+      {/* –––––– WEBSITE CAROUSEL –––––– */}
       <div className="outer-wrapper">
         <div className="scroll-container">
           <div className="web-exp__carousel">
-              {projects.map((p) => (
-                <WebCard key={p.url} project={p} />
-              ))}
+            {projects.map((p) => (
+              <WebCard key={p.url} project={p} />
+            ))}
           </div>
         </div>
       </div>
+
     </section>
   );
 }
+
