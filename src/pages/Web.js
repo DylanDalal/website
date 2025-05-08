@@ -6,12 +6,16 @@ import bgCode from '../components/bgCode.js';
 import bgLorem from '../components/loremipsum.js';
 
 import "./Web.scss";
+import "./Film.css";
 
 import javascript from "../resources/computer-science/javascript.png";
 import html       from "../resources/computer-science/html.png";
 import reactLogo  from "../resources/computer-science/react.png";
 import framer     from "../resources/computer-science/framer.png";
 import kofskyShot from "../resources/computer-science/website_5.jpg";
+import wireframes from "../resources/computer-science/wireframes.png";
+import wireframe2 from "../resources/computer-science/wireframes2.png";
+import wireframe3 from "../resources/computer-science/wireframes3.png";
 
 function useReveal() {
   const ref = useRef(null);
@@ -80,7 +84,7 @@ const projects = [
     url: "https://kofskylawoffice.com",
     description:
       `Straightforward law-office webpage built to be easily understood and accessible.`,
-    tech: ["GoDaddy"],
+    tech: ["JavaScript"],
     embed: null, // will use static screenshot
   },
 ];
@@ -93,13 +97,13 @@ const introTiles = [
         <div   style={{
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "flex-start",   // top-align vertically
-                alignItems: "flex-start",       // left-align horizontally
-                textAlign: "left",               // make the text itself flush left
-                width: "100%",               // <-- force to fill horizontally
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+                textAlign: "left",
+                width: "100%",
                 height: "100%",
               }}>
-          <h2>Hello, I’m Dylan Dalal</h2>
+          <h2>Hi, I'm Dylan.</h2>
           <p>
             Welcome to my web development portfolio!
           </p>
@@ -126,8 +130,23 @@ const introTiles = [
       content: <img src={framer} alt="Framer" />,
     },
     {
+      id: 4,
+      size: "square",
+      content: <img src={framer} alt="Framer" />,
+    },
+    {
       id: 5,
       size: "wide",
+      content: (
+        <p>
+          Recent obsessions: three.js, motion-based onboarding flows,
+          and leveraging AI to speed up VFX pipelines.
+        </p>
+      ),
+    },
+    {
+      id: 6,
+      size: "square",
       content: (
         <p>
           Recent obsessions: three.js, motion-based onboarding flows,
@@ -204,6 +223,34 @@ useEffect(() => {
    page component
 -------------------------------------------------- */
 export default function Web() {
+
+const trackRef = useRef(null);
+const imgRefs = useRef([]);
+
+    useEffect(() => {
+      const speeds = [0.9, 1.5];
+      const onScroll = () => {
+        const rect = trackRef.current?.getBoundingClientRect();
+        if (!rect) return;
+        const winH = window.innerHeight;
+        const prog = Math.max(0, Math.min((winH - rect.top) / (winH + rect.height), 1));
+        const baseShift = 120;
+
+        imgRefs.current.forEach((img, i) => {
+          if (img) {
+            img.style.transform = `
+              scale(1.05)
+              translateY(${prog * baseShift * speeds[i] - 80}px)
+            `;
+          }
+        });
+      };
+
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+
   return (
     <section className="web-exp web-exp--gradient">
 
@@ -219,7 +266,6 @@ export default function Web() {
           </div>
         </div>
 
-        {/* your foreground grid */}
         <div className="grid-wrapper">
           <div className="intro-grid">
             {introTiles.map((tile) => (
@@ -231,26 +277,107 @@ export default function Web() {
         </div>
       </section>
 
+
       {/* –––––– PARTICLES + HEADER –––––– */}
       <Particles className="web-exp__particles" params={ParticleConfig} />
-
-      <header className="web-exp__header">
-        <h1 style={{ margin: "3vh 0 0" }}>Web Development Portfolio</h1>
-        <p style={{ margin: "0 0 3vh" }}>
-          Scroll on the website thumbnail for a preview.
-        </p>
-      </header>
-
-      {/* –––––– WEBSITE CAROUSEL –––––– */}
-      <div className="outer-wrapper">
-        <div className="scroll-container">
-          <div className="web-exp__carousel">
-            {projects.map((p) => (
-              <WebCard key={p.url} project={p} />
-            ))}
-          </div>
+    <div className="column-container" style={{ gap: '5vw', minHeight: '50vh', paddingBottom: '0', paddingTop: "13vh"}}>
+        <div style={{ display: "flex", flexDirection: "column", width: "35vw"}}>
+            <div className="header2_pipeline" style={{ paddingBottom: '10px', color: 'white', width: "40vw"}}>
+                1. What's Right For Your Brand.
+            </div>
+            <div style={{alignItems: "end"}}>
+                <div className="body_no_padding" style={{ color: 'white' }}>
+                My process always starts by working with you to build a clear set of goals for your website. I'll
+                build wireframes for each page of your website so you can visualize the end product.
+            </div>
         </div>
+    </div>
+    <div
+      className="wireframe-pair"
+      ref={trackRef}
+      style={{
+        display: "flex",
+        position: "relative",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "5vh 0",
+      }}
+    >
+      <div className="wireframe-img-wrap" style={{ zIndex: 2 }}>
+        <img
+          className="wireframe-img"
+          src={wireframe3}
+          alt="Wireframe 1"
+          ref={(el) => (imgRefs.current[0] = el)}
+        />
       </div>
+      <div
+        className="wireframe-img-wrap"
+        style={{
+          marginLeft: "-2vw",
+          zIndex: 2,
+          opacity: 1,
+          transform: "scale(1.1)"
+        }}
+      >
+        <img
+          className="wireframe-img"
+          src={wireframe2}
+          alt="Wireframe 2"
+          ref={(el) => (imgRefs.current[1] = el)}
+        />
+      </div>
+      <div
+        className="wireframe-img-wrap"
+        style={{
+          marginLeft: "-2vw",
+          zIndex: 1,
+          opacity: .8,
+          transform: "scale(0.95)"
+        }}
+      >
+        <img
+          className="wireframe-img"
+          src={wireframes}
+          alt="Wireframe 2"
+          ref={(el) => (imgRefs.current[1] = el)}
+        />
+      </div>
+    </div>
+  </div>
+  <div className="column-container" style={{ gap: '5vw', minHeight: '50vh', paddingBottom: '0' }}>
+        <div style={{ display: "flex", flexDirection: "column", width: "35vw"}}>
+            <div className="header2_pipeline" style={{ paddingBottom: '10px', color: 'white', width: "40vw"}}>
+                2. The Right Tools For The Job.
+            </div>
+            <div className="body_no_padding" style={{color: 'white', alignItems: "end"}}>
+                My process always starts by working with you to build a clear set of goals for your website. I'll
+                build wireframes for each page of your website so you can visualize the end product.
+            </div>
+        </div>
+    <div>
+
+    </div>
+  </div>
+
+
+  <header className="web-exp__header">
+    <h1 style={{ margin: "3vh 0 0" }}>Web Development Portfolio</h1>
+    <p style={{ margin: "0 0 3vh" }}>
+      Scroll on the website thumbnail for a preview.
+    </p>
+  </header>
+
+  {/* –––––– WEBSITE CAROUSEL –––––– */}
+  <div className="outer-wrapper">
+    <div className="scroll-container">
+      <div className="web-exp__carousel">
+        {projects.map((p) => (
+          <WebCard key={p.url} project={p} />
+        ))}
+      </div>
+    </div>
+  </div>
 
     </section>
   );
