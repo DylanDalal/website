@@ -120,6 +120,15 @@
     flex-direction: column;
 }
 
+.vp-reel-embed {
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
 .column-container {
     align-items: center;
     display: grid;

@@ -13,6 +13,8 @@ import river from '../resources/film/the_river.jpg';
 import rivergif from '../resources/film/river.gif';
 import airtab from '../resources/film/airtab.jpg';
 import airtabgif from '../resources/film/airtab.gif';
+import ofai from '../resources/film/ofai.jpg';
+import ofaigif from '../resources/film/ofai.gif';
 import control from '../resources/film/control.jpg';
 import controlgif from '../resources/film/control.gif';
 import lastride from '../resources/film/LastRideTN.jpg';
@@ -46,23 +48,25 @@ const VideoModal = ({ video, onClose }) => {
 
 const vp_reel = [
   {
-    videoId: 'P80XtLAZBOY',
+    videoId: 'Kq8MBfpi8CM',
+    title: 'Virtual Production Reel',
+    thumbnailUrl: 'https://img.youtube.com/vi/Kq8MBfpi8CM/maxresdefault.jpg',
+    thumbnailUrlGif: 'https://yourdomain.com/gifs/vp_reel.gif', // if you have one
   },
 ];
 
 const cine_reel = [
   {
-    videoId: 'P80XtLAZBOY',
+    videoId: 'Kq8MBfpi8CM',
   },
 ];
 
-const vp_reel_desc = `As a Senior Virtual Production Researcher at Florida State University, I researched technologies
-                       from many companies and experimented with a multitude before settling on a Disguise-powered
-                       system with RedSpy Stype tracking. On top of wiring and routing data through the volume, I
-                       personally contributed to documentation that's been used for class material and trained faculty
-                       and staff on how to use the equipment.`;
+const vp_reel_desc = `I led the development of a Disguise-based workflow using RedSpy (Stype) camera tracking at Florida
+                      State University. I tested and compared multiple systems before selecting this setup, and handled
+                      data transfer and integration across the volume. I built custom pipelines for optimizing assets
+                      and moving them into Unreal Engine. I also created training documentation and taught both faculty
+                      and students how to use the tools in production.`;
 
-const vp_reel_desc2 = `Reel coming soon. View the results of our work below.`;
 
 const videos = [
   {
@@ -74,6 +78,16 @@ const videos = [
     it's my personal favorite short film I've made.`,
     thumbnailUrl: botm,
     thumbnailUrlGif: botmgif,
+  },
+  {
+    videoId: '1M31OfuZIqU',
+    title: 'Open for an Icon Teaser',
+    role: 'Editor | Motion Graphics',
+    description: `The teaser displayed in the hero section of the Open For an Icon website, a subset of Airtab Media. I
+    edited it using clips from various Airtab Media-organized concerts to show artists the opportunities OFAI affords
+    them. I created the intro of this video in Blender.`,
+    thumbnailUrl: ofai,
+    thumbnailUrlGif: ofaigif,
   },
   {
     videoId: 'x6IZ6bCGbMg',
@@ -238,12 +252,21 @@ function Film() {
     <>
       <div className="first_film" style={{ position: 'relative', zIndex: 1 }}>
         <FadeDiv text="Virtual Production Reel" className="header2" />
-        <div className="column-container" style={{ gap: '3vw', maxWidth: '80vw' }}>
+        <div className="column-container2" style={{ gap: '3vw', maxWidth: '80vw' }}>
           <div>
-            <p className="textStyle">{vp_reel_desc}</p>
-            <p className="textStyle">{vp_reel_desc2}</p>
+            <p className="body_no_padding" style={{color: "#e8e8e8"}}>{vp_reel_desc}</p>
           </div>
-          <VideoModal video={cine_reel} onClose={closeModal} />
+          <div className="vp-reel-embed">
+              <iframe
+                height="100%"
+                width="100%"
+                src="https://www.youtube.com/embed/Kq8MBfpi8CM?autoplay=1&mute=1&playsinline=1&controls=1&loop=1&playlist=Kq8MBfpi8CM"
+                title="Virtual Production Reel"
+                frameBorder="0"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+              />
+            </div>
         </div>
       </div>
       <div className="third_film" style={{ position: 'relative', zIndex: 1 }}>
