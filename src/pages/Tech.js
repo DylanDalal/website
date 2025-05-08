@@ -293,6 +293,12 @@ function Tech() {
                       <img src={p_kit} alt="Dylan Dalal worked on Kitz" />
                     </li>
                     <li className="carousel-item2">
+                      <img src={p_see} alt="Dylan Dalal worked on See" />
+                    </li>
+                    <li className="carousel-item2">
+                      <img src={p_zoe} alt="Dylan Dalal worked on Zoe's Extraordinary Playlist" />
+                    </li>
+                    <li className="carousel-item2">
                       <img src={p_dun} alt="Dylan Dalal worked on Dune: Prophecy" />
                     </li>
                     <li className="carousel-item2">
@@ -315,12 +321,6 @@ function Tech() {
                     </li>
                     <li className="carousel-item2">
                       <img src={p_rop} alt="Dylan Dalal worked on Rings of Power" />
-                    </li>
-                    <li className="carousel-item2">
-                      <img src={p_see} alt="Dylan Dalal worked on See" />
-                    </li>
-                    <li className="carousel-item2">
-                      <img src={p_zoe} alt="Dylan Dalal worked on Zoe's Extraordinary Playlist" />
                     </li>
                     <li className="carousel-item2">
                       <img src={p_fam} alt="Dylan Dalal worked on For All Mankind" />
