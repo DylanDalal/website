@@ -61,11 +61,11 @@ const cine_reel = [
   },
 ];
 
-const vp_reel_desc = `I led the development of a Disguise-based workflow using RedSpy (Stype) camera tracking at Florida
-                      State University. I tested and compared multiple systems before selecting this setup, and handled
-                      data transfer and integration across the volume. I built custom pipelines for optimizing assets
-                      and moving them into Unreal Engine. I also created training documentation and taught both faculty
-                      and students how to use the tools in production.`;
+const vp_reel_desc = `While building the Virtual Production stage at Florida State University, I tested many systems
+                      before selecting our final setup using Disguise and stYpe RedSpy. I created Python pipelines to
+                      facilitate data transfer and facilitate set creation on the volume. I built custom pipelines for
+                      optimizing assets and moving them into Unreal Engine. I also created training documentation and
+                      taught both faculty and students how to use the tools in production.`;
 
 
 const videos = [
@@ -254,7 +254,7 @@ function Film() {
         <FadeDiv text="Virtual Production Reel" className="header2" />
         <div className="column-container2" style={{ gap: '3vw', maxWidth: '80vw' }}>
           <div>
-            <p className="body_no_padding" style={{color: "#e8e8e8"}}>{vp_reel_desc}</p>
+            <p className="body_no_padding" style={{color: "#e8e8e8", fontWeight: "500", opacity: ".9"}}>{vp_reel_desc}</p>
           </div>
           <div className="vp-reel-embed">
               <iframe

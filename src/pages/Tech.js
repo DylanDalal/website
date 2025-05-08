@@ -99,9 +99,8 @@ const psych1 = `My research at the FSU Department of Psychology centered around 
                if and how people use the properties of math when completing math problems.`
 
 const psych2 = `I never finished the project, which I immensely regret. It was my first long-form software engineering
-                project consisting entirely of writing code. Each property was written with a different method, ranging
-                from Binary Expression Tree navigation to simple string processing. It taught me to research the correct
-                tools for the job and how to write a half-decent algorithm.`
+                project. Each property was written with a different method, from BET navigation to string processing.
+                It taught me to research the correct tools for the job and how to write a half-decent algorithm.`
 
 const svm1 = `My Machine Learning course at school tasked us with creating a support vector machine from scratch that
               would draw the most precise line separating two overlapping datasets.`
@@ -120,6 +119,12 @@ const space = `\n`;
 const piped = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lobortis  elementum dapibus. Morbi
                accumsan iaculis metus. Nulla nec erat magna.`;
 
+const auto1 = `Python pipeline that converts Reddit stories into fully-captioned YouTube Shorts: it scrapes posts with
+               PRAW, trims the script with GPT-4o, generates voice-over in ElevenLabs, aligns word-timings via WhisperX,
+               and stitches everything together with FFmpeg into a ready-to-upload 9:16 video.`;
+
+const auto2 = `My goal was to do as little as possible, while uploading as much as possible. This pipeline achieved
+               exactly that.`
 
 const website_previews = [website_1, website_2, website_3, website_4]
 
@@ -432,21 +437,19 @@ function Tech() {
             <p>{psych1}</p>
             <p>{psych2}</p>
             <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url="https://github.com/DylanDalal/my-work/tree/main/Python/Commutativity" />
+              <VisitWebsiteButton url="https://github.com/DylanDalal/my-work/tree/main/Python/Commutativity" text="View repository" />
             </div>
           </div>
           <div class="grid-item dark">
-            <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', padding: "20px 0px 0px 0px"}}>
+                      <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', padding: "20px 0px 0px 0px"}}>
               <div>
                 <img className="tech-logo" src={python_w} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
               </div>
             </div>
-            <h3>Support Vector Machine Classifier</h3>
-            <p>{svm1}</p>
-            <p>{svm2}</p>
-            <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url="https://github.com/DylanDalal/my-work/tree/1ff8072fd3791ffd3b56d6aa14412e097cb729b8/Python/Support-Vector-Machine" />
-            </div>
+            <h3>YouTube Shorts Creation Pipeline</h3>
+            <p>{auto1}</p>
+            <p>{auto2}</p>
+            <VisitWebsiteButton url="https://github.com/DylanDalal/AutoTube" text="View repository" />
           </div>
           <div class="grid-item">
             <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', padding: "20px 0px 0px 0px"}}>
@@ -459,28 +462,34 @@ function Tech() {
             <p>{webapp1}</p>
             <p>{webapp2}</p>
             <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url="https://github.com/DylanDalal/my-work/tree/main/C%23/TaskManagerUI-WebAPI" />
+              <VisitWebsiteButton url= "https://github.com/DylanDalal/my-work/tree/main/C%23/TaskManagerUI-WebAPI"
+                                  text="View repository"/>
             </div>
           </div>
           <div class="grid-item dark">
             <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', padding: "20px 0px 0px 0px"}}>
               <div>
+                <img className="tech-logo" src={python_w} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
               </div>
             </div>
-            <h3>Coming soon!</h3>
+            <h3>Support Vector Machine Classifier</h3>
+            <p>{svm1}</p>
+            <p>{svm2}</p>
             <div style={{ margin: "1vh 0 2vh 0" }}>
+              <VisitWebsiteButton url= "https://github.com/DylanDalal/my-work/tree/1ff8072fd3791ffd3b56d6aa14412e097cb729b8/Python/Support-Vector-Machine"
+                                  text="View repository"/>
             </div>
           </div>
           <div class="grid-item">
             <h3>Classwork</h3>
             <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url="https://github.com/DylanDalal/my-work" />
+              <VisitWebsiteButton url="https://github.com/DylanDalal/my-work" text="View repository" />
             </div>
           </div>
           <div class="grid-item dark">
             <h3>This Website</h3>
             <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url="https://github.com/DylanDalal/website" />
+              <VisitWebsiteButton url="https://github.com/DylanDalal/website" text="View repository" />
             </div>
           </div>
         </div>
