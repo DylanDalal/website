@@ -348,11 +348,12 @@ const imgRefs = useRef([]);
   <div className="column-container" style={{ gap: '5vw', minHeight: '50vh', paddingBottom: '0' }}>
         <div style={{ display: "flex", flexDirection: "column", width: "35vw"}}>
             <div className="header2_pipeline" style={{ paddingBottom: '10px', color: 'white', width: "40vw"}}>
-                2. The Right Tools For The Job.
+                2. Built With Intention.
             </div>
             <div className="body_no_padding" style={{color: 'white', alignItems: "end"}}>
-                My process always starts by working with you to build a clear set of goals for your website. I'll
-                build wireframes for each page of your website so you can visualize the end product.
+                I use the right tools for the job. From video editing to 3D modeling to complex, motion-driven
+                interactions, I'm equipped to elevate your story when it supports the vision, but I never let visuals
+                take the stage just for the sake of flair. Every animation, texture, and transition has a reason to exist.
             </div>
         </div>
     <div>

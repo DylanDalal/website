@@ -96,7 +96,6 @@
     padding-bottom: 3vh;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    fontSize: clamp(1rem, 3vw);
 }
 
 .carousel-container {
