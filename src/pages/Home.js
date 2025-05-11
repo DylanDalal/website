@@ -113,8 +113,8 @@ function Home() {
                       text={
                         <>
                           I USE TECHNOLOGY TO<br />
-                          ELEVATE CREATIVE PROCESSES—<br />
-                          YOURS AND MINE.
+                          ELEVATE CREATIVE PROCESSES,<br />
+                          BOTH YOURS AND MINE.
                         </>
                       }
                     />
