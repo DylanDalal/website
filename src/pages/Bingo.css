@@ -1,0 +1,44 @@
+.bingo {
+    display: grid;
+    grid-template-columns: repeat(5, 12vw);
+    padding: 10vh 20vw 10vh 20vw;
+}
+
+.bingo-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    color: black;
+    align-items: center;
+    justify-content: start;
+    border: .25px solid black;
+    padding: 4rem 1rem;
+}
+
+.title {
+    font-family: 'DINCondensed', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.artist {
+    font-family: 'DINCondensed', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: .5;
+    padding: 0;
+    margin: 0;
+}
+
+@media (orientation: portrait) {
+    .bingo {
+        grid-template-columns: repeat(5, 18vw);
+        padding: 10vh 5vw 10vh 5vw;
+    }
+    .bingo-cell {
+    padding: 1.5rem 1rem;
+}
+}

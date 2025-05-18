@@ -9,6 +9,10 @@ import Tech from "./pages/Tech";
 import Art  from "./pages/Art";
 import Blog from "./pages/Blog";
 import Web  from "./pages/Web";
+import BingoEdit from "./pages/EditBingo";
+import BingoPlay from "./pages/PlayBingo";
+
+import Bingo  from "./pages/RaveMusicalBingo";
 
 export default function App() {
   return (
@@ -25,6 +29,11 @@ export default function App() {
         {/* pages that skip the hero Navbar but STILL have Sticky & Footer */}
         <Route element={<CoreLayout />}>
           <Route path="web" element={<Web />} />
+          <Route path="bingo" element={<Bingo />} />
+            <Route path="web" element={<Web />} />
+            <Route path="bingo" element={<Bingo />} />
+            <Route path="bingo/edit" element={<BingoEdit />} />
+            <Route path="bingo/play" element={<BingoPlay />} />
         </Route>
 
         {/* unknown URLs → home */}

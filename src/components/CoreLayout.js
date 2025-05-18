@@ -7,10 +7,6 @@ import { Outlet } from "react-router-dom";
 export default function CoreLayout() {
   return (
     <>
-      {/* background FX stays everywhere */}
-      <div className="particles-background">
-        <Particles params={ParticleConfig} />
-      </div>
 
       <StickyNavbar />      {/* shown on every route */}
       <div className="page-content">
