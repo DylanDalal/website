@@ -1,10 +1,32 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const defaultSongs = [
+  { name: "Tangerine Rays", artist: "Zedd" },
+  { name: "Hurts", artist: "Calvin Harris & Alesso" },
+  { name: "Where You Are", artist: "John Summit" },
+  { name: "Words", artist: "Alesso" },
+  { name: "Stay", artist: "Zedd" },
+  { name: "Runaway", artist: "Galantis" },
+  { name: "Hurricane", artist: "Galantis" },
+  { name: "5 More Hours", artist: "Deorro" },
+  { name: "Massive", artist: "Drake" },
+  { name: "Neverender", artist: "Justice" },
+  { name: "Go Back", artist: "John Summit" },
+  { name: "Thinking Bout You", artist: "Calvin Harris" },
+  { name: "Ghosts n Stuff", artist: "deadmau5" },
+  { name: "Bangarang", artist: "Skrillex" },
+  { name: "Cinema", artist: "Skrillex" },
+  { name: "Rumble", artist: "Skrillex" }
+];
+
+// Repeat to make 25
+const filledDefaults = Array.from({ length: 25 }, (_, i) => {
+  return defaultSongs[i % defaultSongs.length];
+});
+
 export default function EditBingo() {
-  const [songs, setSongs] = useState(
-    Array.from({ length: 25 }, () => ({ name: "", artist: "" }))
-  );
+  const [songs, setSongs] = useState(filledDefaults);
   const navigate = useNavigate();
 
   const updateSong = (index, field, value) => {
@@ -20,10 +42,9 @@ export default function EditBingo() {
       return;
     }
 
-    const encoded = btoa(JSON.stringify(songs)); // unshuffled
+    const encoded = btoa(JSON.stringify(songs));
     const link = `${window.location.origin}/bingo/play?data=${encodeURIComponent(encoded)}`;
 
-    // Copy to clipboard and navigate
     navigator.clipboard.writeText(link).then(() => {
       alert("Link copied to clipboard! You can now share it.");
       navigate(`/bingo/play?data=${encodeURIComponent(encoded)}`);
@@ -36,7 +57,7 @@ export default function EditBingo() {
         Create Your Bingo Card
       </h2>
       <p style={{ textAlign: "center", opacity: 0.7, marginBottom: "2rem" }}>
-        Enter 25 songs you might hear at the rave
+        Customize or leave as-is to get started
       </p>
 
       {songs.map((s, i) => (
