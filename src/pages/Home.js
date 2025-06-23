@@ -49,12 +49,15 @@ const p11 = `When we returned to FSU in 2021, I went to the Film School to offer
 offered me the first research position at Torchlight Studios, FSU’s new center for teaching innovation in film.
 Over the next three years I would help build the technological division, combining my two primary interests.`
 
-const p12 = `In addition to my research, I've worked for four software development companies throughout my career,
-three of which were in the entertainment industry.`
+const p12 = `In addition to my research, I worked for four software development companies during my time at FSU, three
+of which that were in the entertainment industry.`
 
-const p13 = `In 2024, I left FSU to focus on my role at Premise Entertainment and travel through Europe. I spent four
-months exploring sixty European cities across nineteen countries as my contract ended. I am now working on my own
-real-time production company while seeking a full-time position at a company that aligns with my interests.`
+const p13 = `In January of 2024, I left FSU to focus on my role at Premise Entertainment and travel across Europe. I
+spent four months exploring sixty European cities across twenty countries as my contract ended.`
+
+const p14 = `I began working with Airtab Media in late 2024, creating websites for two of their brands and consulting
+as a software engineer on their mobile app. My contract there ends in July of 2025, and I will again be looking for a
+full-time role.`
 
 const logos = [
     { src: logoClip, link: 'https://clipmoney.com/' },
@@ -113,7 +116,7 @@ function Home() {
                       text={
                         <>
                           I USE TECHNOLOGY TO<br />
-                          ELEVATE CREATIVE PROCESSES-<br />
+                          ELEVATE CREATIVE PROCESSES:<br />
                           BOTH YOURS AND MINE.
                         </>
                       }
@@ -206,6 +209,7 @@ function Home() {
                   ))}
                 </div>
                 <p className="bodyText" style={{padding: "0 10vw 5vh 10vw"}}>{p13}</p>
+                <p className="bodyText" style={{padding: "0 10vw 5vh 10vw"}}>{p14}</p>
             </div>
         </>
     );

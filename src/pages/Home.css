@@ -36,7 +36,9 @@
 @media (orientation: portrait) {
     .fsu-image {
         width: 100vw;
-        transform: translate(0%, -3%);
+        transform: translate(10%, -3%);
+        transform: scale(115%);
+        opacity: 20%;
     }
 }
 
@@ -50,11 +52,12 @@
     transform: translate(0%, -175%);
     position: absolute;
     zIndex: 1;
-    padding: 0 10vw 3vh 10vw;
+    padding: 25vh 10vw 0vh 10vw;
 }
 
 @media (orientation: portrait) {
     .fsu_wrapper {
+        padding: 21vh 10vw 0vh 10vw;
         transform: translate(0, -150%);
     }
 }
