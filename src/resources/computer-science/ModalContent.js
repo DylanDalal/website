@@ -55,12 +55,10 @@ const anima4 = `My production company, Maximus, is combining a multitude of AI/M
 
 const aniurl = `https://www.cartoonbrew.com/feature-film/premise-entertainment-concept-development-artwork-jesus-235716.html`;
 
-const datat1 = `The College of Motion Picture Arts’ Virtual Production program used
-                a multitude of different software packages to enable communication
-                between Unreal Engine and RED cameras. I learned
-                about facilitating data transfer while investigating the product suites
-                from mo-sys, RedSpy, and Disguise, and eventually facilitated building
-                the official CMPA Virtual Production stage.`
+const datat1 = `I led the construction of the College of Motion Picture Arts’ official Virtual Production stage,
+                designing a real-time data transfer pipeline between RED cameras and Unreal Engine. This involved
+                integrating Mo-Sys, RedSpy, and Disguise systems to enable precise camera tracking and seamless
+                communication across software and hardware layers.`
 
 const datat2 = `I was the lead developer on Monsters / Aliens / Robots / Zombies VFX’s
                 migration from Ubuntu to CentOS. This process made me particularly knowledgeable
@@ -132,20 +130,40 @@ export const DataTransferComponent = () => {
           <img className="tech-logo" src={stype} alt="Stype" style={{ margin: '0 5px 0 5px' }} />
         </div>
       </div>
-      <div className="modal-subheader" style={{ paddingBottom: '1vh' }}>
-        FACILITATING VIRTUAL PRODUCTION
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        {/* ─── Facilitating Virtual Production ─────────────────────── */}
+        <div className="modal-subheader" style={{ paddingBottom: '1vh' }}>
+          FACILITATING VIRTUAL PRODUCTION
+        </div>
 
-      </div>
-      <div>
+        {/* Responsive video wrapper uses the aspectRatio state you already track */}
+        <div
+  style={{
+    position: 'relative',
+    width: '100%',
+    maxWidth: '720px',
+    aspectRatio: '16 / 9',
+    margin: '1vh auto',
+    borderRadius: '8px',
+    overflow: 'hidden',
+  }}
+>
+  <iframe
+  src="https://www.youtube.com/embed/Kq8MBfpi8CM?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1"
+    title="Facilitating Virtual Production"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+    style={{
+      width: '100%',
+      height: '100%',
+      border: 0,
+    }}
+  />
+</div>
+
+
+        {/* Your descriptive copy */}
         <p className="body_no_padding">{datat1}</p>
-      </div>
       <div>
-      <div className="modal-subheader" style={{ paddingBottom: '1vh' }}>
-        MIGRATING FROM UBUNTU TO CENTOS
-      </div>
-      <p className="body_no_padding">{datat2}</p>
       <div className="tech-logos">
         <div>
           <img className="tech-logo" src={python_b} alt="Python" style={{ margin: '0 5px 0 5px' }} />
@@ -177,6 +195,10 @@ export const DataTransferComponent = () => {
         INGESTING THE EDIT REFERENCE
       </div>
         <p className="body_no_padding">{datat5}</p>
+      <div className="modal-subheader" style={{ paddingBottom: '1vh' }}>
+        MIGRATING FROM UBUNTU TO CENTOS
+      </div>
+      <p className="body_no_padding">{datat2}</p>
       </div>
   );
 };
