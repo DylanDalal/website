@@ -83,7 +83,7 @@ const projects = [
     name: "Kofsky Law Office",
     url: "https://kofskylawoffice.com",
     description:
-      `Straightforward law-office webpage built to be easily understood and accessible.`,
+      `Straightforward law office webpage built to be easily understood and accessible.`,
     tech: ["JavaScript"],
     embed: null, // will use static screenshot
   },
@@ -94,7 +94,7 @@ const introTiles = [
       id: 1,
       size: "wide",                     // spans 2 columns
       content: (
-        <div   style={{
+        <div style={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
@@ -103,55 +103,76 @@ const introTiles = [
                 width: "100%",
                 height: "100%",
               }}>
-          <h2>Hi, I'm Dylan.</h2>
+          <h2>WEB PORTFOLIO</h2>
           <p>
-            Welcome to my web development portfolio!
           </p>
         </div>
       ),
     },
     {
       id: 2,
-      size: "tall",                     // spans 2 rows
+      size: "tall",
       content: (
-        <blockquote>
-          I build websites with clear, coherent messaging and a strong focus on brand identity.
-        </blockquote>
+         <div style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            textAlign: "left",
+            width: "100%",
+            height: "100%",
+          }}>
+            <blockquote style={{marginBottom: "1.1em"}}>
+              Hi, I'm Dylan Dalal. I'm a software engineer and graphic designer.
+            </blockquote>
+
+            <blockquote>
+              I build websites with clear, coherent messaging and a strong focus on brand identity.
+            </blockquote>
+         </div>
       ),
     },
     {
       id: 3,
       size: "square",
-      content: <img src={reactLogo} alt="React" />,
+      content: <img src={framer} alt="Dylan Dalal uses Framer" />,
     },
     {
       id: 4,
       size: "square",
-      content: <img src={framer} alt="Framer" />,
+      content: <img src={reactLogo} alt="Dylan Dalal uses React" />,
     },
     {
       id: 4,
       size: "square",
-      content: <img src={framer} alt="Framer" />,
+      content: <img src={framer} alt="Dylan Dalal uses Framer" />,
     },
     {
       id: 5,
       size: "wide",
       content: (
-        <p>
-          Recent obsessions: three.js, motion-based onboarding flows,
-          and leveraging AI to speed up VFX pipelines.
-        </p>
+             <div style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            textAlign: "left",
+            width: "100%",
+            height: "100%",
+          }}>
+        <blockquote>
+          Scroll to see my work and process.
+        </blockquote>
+        </div>
       ),
     },
     {
       id: 6,
       size: "square",
       content: (
-        <p>
-          Recent obsessions: three.js, motion-based onboarding flows,
-          and leveraging AI to speed up VFX pipelines.
-        </p>
+        <blockquote>
+            CONTACT
+        </blockquote>
       ),
     },
   ];
@@ -286,7 +307,7 @@ const imgRefs = useRef([]);
                 1. What's Right For Your Brand.
             </div>
             <div style={{alignItems: "end"}}>
-                <div className="body_no_padding" style={{ color: 'white' }}>
+                <div className="body_no_padding" style={{ color: 'white', fontSize: "1.3vw", opacity: .9 }}>
                 My process always starts by working with you to build a clear set of goals for your website. I'll
                 build wireframes for each page of your website so you can visualize the end product.
             </div>
@@ -345,19 +366,31 @@ const imgRefs = useRef([]);
       </div>
     </div>
   </div>
-  <div className="column-container" style={{ gap: '5vw', minHeight: '50vh', paddingBottom: '0' }}>
+  <div className="column-container" style={{ gap: '5vw', minHeight: '50vh', padding: '15vh 0 10vh 0' }}>
         <div style={{ display: "flex", flexDirection: "column", width: "35vw"}}>
             <div className="header2_pipeline" style={{ paddingBottom: '10px', color: 'white', width: "40vw"}}>
                 2. Built With Intention.
             </div>
-            <div className="body_no_padding" style={{color: 'white', alignItems: "end"}}>
+            <div className="body_no_padding" style={{ color: 'white', fontSize: "1.3vw", opacity: .9 }}>
                 I use the right tools for the job. From video editing to 3D modeling to complex, motion-driven
                 interactions, I'm equipped to elevate your story when it supports the vision, but I never let visuals
-                take the stage just for the sake of flair. Every animation, texture, and transition has a reason to exist.
+                take the stage for the sake of flair. Every animation, texture, and transition has a reason to exist.
             </div>
         </div>
     <div>
-
+    </div>
+  </div>
+    <div className="column-container" style={{ gap: '5vw', minHeight: '50vh'}}>
+        <div style={{ display: "flex", flexDirection: "column", width: "35vw"}}>
+            <div className="header2_pipeline" style={{ paddingBottom: '10px', color: 'white', width: "40vw"}}>
+                3. Always Accessible.
+            </div>
+            <div className="body_no_padding" style={{ color: 'white', fontSize: "1.3vw", opacity: .9 }}>
+                Every project ships with two months of support for your team and both video and written documentation
+                that you can reference forever, without relying exclusively on me.
+            </div>
+        </div>
+    <div>
     </div>
   </div>
 
