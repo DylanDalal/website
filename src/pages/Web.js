@@ -301,6 +301,28 @@ const imgRefs = useRef([]);
 
       {/* –––––– PARTICLES + HEADER –––––– */}
       <Particles className="web-exp__particles" params={ParticleConfig} />
+      <header className="web-exp__header">
+        <h1 style={{ margin: "3vh 0 0" }}>Web Development Portfolio</h1>
+        <p style={{ margin: "0 0 3vh" }}>
+          Scroll on the website thumbnail for a preview.
+        </p>
+      </header>
+
+      {/* –––––– WEBSITE CAROUSEL –––––– */}
+      <div className="outer-wrapper">
+        <div className="scroll-container">
+          <div className="web-exp__carousel">
+            {projects.map((p) => (
+              <WebCard key={p.url} project={p} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <header className="web-exp__header">
+        <h1 style={{ margin: "3vh 0" }}>Work With Me</h1>
+      </header>
+
     <div className="column-container" style={{ gap: '5vw', minHeight: '50vh', paddingBottom: '0', paddingTop: "13vh"}}>
         <div style={{ display: "flex", flexDirection: "column", width: "35vw"}}>
             <div className="header2_pipeline" style={{ paddingBottom: '10px', color: 'white', width: "40vw"}}>
@@ -391,25 +413,6 @@ const imgRefs = useRef([]);
             </div>
         </div>
     <div>
-    </div>
-  </div>
-
-
-  <header className="web-exp__header">
-    <h1 style={{ margin: "3vh 0 0" }}>Web Development Portfolio</h1>
-    <p style={{ margin: "0 0 3vh" }}>
-      Scroll on the website thumbnail for a preview.
-    </p>
-  </header>
-
-  {/* –––––– WEBSITE CAROUSEL –––––– */}
-  <div className="outer-wrapper">
-    <div className="scroll-container">
-      <div className="web-exp__carousel">
-        {projects.map((p) => (
-          <WebCard key={p.url} project={p} />
-        ))}
-      </div>
     </div>
   </div>
 
