@@ -28,29 +28,34 @@
 //Press Start 2p
 @font-face {
     font-family: 'PressStart2P';
-    src: url(fonts/PressStart2P.ttf);
+    src: url('/fonts/PressStart2P.ttf');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Beon';
-    src: url(fonts/beon-webfont.ttf);
+    src: url('/fonts/beon-webfont.ttf');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Fiery';
-    src: url(fonts/Fiery-Sun-Demo.ttf);
+    src: url('/fonts/Fiery-Sun-Demo.ttf');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Futura', sans-serif;
-    src: url(fonts/Futura.ttf) format('truetype');
+    src: url('/fonts/Futura.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'DINCondensed';
-    src: url(fonts/DIN-Condensed-Bold.ttf);
+    src: url('/fonts/DIN-Condensed-Bold.ttf');
+    font-display: swap;
 }
 
 .fade-container {
