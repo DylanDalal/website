@@ -80,6 +80,14 @@ const projects = [
     embed: "https://dylandalal.com",
   },
   {
+    name: "www.tipt.co",
+    url: "https://www.tipt.co",
+    description:
+      `Custom webapp that allows users to build profiles to house their mobile payment service links for easier tipping. Full analytics service and Stripe integration available to users.`,
+    tech: ["HTML", "JavaScript", "React"],
+    embed: "https://www.tipt.co",
+  },
+  {
     name: "Kofsky Law Office",
     url: "https://kofskylawoffice.com",
     description:
