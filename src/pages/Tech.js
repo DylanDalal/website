@@ -462,7 +462,7 @@ function Tech() {
             <p>{webapp1}</p>
             <p>{webapp2}</p>
             <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url= "https://github.com/DylanDalal/my-work/tree/main/C%23/TaskManagerUI-WebAPI"
+              <VisitWebsiteButton url= "https://github.com/DylanDalal/my-work/tree/main/c-sharp/TaskManagerUI-WebAPI"
                                   text="View repository"/>
             </div>
           </div>
@@ -472,11 +472,11 @@ function Tech() {
                 <img className="tech-logo" src={python_w} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
               </div>
             </div>
-            <h3>Support Vector Machine Classifier</h3>
+            <h3>SVM Classifier Without sklearn</h3>
             <p>{svm1}</p>
             <p>{svm2}</p>
             <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url= "https://github.com/DylanDalal/my-work/tree/1ff8072fd3791ffd3b56d6aa14412e097cb729b8/Python/Support-Vector-Machine"
+              <VisitWebsiteButton url= "https://github.com/DylanDalal/my-work/tree/main/Python/Support-Vector-Machine"
                                   text="View repository"/>
             </div>
           </div>
