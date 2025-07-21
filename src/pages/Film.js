@@ -51,7 +51,6 @@ const vp_reel = [
     videoId: 'Kq8MBfpi8CM',
     title: 'Virtual Production Reel',
     thumbnailUrl: 'https://img.youtube.com/vi/Kq8MBfpi8CM/maxresdefault.jpg',
-    thumbnailUrlGif: 'https://yourdomain.com/gifs/vp_reel.gif', // if you have one
   },
 ];
 

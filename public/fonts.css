@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Futura";
+  src: url("/fonts/Futura.woff2") format("woff2");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "DINCondensed";
+  src: url("/fonts/DIN-Condensed-Bold.woff2") format("woff2");
+  font-display: block;
+}
