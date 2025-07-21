@@ -62,11 +62,11 @@ const projects = [
   },
   {
     name: "TIPT",
-    url: "http://tipt.co/",
+    url: "https://tipt.co/",
     description:
       `Custom webapp that allows users to build profiles to house their mobile payment service links for easier tipping. Full analytics service and Stripe integration available to users.`,
     tech: ["HTML", "JavaScript", "React"],
-    embed: "http://tipt.co/",
+    embed: "https://tipt.co/",
   },
   {
     name: "AirTab Media",
