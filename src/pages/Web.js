@@ -12,6 +12,7 @@ import javascript from "../resources/computer-science/javascript.png";
 import html       from "../resources/computer-science/html.png";
 import reactLogo  from "../resources/computer-science/react.png";
 import framer     from "../resources/computer-science/framer.png";
+import firebase   from "../resources/computer-science/firebase.svg";
 import kofskyShot from "../resources/computer-science/website_5.jpg";
 import wireframes from "../resources/computer-science/wireframes.png";
 import wireframe2 from "../resources/computer-science/wireframes2.png";
@@ -151,9 +152,16 @@ const introTiles = [
       content: <img src={reactLogo} alt="Dylan Dalal uses React" />,
     },
     {
-      id: 4,
+      id: 7,
       size: "square",
-      content: <img src={framer} alt="Dylan Dalal uses Framer" />,
+      content: <img src={firebase} alt="Dylan Dalal uses Firebase" />,
+    },
+    {
+      id: 6,
+      size: "square",
+      content: (
+        <h2>CONTACT</h2>
+      ),
     },
     {
       id: 5,
@@ -172,15 +180,6 @@ const introTiles = [
           Scroll to see my work and process.
         </blockquote>
         </div>
-      ),
-    },
-    {
-      id: 6,
-      size: "square",
-      content: (
-        <blockquote>
-            CONTACT
-        </blockquote>
       ),
     },
   ];
