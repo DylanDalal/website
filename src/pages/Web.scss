@@ -36,12 +36,24 @@
   will-change: transform;  /* <-- hint for browser perf */
 }
 
+.intro__bg-layer{
+  position:absolute;
+  z-index:0;          // <–– under the cards
+  user-select:none;
+  pointer-events:none;
+  will-change:transform;
+  opacity:.92;         // tweak to taste
+}
+
+
 .grid-wrapper {
+    z-index: 4;
     width: 80vw;
     margin: 5vh 15vw 10vh 5vw;
 }
 
 .intro-grid {
+  z-index: 4;
   display: grid;
   gap: 2vw;
   justify-content: center;
@@ -50,6 +62,7 @@
 }
 
 .tile {
+    z-index: 4;
   background: #ffffff;
   border-radius: 12px;
   padding: 1.5rem;
@@ -78,6 +91,22 @@
   font-size: clamp(.8vw, 2.2vw, 1.35rem);
   opacity: .7;
   margin: 0;
+}
+
+.text1 {
+  font-family: "DINCondensed";
+  font-size: 2vw;
+  color: #f2f2f2;
+  background-color: #bfbfbf;
+  padding: 3vh 4vw 0 1.5vw;
+}
+
+.text2 {
+  font-family: "Courier";
+  font-size: 3.5vw;
+  color: #f2f2f2;
+  background-color: #688093;
+  padding: 3vh 4vw 0 1.5vw;
 }
 
 .tile h2 {

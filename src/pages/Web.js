@@ -7,7 +7,9 @@ import bgLorem from '../components/loremipsum.js';
 
 import "./Web.scss";
 import "./Film.css";
-
+import meShot      from "../resources/computer-science/me.jpg";
+import helloPopup  from "../resources/computer-science/hello_world.png";
+import loremQuad   from "../resources/computer-science/loremipsum.png";
 import javascript from "../resources/computer-science/javascript.png";
 import html       from "../resources/computer-science/html.png";
 import reactLogo  from "../resources/computer-science/react.png";
@@ -160,7 +162,7 @@ const introTiles = [
       id: 6,
       size: "square",
       content: (
-        <h2>CONTACT</h2>
+        <h2 style={{paddingTop: "3vh", opacity: .9, transform: "scale(.8)"}}>CONTACT</h2>
       ),
     },
     {
@@ -188,15 +190,19 @@ function WebCard({ project }) {
   const revealRef = useReveal();
 
 useEffect(() => {
-  const parallaxBlocks = document.querySelectorAll('[data-parallax]');
+  const parallaxBlocks = document.querySelectorAll("[data-parallax]");
   if (!parallaxBlocks.length) return;
 
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-    parallaxBlocks.forEach(block => {
-      block.style.transform = `translateY(${scrollY * 0.4}px)`;
-    });
-  };
+    const handleScroll = () => {
+      const y = window.scrollY;
+      parallaxBlocks.forEach(el=>{
+        const speed = parseFloat(el.dataset.speed || .4); // default .4
+        el.style.transform = `translateY(${y * speed}px) ${
+          el.style.rotate ? `rotate(${el.style.rotate})` : ""
+        }`;
+      });
+    };
+
 
   window.addEventListener("scroll", handleScroll);
   return () => window.removeEventListener("scroll", handleScroll);
@@ -247,6 +253,11 @@ useEffect(() => {
   );
 }
 
+const line  = "BUILT FOR YOUR BRAND";
+const bfyb  = {
+  description: (line + "\n").repeat(10).trim() // one trailing \n trimmed off
+};
+
 /* -------------------------------------------------
    page component
 -------------------------------------------------- */
@@ -292,6 +303,35 @@ const imgRefs = useRef([]);
           <div className="intro__bg-code" data-parallax style={{ right: "50vw", top: "55vh", width: "900px", textWrap: "wrap" }}>
             {bgLorem}
           </div>
+          {[
+              {src: meShot,     style:{left:"7vw",  top:"52vh", width:"24vw"}, speed:.25},
+              {src: helloPopup, style:{right:"20vw",  top:"45vh", width:"22vw", zIndex: 2}, speed:.35},
+              {src: loremQuad,  style:{right:"25vw",  bottom:"-5vh", width:"26vw"}, speed: .3},
+              {content: <pre className="text1">{bfyb.description}</pre>, style:{right:"18vw",bottom:"-25vh"}, speed:.18},
+              {content: <pre className="text2">{"Dylan\nDalal"}</pre>, style:{left:"33vw",top:"10vh"}, speed:.26}
+            ].map((l,i)=>(
+              l.src ? (
+                <img
+                  key={i}
+                  src={l.src}
+                  className="intro__bg-layer"
+                  data-parallax
+                  data-speed={l.speed}
+                  style={l.style}
+                  alt=""
+                />
+              ) : (
+                <div
+                  key={i}
+                  className="intro__bg-layer"
+                  data-parallax
+                  data-speed={l.speed}
+                  style={l.style}
+                >
+                  {l.content}
+                </div>
+                )
+            ))}
         </div>
 
         <div className="grid-wrapper">
