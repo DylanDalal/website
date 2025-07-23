@@ -337,23 +337,11 @@ const imgRefs = useRef([]);
 
         <div className="grid-wrapper">
           <div className="intro-grid">
-            {introTiles.map((tile) => {
-              const classes = `tile tile--${tile.size}$
-{tile.id === 6 ? " contact-tile" : ""}`;
-              const content =
-                tile.id === 6 ? (
-                  <a href="mailto:dylanmax@gmail.com" className="contact-tile__link">
-                    {tile.content}
-                  </a>
-                ) : (
-                  tile.content
-                );
-              return (
-                <div key={tile.id} className={classes}>
-                  {content}
-                </div>
-              );
-            })}
+            {introTiles.map((tile) => (
+              <div key={tile.id} className={`tile tile--${tile.size}`}>
+                {tile.content}
+              </div>
+            ))}
           </div>
         </div>
       </section>
