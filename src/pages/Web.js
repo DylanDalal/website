@@ -81,6 +81,14 @@ const projects = [
     embed: "https://airtabmedia.com",
   },
   {
+    name: "Maximus Productions",
+    url: "https://maximusproductions.com",
+    description:
+      `My production company is combining a multitude of AI/ML technologies to automatically build scenes in Unreal Engine.`,
+    tech: ["HTML", "JavaScript", "React"],
+    embed: "https://maximusproductions.com",
+  },
+  {
     name: "Dylandalal.com",
     url: "https://dylandalal.com",
     description:
