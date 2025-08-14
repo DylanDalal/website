@@ -86,7 +86,7 @@ const projects = [
     description:
       `My production company is combining a multitude of AI/ML technologies to automatically build scenes in Unreal Engine.`,
     tech: ["HTML", "JavaScript", "React"],
-    embed: "https://maximusproductions.com",
+    embed: "https://www.maximus.productions",
   },
   {
     name: "Dylandalal.com",
