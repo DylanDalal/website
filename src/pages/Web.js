@@ -277,26 +277,22 @@ const imgRefs = useRef([]);
 
     useEffect(() => {
       const speeds = [0.9, 1.5];
-      const onScroll = () => {
-        const rect = trackRef.current?.getBoundingClientRect();
-        if (!rect) return;
-        const winH = window.innerHeight;
-        const prog = Math.max(0, Math.min((winH - rect.top) / (winH + rect.height), 1));
-        const baseShift = 120;
+      const handleScroll = () => {
+        const parallaxOffset = window.scrollY * 0.1;
 
         imgRefs.current.forEach((img, i) => {
           if (img) {
             img.style.transform = `
               scale(1.05)
-              translateY(${prog * baseShift * speeds[i] - 80}px)
+              translateY(${parallaxOffset * speeds[i] - 80}px)
             `;
           }
         });
       };
 
-      onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
-      return () => window.removeEventListener("scroll", onScroll);
+      handleScroll();
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
   return (
