@@ -16,8 +16,8 @@
     white-space: nowrap;
     position: relative;
     display: flex;
-    alignItems: center;
-    justifyContent: center;
+    align-items: center;
+    justify-content: center;
     font-family: DINCondensed;
     text-transform: uppercase;
     color: white;
@@ -29,14 +29,29 @@
     -ms-transform:scale(1,1.2); /* IE 9 */
     -o-transform:scale(1,1.2); /* Opera */
     transform:scale(1,1.2); /* W3C */
+    max-width: 100%;
+    overflow: hidden;
+}
+
+@media (max-width: 1000px) {
+    .header {
+        font-size: 7vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        font-size: 5vw;
+        letter-spacing: .1em;
+    }
 }
 
 .unused {
     white-space: nowrap;
     position: relative;
     display: flex;
-    alignItems: center;
-    justifyContent: center;
+    align-items: center;
+    justify-content: center;
     font-family: DINCondensed;
     text-transform: uppercase;
     color: white;
@@ -51,6 +66,20 @@
     -ms-transform:scale(1,1.2); /* IE 9 */
     -o-transform:scale(1,1.2); /* Opera */
     transform:scale(1,1.2); /* W3C */
+    max-width: 100%;
+    overflow: hidden;
+}
+
+@media (max-width: 1000px) {
+    .unused {
+        font-size: 3.5vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .unused {
+        font-size: 3vw;
+    }
 }
 
 .unused:hover {

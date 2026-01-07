@@ -90,7 +90,8 @@
 .second_home {
     background: #000630;
     height: 55vh;
-    width: 100vw;
+    width: 100%;
+    max-width: 100vw;
     align-items: center;
     object-fit: contain;
     display: flex;
@@ -110,11 +111,20 @@
     background: #000630;
     min-height: 88vh;
     width: 84vw;
+    max-width: 100%;
     object-fit: contain;
     display: flex;
     flex-direction: column;
     position: relative;
     padding: 40vh 8vw 0 8vw;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1000px) {
+    .mission {
+        width: 100%;
+        padding: 40vh 4vw 0 4vw;
+    }
 }
 
 @media (orientation: portrait) {
