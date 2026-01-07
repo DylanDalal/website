@@ -110,8 +110,7 @@
 .mission {
     background: #000630;
     min-height: 88vh;
-    width: 84vw;
-    max-width: 100%;
+    width: 100vw;
     object-fit: contain;
     display: flex;
     flex-direction: column;
@@ -130,7 +129,24 @@
 @media (orientation: portrait) {
     .mission {
         min-height: 82vh;
-        padding: 40vh 20vw 0 8vw;
+        padding: 40vh 8vw 0 8vw;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .mission > div {
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .mission {
+        align-items: center;
+        text-align: center;
+    }
+    
+    .mission > div {
+        text-align: center !important;
     }
 }
 
@@ -210,12 +226,14 @@
   justify-content: center; /* Center the logos horizontally */
   align-items: center;    /* Center the logos vertically if needed */
   gap: 3vw;               /* 3vw gap between logos */
-  padding: 20px;          /* Optional padding */
+  padding: 0 20px 5vh 20px; /* Minimal top, normal sides, more bottom */
+  margin-top: 0;
 }
 
 .logo-image {
   width: 15vw;
-  height: auto;
+  height: 8vh;
+  object-fit: contain;
   opacity: .25;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }

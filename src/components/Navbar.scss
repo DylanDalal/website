@@ -79,8 +79,14 @@ html {
 
 @media (max-width: 600px) {
     .header {
-        font-size: 3rem;
+        font-size: 9rem;
         letter-spacing: .1em;
+    }
+}
+
+@media (max-width: 400px) {
+    .header {
+        font-size: 7rem;
     }
 }
 

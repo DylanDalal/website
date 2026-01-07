@@ -15,6 +15,8 @@ import logoClip from '../resources/story/clip.png';
 import logoMarz from '../resources/story/marz.png';
 import logoCglj from '../resources/story/cglumberjack.png';
 import logoPrem from '../resources/story/premise.png';
+import logoTipt from '../resources/story/tipt.webp';
+import logoMaximus from '../resources/story/maximus.png';
 import { Helmet } from "react-helmet";
 
 const p1 = `I was born in West Chester, a Philadelphia suburb, in March of 2001.`
@@ -56,14 +58,19 @@ const p13 = `In January of 2024, I left FSU to focus on my role at Premise Enter
 spent four months exploring sixty European cities across twenty countries as my contract ended.`
 
 const p14 = `I began working with Airtab Media in late 2024, creating websites for two of their brands and consulting
-as a software engineer on their mobile app. My contract there ends in July of 2025, and I will again be looking for a
-full-time role.`
+as a software engineer on their mobile app. I completed my time there  in September of 2025, and I left to focus on
+my tech startup, TIPT, and my production studio, Maximus.`
 
 const logos = [
     { src: logoClip, link: 'https://clipmoney.com/' },
     { src: logoCglj, link: 'https://www.cglumberjack.com/' },
     { src: logoMarz, link: 'https://monstersaliensrobotszombies.com/' },
     { src: logoPrem, link: 'https://premiseentertainment.com/' },
+  ];
+
+const logos2 = [
+    { src: logoTipt, link: 'https://www.tipt.co' },
+    { src: logoMaximus, link: 'https://www.maximus.productions' },
   ];
 
 
@@ -209,7 +216,14 @@ function Home() {
                   ))}
                 </div>
                 <p className="bodyText" style={{padding: "0 10vw 5vh 10vw"}}>{p13}</p>
-                <p className="bodyText" style={{padding: "0 10vw 5vh 10vw"}}>{p14}</p>
+                <p className="bodyText" style={{padding: "0 10vw 1vh 10vw"}}>{p14}</p>
+                <div className="logo-row">
+                  {logos2.map((logo, index) => (
+                    <a href={logo.link} key={index} target="_blank" rel="noopener noreferrer">
+                      <img src={logo.src} alt={`Dylan Dalal Logo ${index + 1}`} className="logo-image" />
+                    </a>
+                  ))}
+                </div>
             </div>
         </>
     );
