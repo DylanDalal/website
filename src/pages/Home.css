@@ -103,7 +103,17 @@
 @media (orientation: portrait) {
     .second_home {
         height: 50vh;
-        padding: 0 0 0 0;
+        padding: 10vh 0 2vh 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .second_home {
+        padding: 10vh 0 2vh 0;
+    }
+    
+    .second_home .bodyText {
+        padding: 10vw 10vw 2vh 10vw !important;
     }
 }
 
@@ -130,23 +140,6 @@
     .mission {
         min-height: 82vh;
         padding: 40vh 8vw 0 8vw;
-        align-items: center;
-        text-align: center;
-    }
-    
-    .mission > div {
-        text-align: center !important;
-    }
-}
-
-@media (max-width: 600px) {
-    .mission {
-        align-items: center;
-        text-align: center;
-    }
-    
-    .mission > div {
-        text-align: center !important;
     }
 }
 
