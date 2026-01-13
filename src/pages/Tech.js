@@ -360,7 +360,7 @@ function Tech() {
                     <img className="tech-logo" src={stype} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }} />
                   </div>
                 </div>
-                <div className="header2_pipeline" style={{ paddingBottom: '10px'}}>
+                <div className="header2_pipeline" style={{ color: 'black', paddingBottom: '10px'}}>
                     THE FIRST ACADEMIC VP STAGE
                 </div>
                 <div style={{maxWidth: "75vw", alignItems: "center"}}>
