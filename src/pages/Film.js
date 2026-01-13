@@ -82,7 +82,7 @@ Responsible for keeping camera, assets, and metadata moving cleanly from set thr
 const editing_reel_desc = `Selected narrative and commercial work with an emphasis on pacing and clear focus. My complete portfolio 
 includes short films, branded content, and social-first video designed to deliver story in the most efficient way possible.`;
 
-const sxsw_desc = `I served as Pipeline Technical Director on the SXSW-premiered feature film It Ends, ensuring footage, assets, and metadata moved cleanly from set through editorial and post-production.`;
+const sxsw_desc = `I worked as a Pipeline Technical Director on the SXSW-premiered feature film It Ends, operating the virtual production stage and ensuring footage, assets, and metadata was transferrable from set to post-production.`;
 
 
 const videos = [
