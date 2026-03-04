@@ -57,9 +57,9 @@ of which that were in the entertainment industry.`
 const p13 = `In January of 2024, I left FSU to focus on my role at Premise Entertainment and travel across Europe. I
 spent four months exploring sixty European cities across twenty countries as my contract ended.`
 
-const p14 = `I began working with Airtab Media in late 2024, creating websites for two of their brands and consulting
-as a software engineer on their mobile app. I completed my time there  in September of 2025, and I left to focus on
-my tech startup, TIPT, and my production studio, Maximus.`
+const p14 = `I've since moved to New York City, where I'm working with District Cinema and Cohort NYC while continuing
+to build my tech startup, TIPT, and my production studio, Maximus. I'm also developing ResumeSmithy and uploading
+videos on YouTube. I'm staying busy.`
 
 const logos = [
     { src: logoClip, link: 'https://clipmoney.com/' },

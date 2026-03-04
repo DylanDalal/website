@@ -446,7 +446,7 @@ function Tech() {
                 <img className="tech-logo" src={python_w} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
               </div>
             </div>
-            <h3>YouTube Shorts Creation Pipeline</h3>
+            <h3>Short-Form Video Creation Pipeline</h3>
             <p>{auto1}</p>
             <p>{auto2}</p>
             <VisitWebsiteButton url="https://github.com/DylanDalal/AutoTube" text="View repository" />
