@@ -9,14 +9,13 @@ export default function StickyNavbar() {
   const isWebRoute = location.pathname === "/web";
 
   useEffect(() => {
-    if (isWebRoute) {
-      setShow(true); // Always show for /web
-      return;        // Skip scroll listener
-    }
+    const threshold = isWebRoute
+      ? window.innerHeight * 0.4
+      : window.innerHeight * 2.25;
 
-    const onScroll = () =>
-      setShow(window.scrollY >= window.innerHeight * 2.25);
+    const onScroll = () => setShow(window.scrollY >= threshold);
 
+    onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, [isWebRoute]);

@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aos": "^2.3.4",
     "jquery": "^3.6.0",
-    "node-sass": "^7.0.1",
+    "nvm": "^0.0.4",
     "pluralize": "^8.0.0",
     "radium": "^0.26.1",
     "react": "^17.0.2",
@@ -47,5 +47,8 @@
   },
   "engines": {
     "node": "18.18.0"
+  },
+  "devDependencies": {
+    "sass": "^1.99.0"
   }
 }

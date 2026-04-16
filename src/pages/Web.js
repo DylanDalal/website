@@ -1,478 +1,374 @@
 import React, { useEffect, useRef } from "react";
-import Particles from "react-tsparticles";
-import SitePreview from "../components/SitePreview";
-import ParticleConfig from "../config/particle-config";
-import bgCode from '../components/bgCode.js';
-import bgLorem from '../components/loremipsum.js';
 
 import "./Web.scss";
-import "./Film.css";
-import meShot      from "../resources/computer-science/me.jpg";
-import helloPopup  from "../resources/computer-science/hello_world.png";
-import loremQuad   from "../resources/computer-science/loremipsum.png";
-import javascript from "../resources/computer-science/javascript.png";
-import html       from "../resources/computer-science/html.png";
-import reactLogo  from "../resources/computer-science/react.png";
-import framer     from "../resources/computer-science/framer.png";
-import firebase   from "../resources/computer-science/firebase.svg";
 import kofskyShot from "../resources/computer-science/website_5.jpg";
-import wireframes from "../resources/computer-science/wireframes.png";
-import wireframe2 from "../resources/computer-science/wireframes2.png";
-import wireframe3 from "../resources/computer-science/wireframes3.png";
 
-function useReveal() {
-  const ref = useRef(null);
+const cohortShot = process.env.PUBLIC_URL + "/cohort.jpg";
 
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          io.unobserve(entry.target);        // reveal only once
-        }
-      },
-      { threshold: 0.2 }
-    );
-    io.observe(node);
-    return () => io.disconnect();
-  }, []);
-
-  return ref;
-}
-
-/* -------------------------------------------------
-   logo lookup
--------------------------------------------------- */
-const logos = {
-  React: reactLogo,
-  JavaScript: javascript,
-  HTML: html,
-  Framer: framer,
-};
-
-const projects = [
+const webapps = [
   {
-    name: "Open For An Icon",
-    url: "https://openforanicon.com",
+    name: "Terra",
+    url: "https://terra.districtcinema.com/",
+    year: "2025",
+    role: "Design · Build · with District Cinema",
     description:
-      `Engaging website built for a tech startup's music industry contest. Needed to efficiently convey contest information
-      to both interested artists and potential voters. Features graphic design, video editing, 3D animation, and branding
-      created entirely by me.`,
-    tech: ["Framer", "React"],
-    embed: "https://static-fade-239041.framer.app/",
+      "Browser-based 3D viewer for production location planning. Measurements, virtual scouting, and real-time collaboration. Designed the Projects page and backend functionality.",
+    tech: ["React", "TypeScript", "WebGL", "3D"],
+    embed: "https://terra.districtcinema.com/",
+    span: "featured",
+    accent: "#10b981",
+  },
+  {
+    name: "Resumesmithy",
+    url: "https://resumesmithy.com/",
+    year: "2025",
+    role: "Full-stack",
+    description:
+      "End-to-end resume builder on Cloudflare D1. Auth, billing, generation pipeline, and responsive design.",
+    tech: ["React", "TypeScript", "Cloudflare D1"],
+    embed: "https://resumesmithy.com/",
+    span: "featured",
+    accent: "#f59e0b",
+  },
+  {
+    name: "Owez",
+    url: "https://owez.me/",
+    year: "2024",
+    role: "Design + Full-stack",
+    description:
+      "Full-stack SaaS on Firebase. Brand identity, UX, data model, and product surface.",
+    tech: ["React", "TypeScript", "Firebase"],
+    embed: "https://owez.me/",
+    span: "standard",
+    accent: "#8b5cf6",
+  },
+  {
+    name: "CohortNYC",
+    url: "https://cohortnyc.com/",
+    year: "2024",
+    role: "Team · Full-stack",
+    description:
+      "Agency platform with member profiles, a marketing site, and an admin dashboard for asset management.",
+    tech: ["React", "TypeScript"],
+    embed: null,
+    screenshot: cohortShot,
+    span: "standard",
+    accent: "#ef4444",
   },
   {
     name: "TIPT",
     url: "https://tipt.co/",
+    year: "2023",
+    role: "Build · Integrations",
     description:
-      `Custom webapp that allows users to build profiles to house their mobile payment service links for easier tipping. Full analytics service and Stripe integration available to users.`,
-    tech: ["HTML", "JavaScript", "React"],
+      "Profile builder for mobile-payment links. Full analytics dashboard and Stripe integration.",
+    tech: ["React", "JavaScript", "Stripe"],
     embed: "https://tipt.co/",
+    span: "standard",
+    accent: "#00c896",
+  },
+];
+
+const brandSites = [
+  {
+    name: "Open For An Icon",
+    url: "https://openforanicon.com",
+    year: "2024",
+    role: "Design · Build · Brand",
+    description:
+      "Contest platform connecting artists and voters for a music-tech startup. All graphics, video, and 3D made in-house.",
+    tech: ["Framer", "React"],
+    embed: "https://static-fade-239041.framer.app/",
+    span: "featured",
+    accent: "#ff6b35",
   },
   {
     name: "AirTab Media",
     url: "https://airtabmedia.com",
+    year: "2024",
+    role: "Design · Build",
     description:
-      `Engaging launch page for an umbrella tech startup. Needed to clearly convey the company's wide and complex range
-      of products to potential investors. I created all of the graphics and planned the webflow.`,
+      "Launch page for a multi-product tech startup. Original graphics and a clear story for investors.",
     tech: ["Framer", "React"],
     embed: "https://airtabmedia.com",
+    span: "featured",
+    accent: "#6366f1",
   },
   {
     name: "Maximus Productions",
     url: "https://maximusproductions.com",
+    year: "2025",
+    role: "Design · Build",
     description:
-      `My production company is combining a multitude of AI/ML technologies to automatically build scenes in Unreal Engine.`,
-    tech: ["HTML", "JavaScript", "React"],
+      "Website for a marketing and product development production company.",
+    tech: ["React", "JavaScript"],
     embed: "https://www.maximus.productions",
+    span: "standard",
+    accent: "#f5c842",
   },
   {
-    name: "Dylandalal.com",
+    name: "dylandalal.com",
     url: "https://dylandalal.com",
+    year: "Ongoing",
+    role: "Everything",
     description:
-      `Hand-coded portfolio (React) focused on performance, search engine optimization, and unique design. My initial
-      goal was to build a website that never refreshed between pages, but as the scope increased, I've had to build
-      spinoff pages (like this) for a more streamlined user experience.`,
-    tech: ["HTML", "JavaScript", "React"],
+      "You've been here before! React portfolio built for performance and SEO.",
+    tech: ["React", "JavaScript"],
     embed: "https://dylandalal.com",
+    span: "standard",
+    accent: "#ec4899",
   },
   {
     name: "Kofsky Law Office",
     url: "https://kofskylawoffice.com",
+    year: "2022",
+    role: "Design · Build",
     description:
-      `Straightforward law office webpage built to be easily understood and accessible.`,
+      "Law-office website designed for clarity and accessibility. Clean, straightforward structure.",
     tech: ["JavaScript"],
-    embed: null, // will use static screenshot
+    embed: null,
+    screenshot: kofskyShot,
+    span: "standard",
+    accent: "#94a3b8",
   },
 ];
 
-const introTiles = [
-    {
-      id: 1,
-      size: "wide",                     // spans 2 columns
-      content: (
-        <div style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                textAlign: "left",
-                width: "100%",
-                height: "100%",
-              }}>
-          <h2>WEB PORTFOLIO</h2>
-          <p>
-          </p>
-        </div>
-      ),
-    },
-    {
-      id: 2,
-      size: "tall",
-      content: (
-         <div style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            textAlign: "left",
-            width: "100%",
-            height: "100%",
-          }}>
-            <blockquote style={{marginBottom: "1.1em"}}>
-              Hi, I'm Dylan Dalal. I'm a software engineer and graphic designer.
-            </blockquote>
+const processSteps = [
+  {
+    num: "01",
+    title: "What's right for your brand",
+    body: "We figure out what the site needs to do and who it's for. Wireframes and a sitemap before any code gets written.",
+  },
+  {
+    num: "02",
+    title: "Built with intention",
+    body: "I pick the tools that fit the project, not the ones that are popular. Every decision has a reason behind it.",
+  },
+  {
+    num: "03",
+    title: "Always accessible",
+    body: "Continued support after launch. Video and written docs so your team can keep things running without me.",
+  },
+];
 
-            <blockquote>
-              I build websites with clear, coherent messaging and a strong focus on brand identity.
-            </blockquote>
-         </div>
-      ),
-    },
-    {
-      id: 3,
-      size: "square",
-      content: <img src={framer} alt="Dylan Dalal uses Framer" />,
-    },
-    {
-      id: 4,
-      size: "square",
-      content: <img src={reactLogo} alt="Dylan Dalal uses React" />,
-    },
-    {
-      id: 7,
-      size: "square",
-      content: <img src={firebase} alt="Dylan Dalal uses Firebase" />,
-    },
-    {
-      id: 6,
-      size: "square",
-      content: (
-        <h2 style={{paddingTop: "3vh", opacity: .9, transform: "scale(.8)"}}>CONTACT</h2>
-      ),
-    },
-    {
-      id: 5,
-      size: "wide",
-      content: (
-             <div style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-            textAlign: "left",
-            width: "100%",
-            height: "100%",
-          }}>
-        <blockquote>
-          Scroll to see my work and process.
-        </blockquote>
-        </div>
-      ),
-    },
-  ];
+const marqueeItems = [
+  "DESIGN",
+  "REACT",
+  "TYPESCRIPT",
+  "FRAMER",
+  "FIREBASE",
+  "CLOUDFLARE",
+  "STRIPE",
+  "BRAND IDENTITY",
+  "MOTION",
+  "3D / WEBGL",
+  "ACCESSIBILITY",
+];
 
-function WebCard({ project }) {
-  const revealRef = useReveal();
+function FitFrame({ src, title }) {
+  const wrapRef = useRef(null);
+  const frameRef = useRef(null);
 
-useEffect(() => {
-  const parallaxBlocks = document.querySelectorAll("[data-parallax]");
-  if (!parallaxBlocks.length) return;
+  useEffect(() => {
+    const baseW = 1600;
+    const baseH = 1000;
+    const wrap = wrapRef.current;
+    if (!wrap) return;
 
-    const handleScroll = () => {
-      const y = window.scrollY;
-      parallaxBlocks.forEach(el=>{
-        const speed = parseFloat(el.dataset.speed || .4); // default .4
-        el.style.transform = `translateY(${y * speed}px) ${
-          el.style.rotate ? `rotate(${el.style.rotate})` : ""
-        }`;
-      });
+    const fit = () => {
+      const { width, height } = wrap.getBoundingClientRect();
+      if (!width || !height) return;
+      const scale = Math.max(width / baseW, height / baseH);
+      if (frameRef.current) {
+        frameRef.current.style.width = `${baseW}px`;
+        frameRef.current.style.height = `${baseH}px`;
+        frameRef.current.style.transform = `translate(-50%, -50%) scale(${scale})`;
+      }
     };
 
-
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  handleScroll();
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(wrap);
+    return () => ro.disconnect();
+  }, []);
 
   return (
-    <article ref={revealRef} className="web-card">
-      {/* preview column */}
-      <div className="web-card__preview">
-        {project.embed ? (
-          <SitePreview
-            src={project.embed}
-            title={project.name}
-            width={400}
-            height={225}
-          />
-        ) : (
-          <div className="scroll-preview">
-            <img src={kofskyShot} alt={`${project.name} preview`} />
-          </div>
-        )}
-      </div>
-
-      {/* copy column */}
-      <div className="web-card__body">
-        <div className="tech-logos" style={{ justifyContent: "left" }}>
-          {project.tech.map(
-            (t) =>
-              logos[t] && (
-                <img key={t} src={logos[t]} alt={t} className="tech-logo" style={{opacity: ".8", maxWidth: "70px"}} />
-              )
-          )}
-        </div>
-
-        <h2 className="web-card__title" style={{margin: '0', padding: '0'}}>{project.name}</h2>
-        <p className="web-card__desc" >{project.description}</p>
-
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="web-card__link"
-        >
-          Visit live site →
-        </a>
-      </div>
-    </article>
+    <div ref={wrapRef} className="fit-frame">
+      <iframe
+        ref={frameRef}
+        src={src}
+        title={title}
+        loading="lazy"
+        className="fit-frame__iframe"
+        scrolling="no"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      />
+    </div>
   );
 }
 
-const line  = "BUILT FOR YOUR BRAND";
-const bfyb  = {
-  description: (line + "\n").repeat(10).trim() // one trailing \n trimmed off
-};
-
-/* -------------------------------------------------
-   page component
--------------------------------------------------- */
-export default function Web() {
-
-const trackRef = useRef(null);
-const imgRefs = useRef([]);
-
-    useEffect(() => {
-      const speeds = [0.9, 1.5];
-      const onScroll = () => {
-        const rect = trackRef.current?.getBoundingClientRect();
-        if (!rect) return;
-        const winH = window.innerHeight;
-        const prog = Math.max(0, Math.min((winH - rect.top) / (winH + rect.height), 1));
-        const baseShift = 120;
-
-        imgRefs.current.forEach((img, i) => {
-          if (img) {
-            img.style.transform = `
-              scale(1.05)
-              translateY(${prog * baseShift * speeds[i] - 80}px)
-            `;
-          }
-        });
-      };
-
-      onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
-      return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+function ProjectTile({ project, index, offset = 0 }) {
+  const num = String(index + 1 + offset).padStart(2, "0");
 
   return (
-    <section className="web-exp web-exp--gradient">
+    <a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`tile tile--${project.span}`}
+      style={{ "--accent": project.accent }}
+    >
+      <div className="tile__media">
+        {project.embed ? (
+          <FitFrame src={project.embed} title={project.name} />
+        ) : project.screenshot ? (
+          <img src={project.screenshot} alt={`${project.name} screenshot`} style={{ objectPosition: "top" }} />
+        ) : null}
+        <div className="tile__scrim" />
+      </div>
 
-      {/* –––––– INTRO GRID + BACKGROUND CODE –––––– */}
-      <section className="intro">
-        {/* light blue background code block */}
-        <div id="bg-code">
-          <div className="intro__bg-code" data-parallax style={{ right: "6vw", top: "4vh" }}>
-            {bgCode}
+      <div className="tile__topline">
+        <span className="tile__role">{project.role}</span>
+        <span className="tile__year">{project.year}</span>
+      </div>
+
+      <div className="tile__body">
+        <div className="tile__tags">
+          {project.tech.map((t) => (
+            <span key={t}>{t}</span>
+          ))}
+        </div>
+        <h3 className="tile__title">{project.name}</h3>
+        <p className="tile__desc">{project.description}</p>
+        <span className="tile__cta">
+          <span>Visit live site</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path
+              d="M3 11L11 3M11 3H5M11 3V9"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="square"
+            />
+          </svg>
+        </span>
+      </div>
+    </a>
+  );
+}
+
+function BentoGrid({ projects, offset = 0 }) {
+  return (
+    <div className="bento">
+      {projects.map((p, i) => (
+        <ProjectTile key={p.url} project={p} index={i} offset={offset} />
+      ))}
+    </div>
+  );
+}
+
+export default function Web() {
+  return (
+    <section className="web2">
+      {/* MASTHEAD */}
+      <header className="masthead">
+
+        <span className="masthead__name">Dylan Dalal</span>
+        <h1 className="masthead__title">
+          Fullstack
+          <br />
+          Web Developer
+        </h1>
+
+        <div className="masthead__meta">
+          <div>
+            <span className="meta-label">ROLE</span>
+            <span className="meta-value">Designer + Engineer</span>
           </div>
-          <div className="intro__bg-code" data-parallax style={{ right: "50vw", top: "55vh", width: "900px", textWrap: "wrap" }}>
-            {bgLorem}
+          <div>
+            <span className="meta-label">SCOPE</span>
+            <span className="meta-value">Full-stack Apps · Brand Sites</span>
           </div>
-          {[
-              {src: meShot,     style:{left:"7vw",  top:"52vh", width:"24vw"}, speed:.25},
-              {src: helloPopup, style:{right:"20vw",  top:"45vh", width:"22vw", zIndex: 2}, speed:.35},
-              {src: loremQuad,  style:{right:"25vw",  bottom:"-5vh", width:"26vw"}, speed: .3},
-              {content: <pre className="text1">{bfyb.description}</pre>, style:{right:"18vw",bottom:"-25vh"}, speed:.18},
-              {content: <pre className="text2">{"Dylan\nDalal"}</pre>, style:{left:"33vw",top:"10vh"}, speed:.26}
-            ].map((l,i)=>(
-              l.src ? (
-                <img
-                  key={i}
-                  src={l.src}
-                  className="intro__bg-layer"
-                  data-parallax
-                  data-speed={l.speed}
-                  style={l.style}
-                  alt=""
-                />
-              ) : (
-                <div
-                  key={i}
-                  className="intro__bg-layer"
-                  data-parallax
-                  data-speed={l.speed}
-                  style={l.style}
-                >
-                  {l.content}
-                </div>
-                )
-            ))}
+          <div>
+            <span className="meta-label">STACK</span>
+            <span className="meta-value">React · TypeScript · Firebase · D1</span>
+          </div>
+        </div>
+      </header>
+
+      {/* MARQUEE */}
+      <div className="marquee" aria-hidden="true">
+        <div className="marquee__track">
+          {[...Array(3)].map((_, loop) => (
+            <div key={loop} className="marquee__group">
+              {marqueeItems.map((item) => (
+                <span key={`${loop}-${item}`} className="marquee__item">
+                  {item}
+                  <span className="marquee__dot">◆</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* WEBAPPS */}
+      <div className="section-rule">
+        <span className="section-rule__label">Full-Stack Webapps</span>
+        <span className="section-rule__line" />
+        <span className="section-rule__count">
+          {String(webapps.length).padStart(2, "0")}
+        </span>
+      </div>
+      <BentoGrid projects={webapps} offset={0} />
+
+      {/* BRAND SITES */}
+      <div className="section-rule section-rule--spaced">
+        <span className="section-rule__label">Brand &amp; Marketing</span>
+        <span className="section-rule__line" />
+        <span className="section-rule__count">
+          {String(brandSites.length).padStart(2, "0")}
+        </span>
+      </div>
+      <BentoGrid projects={brandSites} offset={webapps.length} />
+
+      {/* PROCESS */}
+      <section className="process">
+        <div className="section-rule section-rule--spaced">
+          <span className="section-rule__label">How We Work</span>
+          <span className="section-rule__line" />
+          <span className="section-rule__count">03 STEPS</span>
         </div>
 
-        <div className="grid-wrapper">
-          <div className="intro-grid">
-            {introTiles.map((tile) => (
-              <div key={tile.id} className={`tile tile--${tile.size}`}>
-                {tile.content}
+        <ol className="process__list">
+          {processSteps.map((s) => (
+            <li className="process__step">
+              <span className="process__num">{s.num}</span>
+              <div className="process__copy">
+                <h3>{s.title}</h3>
+                <p>{s.body}</p>
               </div>
-            ))}
-          </div>
-        </div>
+            </li>
+          ))}
+        </ol>
       </section>
 
-
-      {/* –––––– PARTICLES + HEADER –––––– */}
-      <Particles className="web-exp__particles" params={ParticleConfig} />
-      <header className="web-exp__header">
-        <h1 style={{ margin: "3vh 0 0" }}>Web Development Portfolio</h1>
-        <p style={{ margin: "0 0 3vh" }}>
-          Scroll on the website thumbnail for a preview.
-        </p>
-      </header>
-
-      {/* –––––– WEBSITE CAROUSEL –––––– */}
-      <div className="outer-wrapper">
-        <div className="scroll-container">
-          <div className="web-exp__carousel">
-            {projects.map((p) => (
-              <WebCard key={p.url} project={p} />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <header className="web-exp__header">
-        <h1 style={{ margin: "3vh 0" }}>Work With Me</h1>
-      </header>
-
-    <div className="column-container" style={{ gap: '5vw', minHeight: '50vh', paddingBottom: '0', paddingTop: "13vh"}}>
-        <div style={{ display: "flex", flexDirection: "column", width: "35vw"}}>
-            <div className="header2_pipeline" style={{ paddingBottom: '10px', color: 'white', width: "40vw"}}>
-                1. What's Right For Your Brand.
-            </div>
-            <div style={{alignItems: "end"}}>
-                <div className="body_no_padding" style={{ color: 'white', fontSize: "1.3vw", opacity: .9 }}>
-                My process always starts by working with you to build a clear set of goals for your website. I'll
-                build wireframes for each page of your website so you can visualize the end product.
-            </div>
-        </div>
-    </div>
-    <div
-      className="wireframe-pair"
-      ref={trackRef}
-      style={{
-        display: "flex",
-        position: "relative",
-        justifyContent: "center",
-        alignItems: "center",
-        margin: "5vh 0",
-      }}
-    >
-      <div className="wireframe-img-wrap" style={{ zIndex: 2 }}>
-        <img
-          className="wireframe-img"
-          src={wireframe3}
-          alt="Wireframe 1"
-          ref={(el) => (imgRefs.current[0] = el)}
-        />
-      </div>
-      <div
-        className="wireframe-img-wrap"
-        style={{
-          marginLeft: "-2vw",
-          zIndex: 2,
-          opacity: 1,
-          transform: "scale(1.1)"
-        }}
-      >
-        <img
-          className="wireframe-img"
-          src={wireframe2}
-          alt="Wireframe 2"
-          ref={(el) => (imgRefs.current[1] = el)}
-        />
-      </div>
-      <div
-        className="wireframe-img-wrap"
-        style={{
-          marginLeft: "-2vw",
-          zIndex: 1,
-          opacity: .8,
-          transform: "scale(0.95)"
-        }}
-      >
-        <img
-          className="wireframe-img"
-          src={wireframes}
-          alt="Wireframe 2"
-          ref={(el) => (imgRefs.current[1] = el)}
-        />
-      </div>
-    </div>
-  </div>
-  <div className="column-container" style={{ gap: '5vw', minHeight: '50vh', padding: '15vh 0 10vh 0' }}>
-        <div style={{ display: "flex", flexDirection: "column", width: "35vw"}}>
-            <div className="header2_pipeline" style={{ paddingBottom: '10px', color: 'white', width: "40vw"}}>
-                2. Built With Intention.
-            </div>
-            <div className="body_no_padding" style={{ color: 'white', fontSize: "1.3vw", opacity: .9 }}>
-                I use the right tools for the job. From video editing to 3D modeling to complex, motion-driven
-                interactions, I'm equipped to elevate your story when it supports the vision, but I never let visuals
-                take the stage for the sake of flair. Every animation, texture, and transition has a reason to exist.
-            </div>
-        </div>
-    <div>
-    </div>
-  </div>
-    <div className="column-container" style={{ gap: '5vw', minHeight: '50vh'}}>
-        <div style={{ display: "flex", flexDirection: "column", width: "35vw"}}>
-            <div className="header2_pipeline" style={{ paddingBottom: '10px', color: 'white', width: "40vw"}}>
-                3. Always Accessible.
-            </div>
-            <div className="body_no_padding" style={{ color: 'white', fontSize: "1.3vw", opacity: .9 }}>
-                Every project ships with two months of support for your team and both video and written documentation
-                that you can reference forever, without relying exclusively on me.
-            </div>
-        </div>
-    <div>
-    </div>
-  </div>
-
+      {/* CTA */}
+      <section className="cta">
+        <h2 className="cta__title">
+          Let's build something.
+        </h2>
+        <a className="cta__button" href="mailto:dylanmax@gmail.com">
+          <span>Get in touch</span>
+          <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path
+              d="M3 11L11 3M11 3H5M11 3V9"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="square"
+            />
+          </svg>
+        </a>
+      </section>
     </section>
   );
 }
-
