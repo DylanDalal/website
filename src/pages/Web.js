@@ -12,7 +12,7 @@ const webapps = [
     year: "2026",
     role: "Design · Build · with District Cinema",
     description:
-      "Browser-based 3D viewer for production location planning. Measurements, virtual scouting, and real-time collaboration. Designed the Projects page and backend functionality.",
+      "Browser-based 3D viewer for production location planning. Measurements, virtual scouting, and real time collaboration. Designed the Projects page and backend functionality.",
     tech: ["React", "TypeScript", "WebGL"],
     embed: "https://terra.districtcinema.com/",
     span: "featured",
@@ -124,7 +124,7 @@ const brandSites = [
     year: "2022",
     role: "Design · Build",
     description:
-      "Law-office website designed for clarity and accessibility. Clean, straightforward structure.",
+      "Law office website designed for clarity and accessibility. Clean, straightforward structure.",
     tech: ["JavaScript"],
     embed: null,
     screenshot: kofskyShot,
