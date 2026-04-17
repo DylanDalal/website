@@ -9,11 +9,11 @@ const webapps = [
   {
     name: "Terra",
     url: "https://terra.districtcinema.com/",
-    year: "2025",
+    year: "2026",
     role: "Design · Build · with District Cinema",
     description:
       "Browser-based 3D viewer for production location planning. Measurements, virtual scouting, and real-time collaboration. Designed the Projects page and backend functionality.",
-    tech: ["React", "TypeScript", "WebGL", "3D"],
+    tech: ["React", "TypeScript", "WebGL"],
     embed: "https://terra.districtcinema.com/",
     span: "featured",
     accent: "#10b981",
@@ -21,7 +21,7 @@ const webapps = [
   {
     name: "Resumesmithy",
     url: "https://resumesmithy.com/",
-    year: "2025",
+    year: "2026",
     role: "Full-stack",
     description:
       "End-to-end resume builder on Cloudflare D1. Auth, billing, generation pipeline, and responsive design.",
@@ -33,7 +33,7 @@ const webapps = [
   {
     name: "Owez",
     url: "https://owez.me/",
-    year: "2024",
+    year: "2026",
     role: "Design + Full-stack",
     description:
       "Full-stack SaaS on Firebase. Brand identity, UX, data model, and product surface.",
@@ -58,7 +58,7 @@ const webapps = [
   {
     name: "TIPT",
     url: "https://tipt.co/",
-    year: "2023",
+    year: "2025",
     role: "Build · Integrations",
     description:
       "Profile builder for mobile-payment links. Full analytics dashboard and Stripe integration.",
@@ -229,7 +229,6 @@ function ProjectTile({ project, index, offset = 0 }) {
 
       <div className="tile__topline">
         <span className="tile__role">{project.role}</span>
-        <span className="tile__year">{project.year}</span>
       </div>
 
       <div className="tile__body">
@@ -267,6 +266,11 @@ function BentoGrid({ projects, offset = 0 }) {
 }
 
 export default function Web() {
+  useEffect(() => {
+    document.documentElement.classList.add("web-page--hide-scrollbar");
+    return () => document.documentElement.classList.remove("web-page--hide-scrollbar");
+  }, []);
+  
   return (
     <section className="web2">
       {/* MASTHEAD */}
@@ -282,15 +286,19 @@ export default function Web() {
         <div className="masthead__meta">
           <div>
             <span className="meta-label">ROLE</span>
-            <span className="meta-value">Designer + Engineer</span>
+            <span className="meta-value">Designer & Engineer</span>
           </div>
           <div>
-            <span className="meta-label">SCOPE</span>
+            <span className="meta-label">SPECIALIZATIONS</span>
             <span className="meta-value">Full-stack Apps · Brand Sites</span>
           </div>
           <div>
             <span className="meta-label">STACK</span>
-            <span className="meta-value">React · TypeScript · Firebase · D1</span>
+            <span className="meta-value">TypeScript · React · Firebase</span>
+          </div>
+          <div>
+            <span className="meta-label">EXPERIENCE</span>
+            <span className="meta-value">CloudFlare D1 · CloudFlare Workers • JavaScript · Framer · Stripe · Firebase</span>
           </div>
         </div>
       </header>

@@ -4,6 +4,20 @@
    system. Adds bento grid, glassy tiles, process ledger.
 ================================================== */
 
+/* Hide scrollbar on /web while keeping scroll (class toggled from Web.js) */
+html.web-page--hide-scrollbar,
+html.web-page--hide-scrollbar body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html.web-page--hide-scrollbar::-webkit-scrollbar,
+html.web-page--hide-scrollbar body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 $cyan:   #97d1d6;
 $navy:   #0b133a;
 $ink:    #ffffff;
