@@ -96,7 +96,7 @@ const brandSites = [
   },
   {
     name: "Maximus Productions",
-    url: "https://maximusproductions.com",
+    url: "https://www.maximus.productions",
     year: "2025",
     role: "Design · Build",
     description:
