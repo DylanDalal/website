@@ -137,17 +137,17 @@ const processSteps = [
   {
     num: "01",
     title: "What's right for your brand",
-    body: "We figure out what the site needs to do and who it's for. Wireframes and a sitemap before any code gets written.",
+    body: "We work together to figure out what the site needs to do and who it's for. I'll draft a mockup before any code gets written.",
   },
   {
     num: "02",
     title: "Built with intention",
-    body: "I pick the tools that fit the project, not the ones that are popular. Every decision has a reason behind it.",
+    body: "I'll pick the right tools for the project, balancing performance, style, and ease of use for your situation.",
   },
   {
     num: "03",
     title: "Always accessible",
-    body: "Continued support after launch. Video and written docs so your team can keep things running without me.",
+    body: "Expect continued support after launch. I'll provide video and written docs so your team can keep things running without me.",
   },
 ];
 
@@ -342,7 +342,7 @@ export default function Web() {
       {/* PROCESS */}
       <section className="process">
         <div className="section-rule section-rule--spaced">
-          <span className="section-rule__label">How We Work</span>
+          <span className="section-rule__label">The Process</span>
           <span className="section-rule__line" />
           <span className="section-rule__count">03 STEPS</span>
         </div>
