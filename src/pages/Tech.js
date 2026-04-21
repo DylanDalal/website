@@ -55,6 +55,7 @@ import website_1 from "../resources/computer-science/website_1.jpg";
 import website_2 from "../resources/computer-science/website_5.jpg";
 import website_3 from "../resources/computer-science/website_3.jpg";
 import website_4 from "../resources/computer-science/website_4.jpg";
+import beeble1 from "../resources/computer-science/beeble1.jpg";
 import {
   DataTransferComponent,
   AnimationComponent,
@@ -69,6 +70,13 @@ const vana1 = `At MARZ VFX, I contributed to the development of Vanity AI, a pro
 
 const vana2 = `As a Machine Learning Pipeline Intern, I learned the fundamentals of building and distributing AI
                technology, and how to fit that new technology into an existing company pipeline.`;
+
+const beeb1 = `I developed the official Unreal Engine plugin for Beeble, released by District Cinema in partnership
+               with Beeble. It brings Beeble's relighting tools directly into the Unreal editor, letting artists
+               work with them without leaving their scene.`;
+
+const beeb2 = `The plugin is distributed on Epic Games' FAB marketplace as the official integration between
+               District Cinema's Unreal pipeline and Beeble's platform.`;
 
 const reims = `Before we started the Virtual Production volume, I lead the software development of a VR tour of France’s
                Notre Dame de Reims Cathedral. FSU partnered with the University of Alabama, who took a 3D scan of the
@@ -336,6 +344,40 @@ function Tech() {
                   used in 45+ major productions to date
                 </div>
               </div>
+          </div>
+        </div>
+      </div>
+      <div className="second_tech" style={{ position: 'relative', zIndex: 1, paddingTop: "6vh", alignItems: 'center', paddingBottom: "6vh" }}>
+        <div className="tech-logos" style={{ display: 'flex', alignItems: 'center', paddingBottom: "0" }}>
+          <div>
+            <img className="tech-logo" src={ue} alt="Dylan Dalal Unreal Engine" style={{ margin: "0 5px 0 5px" }}/>
+            <img className="tech-logo" src={cplusplus} alt="Dylan Dalal C++" style={{ margin: "0 5px 0 5px" }} />
+          </div>
+        </div>
+        <div className="header_pipeline" style={{ color: 'black', alignItems: 'center', paddingBottom: '10px' }}>
+          The Official Beeble Plugin for Unreal Engine
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: 'center', justifyContent: 'center' }}>
+          <img
+            src={beeble1}
+            alt="Dylan Dalal Beeble Unreal Engine Plugin"
+            style={{
+              maxWidth: "55vw",
+              width: "100%",
+              height: "auto",
+              borderRadius: "16px",
+              border: "1px solid rgba(11, 19, 58, 0.12)",
+              boxShadow:
+                "0 8px 32px rgba(11, 19, 58, 0.12), 0 2px 8px rgba(11, 19, 58, 0.07)",
+              marginBottom: "3vh"
+            }}
+          />
+          <div style={{ maxWidth: "55vw" }}>
+            <div className="body_no_padding" style={{ color: 'black' }}>{beeb1}</div>
+            <div className="body_no_padding" style={{ color: 'black' }}>{beeb2}</div>
+            <div style={{ textAlign: 'center' }}>
+              <VisitWebsiteButton url="https://www.fab.com/listings/74c23d42-8fd2-4c1f-a33d-e588f9ece6c0" text="View on FAB" newTab={true} />
+            </div>
           </div>
         </div>
       </div>
