@@ -1,3 +1,4 @@
+/* Elevation + type shadows aligned with Web.scss / .web2 */
 .first_tech {
     background-color: #000630;
     width: 100%;
@@ -60,7 +61,7 @@
     padding-top: 0.5vw;
     padding-bottom: 0vh;
     text-transform: uppercase;
-    text-shadow: .15vw .05vw rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 5px rgba(11, 19, 58, 0.15);
     text-align: left;
     line-height: 1;
 }
@@ -71,13 +72,20 @@
     }
 }
 
+/* White headlines on dark bands — depth without harsh offset glow */
+.first_tech .header_pipeline {
+    text-shadow:
+      0 2px 14px rgba(0, 0, 0, 0.45),
+      0 1px 5px rgba(11, 19, 58, 0.35);
+}
+
 .header2_pipeline {
     font-family: DINCondensed;
     font-size: 3.5vw;
     padding-top: 0.5vw;
     padding-bottom: 0vh;
     text-transform: uppercase;
-    text-shadow: .15vw .05vw rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 5px rgba(11, 19, 58, 0.15);
     text-align: left;
     line-height: 1;
 }
@@ -150,14 +158,20 @@
     flex: none;
     height: 100%;
     position: relative;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.35s ease;
     scroll-snap-align: start;
 }
 
 .carousel-item {
     position: relative;
-    border-radius: 15px;
+    border-radius: 16px;
     width: 280px;
+    border: 1px solid rgba(11, 19, 58, 0.12);
+    box-shadow:
+      0 8px 32px rgba(11, 19, 58, 0.14),
+      0 2px 8px rgba(11, 19, 58, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    isolation: isolate;
 }
 
 
@@ -168,7 +182,7 @@
 }
 
 .carousel-item img {
-    border-radius: 15px;
+    border-radius: 16px;
     display: block;
     height: 100%;
     object-fit: cover;
@@ -176,8 +190,12 @@
 }
 
 .carousel-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     z-index: 2;
+    box-shadow:
+      0 14px 44px rgba(11, 19, 58, 0.2),
+      0 4px 14px rgba(11, 19, 58, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .carousel-item2 {
@@ -185,6 +203,11 @@
     flex: none;
     scroll-snap-align: start;
     overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(11, 19, 58, 0.1);
+    box-shadow:
+      0 6px 24px rgba(11, 19, 58, 0.1),
+      0 2px 6px rgba(11, 19, 58, 0.06);
 }
 
 .carousel-item2 img {
@@ -217,7 +240,9 @@
     bottom: 10px;
     left: 10px;
     padding: 5px;
-    text-shadow: .1vw .1vw rgba(0, 0, 0, 0.5);
+    text-shadow:
+      0 2px 12px rgba(0, 0, 0, 0.55),
+      0 1px 3px rgba(11, 19, 58, 0.4);
 }
 
 @media (orientation: portrait) {
@@ -267,12 +292,23 @@
   align-items: center;
   padding: 3vw;
   background-color: white;
-  box-shadow: 1.5px 1.5px 0px rgba(0, 0, 0, 0.14);
+  border-radius: 16px;
+  border: 1px solid rgba(11, 19, 58, 0.1);
+  box-shadow:
+    0 8px 32px rgba(11, 19, 58, 0.1),
+    0 2px 8px rgba(11, 19, 58, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
 }
 
 .grid-item.dark {
   background-color: #1a1a2e;
   color: white;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 8px 36px rgba(0, 0, 0, 0.35),
+    0 2px 10px rgba(11, 19, 58, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .grid-item h3 {
@@ -319,7 +355,9 @@
   top: 50%;
   left: 50%;
   color: white;
-  text-shadow: .15vw .05vw rgba(0, 0, 0, 0.7);
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.65),
+    0 1px 5px rgba(11, 19, 58, 0.45);
   font-family: DINCondensed;
   font-weight: bold;
   text-align: left;
@@ -335,7 +373,9 @@
   top: 50%;
   left: 50%;
   color: white;
-  text-shadow: .15vw .05vw rgba(0, 0, 0, 0.7);
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.65),
+    0 1px 5px rgba(11, 19, 58, 0.45);
   font-family: DINCondensed;
   font-weight: bold;
   text-align: left;
@@ -378,7 +418,9 @@
   top: 50%;
   left: 50%;
   color: white;
-  text-shadow: .15vw .05vw rgba(0, 0, 0, 0.7);
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.65),
+    0 1px 5px rgba(11, 19, 58, 0.45);
   font-family: DINCondensed;
   font-weight: bold;
   text-align: left;
@@ -394,7 +436,9 @@
   top: 50%;
   left: 50%;
   color: white;
-  text-shadow: .15vw .05vw rgba(0, 0, 0, 0.7);
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.65),
+    0 1px 5px rgba(11, 19, 58, 0.45);
   font-family: DINCondensed;
   font-weight: bold;
   text-align: left;
@@ -434,6 +478,11 @@
   width: 100%;
   height: auto;
   display: block;
+  border-radius: 16px;
+  border: 1px solid rgba(11, 19, 58, 0.1);
+  box-shadow:
+    0 8px 32px rgba(11, 19, 58, 0.12),
+    0 2px 8px rgba(11, 19, 58, 0.07);
 }
 
 .overlay-text {
@@ -441,7 +490,7 @@
   top: 50%;
   left: 50%;
   color: white;
-  text-shadow: .15vw .05vw rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 5px rgba(11, 19, 58, 0.25);
   font-family: DINCondensed;
   font-weight: bold;
   text-align: left;

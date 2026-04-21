@@ -184,9 +184,7 @@ function Home() {
             </div>
             <div style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
                 <Gallery />
-                <p className="bodyText" style={{
-                        position: "absolute", top: "40%", left: "50%", transform: "translate(-60%, -50%)",
-                        zIndex: 10, textAlign: "center", textShadow: "2px 2px 1px rgba(0, 0, 0, 0.4)"}}>
+                <p className="bodyText home-gallery-overlay">
                     {p6}
                 </p>
             </div>

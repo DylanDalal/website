@@ -425,7 +425,7 @@ function Film() {
             <div className="body_no_padding" style={{ color: '#fff' }}>{sxsw_desc}</div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'visible', position: 'relative' }}>
-            <img src={itEnds} alt="It Ends poster" style={{ maxWidth: '100%', maxHeight: '50vh', height: 'auto', width: 'auto', objectFit: 'contain', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)' }} />
+            <img src={itEnds} alt="It Ends poster" className="sxsw-poster" />
             <a href="https://www.rottentomatoes.com/m/it_ends" target="_blank" rel="noopener noreferrer" className="sxsw_logo_link sxsw_rt_logo">
               <img src={rottenTomatoes} alt="Rotten Tomatoes" />
             </a>

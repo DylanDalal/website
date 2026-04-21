@@ -236,12 +236,28 @@
   opacity: 0.5;
 }
 
+/* Gallery overlay copy — matches Web masthead-style depth */
+.home-gallery-overlay {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-60%, -50%);
+  z-index: 10;
+  margin: 0;
+  text-align: center;
+  text-shadow:
+    0 2px 18px rgba(0, 0, 0, 0.55),
+    0 1px 5px rgba(11, 19, 58, 0.4);
+}
+
 .mission_text {
     color: white;
     font-family: DINCondensed;
     font-size: 5vw;
     text-transform: uppercase;
-    text-shadow: .15vw .05vw rgba(0, 0, 0, 0.2);
+    text-shadow:
+      0 2px 14px rgba(0, 0, 0, 0.45),
+      0 1px 5px rgba(11, 19, 58, 0.35);
 }
 
 @media (orientation: portrait) {
@@ -256,6 +272,13 @@
   position: relative;
   white-space: nowrap;
   overflow: hidden;
+  margin-top: 0.5rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
   /* Start invisible, then animate in */
   opacity: 0;

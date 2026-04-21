@@ -17,7 +17,8 @@ const VisitWebsiteButton = ({ url, text = "Visit website", newTab = true }) => {
         fontFamily: 'Futura',
         margin: '4px 2px',
         borderRadius: '12px',
-        boxShadow: '2px 2px 0px rgba(0, 0, 0, 0.2)',
+        boxShadow:
+          '0 6px 24px rgba(11, 19, 58, 0.2), 0 2px 6px rgba(11, 19, 58, 0.12)',
         cursor: 'pointer',
     };
 
