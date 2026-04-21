@@ -37,7 +37,7 @@
 .desc-divider {
     width: 100%;
     color: white;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    border-bottom: 1px solid #000;
 }
 
 .desc-role {
@@ -81,7 +81,7 @@
     padding-top: 0.5vw;
     padding-bottom: 0vh;
     text-transform: uppercase;
-    text-shadow: 0 1px 5px rgba(11, 19, 58, 0.35);
+    text-shadow: .15vw .05vw rgba(0, 0, 0, 0.2);
     text-align: left;
     line-height: 1;
     color: #e8e8e8;
@@ -157,28 +157,6 @@
     margin: 0;
     padding: 1vh 0;
     flex-shrink: 0;
-}
-
-.sxsw_film .header_pipeline,
-.first_film .header2,
-.third_film .header2 {
-    text-shadow:
-      0 2px 14px rgba(0, 0, 0, 0.45),
-      0 1px 5px rgba(11, 19, 58, 0.35);
-}
-
-.sxsw-poster {
-    max-width: 100%;
-    max-height: 50vh;
-    height: auto;
-    width: auto;
-    object-fit: contain;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    box-shadow:
-      0 12px 48px rgba(11, 19, 58, 0.35),
-      0 4px 14px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .sxsw_film .body_no_padding {
@@ -296,24 +274,18 @@
 }
 
 .thumbnail-image {
-  border-radius: 16px;
-  border: 1px solid rgba(11, 19, 58, 0.12);
-  box-shadow:
-    0 8px 28px rgba(11, 19, 58, 0.12),
-    0 2px 8px rgba(11, 19, 58, 0.07);
+  box-shadow: .3vw .3vw rgba(0, 0, 0, 0.2);
   cursor: pointer;
   width: 12vw;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  transition: transform .5s ease, box-shadow 0.35s ease;
+  transition: transform .5s ease, box-shadow 1s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .thumbnail-image:hover {
-    box-shadow:
-      0 14px 40px rgba(11, 19, 58, 0.2),
-      0 4px 12px rgba(11, 19, 58, 0.12);
-    transform: scale(1.05);
+    box-shadow: .4vw .4vw rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
   }
 }
 
@@ -338,24 +310,18 @@
 }
 
 .reel-highlight-thumbnail {
-  border-radius: 16px;
-  border: 1px solid rgba(11, 19, 58, 0.12);
-  box-shadow:
-    0 8px 28px rgba(11, 19, 58, 0.12),
-    0 2px 8px rgba(11, 19, 58, 0.07);
+  box-shadow: .3vw .3vw rgba(0, 0, 0, 0.2);
   cursor: pointer;
   width: 15vw;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  transition: transform .5s ease, box-shadow 0.35s ease;
+  transition: transform .5s ease, box-shadow 1s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .reel-highlight-thumbnail:hover {
-    box-shadow:
-      0 14px 40px rgba(11, 19, 58, 0.2),
-      0 4px 12px rgba(11, 19, 58, 0.12);
-    transform: scale(1.05);
+    box-shadow: .4vw .4vw rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
   }
 }
 
@@ -390,12 +356,8 @@
   max-width: 960px;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow:
-    0 12px 48px rgba(11, 19, 58, 0.35),
-    0 4px 14px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .column-container {
@@ -470,28 +432,21 @@
         white 2vw,
         white 4vw
     );
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 16px;
-    box-shadow:
-      0 12px 40px rgba(11, 19, 58, 0.25),
-      0 4px 12px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    border: .25vw solid black;
+    box-shadow: .6vw .6vw rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     object-fit: contain;
-    outline: 1px solid rgba(255, 255, 255, 0.12);
+    outline: .25vw solid white;
     width: 35vw;
 }
 
 .slate_background2 {
     aspect-ratio: 17 / 9;
     background-color: black;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 14px;
-    box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.45),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    outline: none;
+    border: .25vw solid white;
+    box-shadow: .6vw .6vw rgba(0, 0, 0, 0.4);
+    outline: .25vw solid black;
     width: 32vw;
     overflow: hidden;
 }
