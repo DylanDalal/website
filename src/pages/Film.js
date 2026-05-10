@@ -87,6 +87,32 @@ const sxsw_desc = `I worked as a Pipeline Technical Director on the SXSW-premier
 
 const videos = [
   {
+    videoId: 'CqFN-btqG7M',
+    title: '"Deposits" Ad',
+    role: 'Director | Writer | Editor',
+    description: `Branded advertisement for Deposits. I served as director, writer, and editor.`,
+    thumbnailUrl: 'https://img.youtube.com/vi/CqFN-btqG7M/maxresdefault.jpg',
+    thumbnailUrlGif: 'https://img.youtube.com/vi/CqFN-btqG7M/maxresdefault.jpg',
+  },
+  {
+    videoId: '9iRiZMCntXY',
+    title: 'Control',
+    role: 'VP Operator',
+    description: `Control is an FSU student's thesis film, a music video about a universe-jumping assassin's
+    confrontation with her latest target. I was the lead researcher for the Virtual Production volume used by the
+    live-action portions of this film.`,
+    thumbnailUrl: control,
+    thumbnailUrlGif: controlgif,
+  },
+  {
+    videoId: 'AU0ZgsJKHDU',
+    title: 'Rest in Paradise Bitch',
+    role: 'Editor | Director of Photography',
+    description: `A short film. I worked as editor and director of photography. Completed in two weeks.`,
+    thumbnailUrl: 'https://img.youtube.com/vi/AU0ZgsJKHDU/maxresdefault.jpg',
+    thumbnailUrlGif: 'https://img.youtube.com/vi/AU0ZgsJKHDU/maxresdefault.jpg',
+  },
+  {
     videoId: 'dCT-SM94qFo',
     title: 'Boss of the Month',
     role: 'Director | Writer | Editor | VP Operator',
@@ -117,13 +143,12 @@ const videos = [
     thumbnailUrlGif: mdgif,
   },
   {
-    videoId: 'klEVBSD7k84',
-    title: 'The River',
-    role: 'Director | Writer | Editor | VP Operator',
-    description: `The River is a comedic Western short film about the last play in a Poker standoff. It was my first
-    short film and the first narrative test of FSU's Virtual Production volume.`,
-    thumbnailUrl: river,
-    thumbnailUrlGif: rivergif,
+    videoId: 'qCAWqWC0O84',
+    title: 'Deathly',
+    role: 'Camera Operator | Editor',
+    description: `A short film. I worked as camera operator and editor. Completed in two weeks.`,
+    thumbnailUrl: 'https://img.youtube.com/vi/qCAWqWC0O84/maxresdefault.jpg',
+    thumbnailUrlGif: 'https://img.youtube.com/vi/qCAWqWC0O84/maxresdefault.jpg',
   },
   {
     videoId: '4Ce2VZi9YGI',
@@ -135,14 +160,13 @@ const videos = [
     thumbnailUrlGif: airtabgif,
   },
   {
-    videoId: '9iRiZMCntXY',
-    title: 'Control',
-    role: 'VP Operator',
-    description: `Control is an FSU student's thesis film, a music video about a universe-jumping assassin's
-    confrontation with her latest target. I was the lead researcher for the Virtual Production volume used by the
-    live-action portions of this film.`,
-    thumbnailUrl: control,
-    thumbnailUrlGif: controlgif,
+    videoId: 'klEVBSD7k84',
+    title: 'The River',
+    role: 'Director | Writer | Editor | VP Operator',
+    description: `The River is a comedic Western short film about the last play in a Poker standoff. It was my first
+    short film and the first narrative test of FSU's Virtual Production volume.`,
+    thumbnailUrl: river,
+    thumbnailUrlGif: rivergif,
   },
   {
     videoId: '1OaWBCMEDjE',
