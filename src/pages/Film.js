@@ -86,32 +86,7 @@ const sxsw_desc = `I worked as a Pipeline Technical Director on the SXSW-premier
 
 
 const videos = [
-  {
-    videoId: 'CqFN-btqG7M',
-    title: '"Deposits" Ad',
-    role: 'Director | Writer | Editor',
-    description: `Branded advertisement for Deposits. I served as director, writer, and editor.`,
-    thumbnailUrl: 'https://img.youtube.com/vi/CqFN-btqG7M/maxresdefault.jpg',
-    thumbnailUrlGif: 'https://img.youtube.com/vi/CqFN-btqG7M/maxresdefault.jpg',
-  },
-  {
-    videoId: '9iRiZMCntXY',
-    title: 'Control',
-    role: 'VP Operator',
-    description: `Control is an FSU student's thesis film, a music video about a universe-jumping assassin's
-    confrontation with her latest target. I was the lead researcher for the Virtual Production volume used by the
-    live-action portions of this film.`,
-    thumbnailUrl: control,
-    thumbnailUrlGif: controlgif,
-  },
-  {
-    videoId: 'AU0ZgsJKHDU',
-    title: 'Rest in Paradise Bitch',
-    role: 'Editor | Director of Photography',
-    description: `A short film. I worked as editor and director of photography. Completed in two weeks.`,
-    thumbnailUrl: 'https://img.youtube.com/vi/AU0ZgsJKHDU/maxresdefault.jpg',
-    thumbnailUrlGif: 'https://img.youtube.com/vi/AU0ZgsJKHDU/maxresdefault.jpg',
-  },
+  // Row 1
   {
     videoId: 'dCT-SM94qFo',
     title: 'Boss of the Month',
@@ -124,23 +99,13 @@ const videos = [
   },
   {
     videoId: 'XQjtRLgWvfE',
-    title: 'Open for an Icon Teaser',
+    title: 'Open for an Icon',
     role: 'Editor | Motion Graphics',
     description: `The teaser displayed in the hero section of the Open For an Icon website, a subset of Airtab Media. I
     edited it using clips from various Airtab Media-organized concerts to show artists the opportunities OFAI affords
     them. I created the intro of this video in Blender.`,
     thumbnailUrl: ofai,
     thumbnailUrlGif: ofaigif,
-  },
-  {
-    videoId: 'x6IZ6bCGbMg',
-    title: 'Monotonous Dejection',
-    role: 'Director | Writer | Editor | VP Operator',
-    description: `Monotonous Dejection is a dramatic short film about a quotidian Uber ride's progression into a
-    midnight therapy session. A script that I'd developed years ago, we cut it down to a more suitable length and shot
-    it as a screen test for our Jeep prop.`,
-    thumbnailUrl: md,
-    thumbnailUrlGif: mdgif,
   },
   {
     videoId: 'qCAWqWC0O84',
@@ -151,15 +116,6 @@ const videos = [
     thumbnailUrlGif: 'https://img.youtube.com/vi/qCAWqWC0O84/maxresdefault.jpg',
   },
   {
-    videoId: '4Ce2VZi9YGI',
-    title: 'Airtab Media Teaser',
-    role: 'Editor',
-    description: `The teaser displayed in the hero section of the Airtab Media website. I edited it using clips from
-    various Airtab Media-organized concerts to show the wide range of events that Airtab organizes.`,
-    thumbnailUrl: airtab,
-    thumbnailUrlGif: airtabgif,
-  },
-  {
     videoId: 'klEVBSD7k84',
     title: 'The River',
     role: 'Director | Writer | Editor | VP Operator',
@@ -167,6 +123,79 @@ const videos = [
     short film and the first narrative test of FSU's Virtual Production volume.`,
     thumbnailUrl: river,
     thumbnailUrlGif: rivergif,
+  },
+  {
+    videoId: 'sfXZT0dHuuc',
+    title: 'Five Ideas for your JP Bonus Room',
+    role: 'Director | Editor',
+    description: `Advertisement made for Jackson Properties meant to excite potential renters about the opportunities
+    proivided by renting a home with a bonus room.`,
+    thumbnailUrl: 'https://img.youtube.com/vi/sfXZT0dHuuc/maxresdefault.jpg',
+    thumbnailUrlGif: jpbrgif,
+  },
+  // Row 2
+  {
+    videoId: 'AU0ZgsJKHDU',
+    title: 'Rest in Paradise Bitch',
+    role: 'Editor | Director of Photography',
+    description: `A short film. I worked as editor and director of photography. Completed in two weeks.`,
+    thumbnailUrl: 'https://img.youtube.com/vi/AU0ZgsJKHDU/maxresdefault.jpg',
+    thumbnailUrlGif: 'https://img.youtube.com/vi/AU0ZgsJKHDU/maxresdefault.jpg',
+  },
+  {
+    videoId: '4Ce2VZi9YGI',
+    title: 'Airtab Media',
+    role: 'Editor',
+    description: `The teaser displayed in the hero section of the Airtab Media website. I edited it using clips from
+    various Airtab Media-organized concerts to show the wide range of events that Airtab organizes.`,
+    thumbnailUrl: airtab,
+    thumbnailUrlGif: airtabgif,
+  },
+  {
+    videoId: '4hzdqTxiRss',
+    title: 'Lisbeth',
+    role: 'Director | Editor',
+    description: `Video providing background and introducing the artist behind Etsy shop LisBETH Silk.`,
+    thumbnailUrl: 'https://img.youtube.com/vi/4hzdqTxiRss/maxresdefault.jpg',
+    thumbnailUrlGif: 'https://img.youtube.com/vi/4hzdqTxiRss/maxresdefault.jpg',
+  },
+  {
+    videoId: 'yLO1iPC0U6U',
+    title: 'Resort Teaser',
+    role: 'Director | Editor',
+    description: `Website banner video for Florida Caverns RV Resort. I organized the shoot and edited the video,
+                  capturing the beauty of the area and the amenities available to guests.`,
+    thumbnailUrl: fcrv,
+    thumbnailUrlGif: fcrvgif,
+  },
+  {
+    videoId: 'briKVzcxssA',
+    title: '"Trust" Ad',
+    role: 'Editor',
+    description: `Web advertisement made for Fender Marine Construction in collaboration with Rock Paper Simple. I was
+    brought in as an editor to help with the project.`,
+    thumbnailUrl: 'https://img.youtube.com/vi/briKVzcxssA/maxresdefault.jpg',
+    thumbnailUrlGif: 'https://img.youtube.com/vi/briKVzcxssA/maxresdefault.jpg',
+  },
+  // Row 3
+  {
+    videoId: '3u2WLj3WQp8',
+    title: 'Fender Marine Construction',
+    role: 'Editor',
+    description: `Website banner video for Fender Marine Construction in collaboration with Rock Paper Simple. I was
+    brought in as an editor to help with the project.`,
+    thumbnailUrl: 'https://img.youtube.com/vi/3u2WLj3WQp8/maxresdefault.jpg',
+    thumbnailUrlGif: 'https://img.youtube.com/vi/3u2WLj3WQp8/maxresdefault.jpg',
+  },
+  {
+    videoId: 'vjgyIm2Jm0s',
+    title: 'Jackson Properties banner',
+    role: 'Director | Editor',
+    description: `The teaser displayed in the hero section of the Jackson Properties website. I traveled to 
+    Tallahassee to film clips across two trips, and coordinated with current residents and employees to 
+    create a video promoting the different homes available for rent.`,
+    thumbnailUrl: jp,
+    thumbnailUrlGif: jpgif,
   },
   {
     videoId: '1OaWBCMEDjE',
@@ -179,16 +208,6 @@ const videos = [
     thumbnailUrlGif: lastridegif,
   },
   {
-    videoId: 'QFIvwBPdVFc',
-    title: 'Find My Friends',
-    role: 'Editor | VP Operator',
-    description: `Find My Friends is a comedic horror-inspired short film about a pair of campers' visit to a new
-    campsite. I acted as the editor and lead VP Operator on the project, which was shot on a Virtual
-    Production volume.`,
-    thumbnailUrl: fmf,
-    thumbnailUrlGif: fmfgif,
-  },
-  {
     videoId: 'qQgWRWEiCQM',
     title: '"Reliability" Ad',
     role: 'Editor',
@@ -198,59 +217,43 @@ const videos = [
     thumbnailUrlGif: fmc1gif,
   },
   {
-    videoId: '4hzdqTxiRss',
-    title: 'Lisbeth "About" Video',
-    role: 'Director | Editor',
-    description: `Video providing background and introducing the artist behind Etsy shop LisBETH Silk.`,
-    thumbnailUrl: 'https://img.youtube.com/vi/4hzdqTxiRss/maxresdefault.jpg',
-    thumbnailUrlGif: 'https://img.youtube.com/vi/4hzdqTxiRss/maxresdefault.jpg',
+    videoId: 'QFIvwBPdVFc',
+    title: 'Find My Friends',
+    role: 'Editor | VP Operator',
+    description: `Find My Friends is a comedic horror-inspired short film about a pair of campers' visit to a new
+    campsite. I acted as the editor and lead VP Operator on the project, which was shot on a Virtual
+    Production volume.`,
+    thumbnailUrl: fmf,
+    thumbnailUrlGif: fmfgif,
+  },
+  // Final row
+  {
+    videoId: 'x6IZ6bCGbMg',
+    title: 'Monotonous Dejection',
+    role: 'Director | Writer | Editor | VP Operator',
+    description: `Monotonous Dejection is a dramatic short film about a quotidian Uber ride's progression into a
+    midnight therapy session. A script that I'd developed years ago, we cut it down to a more suitable length and shot
+    it as a screen test for our Jeep prop.`,
+    thumbnailUrl: md,
+    thumbnailUrlGif: mdgif,
   },
   {
-    videoId: 'sfXZT0dHuuc',
-    title: '"Bonus Rooms" Ad',
-    role: 'Director | Editor',
-    description: `Advertisement made for Jackson Properties meant to excite potential renters about the opportunities
-    proivided by renting a home with a bonus room.`,
-    thumbnailUrl: 'https://img.youtube.com/vi/sfXZT0dHuuc/maxresdefault.jpg',
-    thumbnailUrlGif: jpbrgif,
+    videoId: '9iRiZMCntXY',
+    title: 'Control',
+    role: 'VP Operator',
+    description: `Control is an FSU student's thesis film, a music video about a universe-jumping assassin's
+    confrontation with her latest target. I was the lead researcher for the Virtual Production volume used by the
+    live-action portions of this film.`,
+    thumbnailUrl: control,
+    thumbnailUrlGif: controlgif,
   },
   {
-    videoId: '3u2WLj3WQp8',
-    title: 'Fender Marine Construction',
-    role: 'Editor',
-    description: `Website banner video for Fender Marine Construction in collaboration with Rock Paper Simple. I was
-    brought in as an editor to help with the project.`,
-    thumbnailUrl: 'https://img.youtube.com/vi/3u2WLj3WQp8/maxresdefault.jpg',
-    thumbnailUrlGif: 'https://img.youtube.com/vi/3u2WLj3WQp8/maxresdefault.jpg',
-  },
-  {
-    videoId: 'briKVzcxssA',
-    title: '"Trust" Ad',
-    role: 'Editor',
-    description: `Web advertisement made for Fender Marine Construction in collaboration with Rock Paper Simple. I was
-    brought in as an editor to help with the project.`,
-    thumbnailUrl: 'https://img.youtube.com/vi/briKVzcxssA/maxresdefault.jpg',
-    thumbnailUrlGif: 'https://img.youtube.com/vi/briKVzcxssA/maxresdefault.jpg',
-  },
-  {
-    videoId: 'yLO1iPC0U6U',
-    title: 'Resort Teaser',
-    role: 'Director | Editor',
-    description: `Website banner video for Florida Caverns RV Resort. I organized the shoot and edited the video,
-                  capturing the beauty of the area and the amenities available to guests.`,
-    thumbnailUrl: fcrv,
-    thumbnailUrlGif: fcrvgif,
-  },
-  
-  {
-    videoId: 'vjgyIm2Jm0s',
-    title: 'Jackson Properties Banner',
-    role: 'Director | Editor',
-    description: `The teaser displayed in the hero section of the Jackson Properties website. I traveled to 
-    Tallahassee to film clips across two trips, and coordinated with current residents and employees to 
-    create a video promoting the different homes available for rent.`,
-    thumbnailUrl: jp,
-    thumbnailUrlGif: jpgif,
+    videoId: 'CqFN-btqG7M',
+    title: '"Deposits" Ad',
+    role: 'Director | Writer | Editor',
+    description: `Branded ad for Clip Money, Inc.'s ATM Deposits service. Needed to show how the iOS app reflected the in-person experience.`,
+    thumbnailUrl: 'https://img.youtube.com/vi/CqFN-btqG7M/maxresdefault.jpg',
+    thumbnailUrlGif: 'https://img.youtube.com/vi/CqFN-btqG7M/maxresdefault.jpg',
   },
 ];
 

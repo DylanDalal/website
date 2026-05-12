@@ -298,6 +298,17 @@
     flex-direction: column;
 }
 
+/* Last row (3 tiles): occupy middle columns so the row is centered */
+.video-grid > *:nth-child(16) {
+  grid-column: 2;
+}
+.video-grid > *:nth-child(17) {
+  grid-column: 3;
+}
+.video-grid > *:nth-child(18) {
+  grid-column: 4;
+}
+
 .reel-highlights-grid {
     align-items: start;
     display: grid;
@@ -343,6 +354,12 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 3vw;
     padding: 5vw;
+  }
+
+  .video-grid > *:nth-child(16),
+  .video-grid > *:nth-child(17),
+  .video-grid > *:nth-child(18) {
+    grid-column: auto;
   }
 
   .thumbnail-image {
