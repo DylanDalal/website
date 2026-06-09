@@ -108,12 +108,12 @@ const videos = [
     thumbnailUrlGif: ofaigif,
   },
   {
-    videoId: 'qCAWqWC0O84',
+    videoId: 'dlaS3QRkokA',
     title: 'Deathly',
     role: 'Camera Operator | Editor',
     description: `A short film. I worked as camera operator and editor. Completed in two weeks.`,
-    thumbnailUrl: 'https://img.youtube.com/vi/qCAWqWC0O84/maxresdefault.jpg',
-    thumbnailUrlGif: 'https://img.youtube.com/vi/qCAWqWC0O84/maxresdefault.jpg',
+    thumbnailUrl: 'https://img.youtube.com/vi/dlaS3QRkokA/maxresdefault.jpg',
+    thumbnailUrlGif: 'https://img.youtube.com/vi/dlaS3QRkokA/maxresdefault.jpg',
   },
   {
     videoId: 'klEVBSD7k84',
