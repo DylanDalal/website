@@ -101,12 +101,11 @@ const websi = `My passion for art and design makes creating dynamic websites a v
                coding the websites, I usually take on the role of graphic designer, video editor, and brand manager.
                I've worked with a few companies on complete brand redesigns that you can explore below.`
 
-const xbox1 = `A free browser tool for building Xbox controller layout diagrams. Type what each button does, drag the
-               labels wherever you want them, add button combos, then export the finished diagram as SVG and PNG.`
+const xbox1 = `A free browser tool for building Xbox controller layout diagrams. Type what each button does, label
+               your controls and drag them around if you want, then export the finished diagram as SVG and PNG.`
 
-const xbox2 = `Everything runs client-side — the layout lives in a JSON file you can download, hand to an AI to fill
-                out, and upload right back. I built it because every controller diagram I needed for documentation
-                was either a screenshot or an hour in Illustrator.`
+const xbox2 = `Everything runs client-side. There's no persistence/database on this site, so I built a JSON
+               checkpoint system for users to edit their diagrams later.`
 
 const svm1 = `My Machine Learning course at school tasked us with creating a support vector machine from scratch that
               would draw the most precise line separating two overlapping datasets.`
@@ -130,7 +129,7 @@ const auto1 = `Python pipeline that converts Reddit stories into fully-captioned
                and stitches everything together with FFmpeg into a ready-to-upload 9:16 video.`;
 
 const auto2 = `My goal was to do as little as possible, while uploading as much as possible. This pipeline achieved
-               exactly that.`
+               exactly that. The channel never got any traction, though.`
 
 const website_previews = [website_1, website_2, website_3, website_4]
 

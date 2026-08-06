@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet";
 import "./XboxDiagram.scss";
 import { buildExportSvg, svgToPng, makeZip, README_TEXT } from "./xboxExport";
 
@@ -583,6 +584,53 @@ export default function XboxDiagram() {
   /* ============================ RENDER ============================ */
 
   return (
+    <>
+    <Helmet>
+      {/* Title & Description */}
+      <title>Xbox Controller Diagram Maker | Free Control Scheme Tool</title>
+      <meta name="description" content="Free online Xbox controller diagram maker. Label every button, drag labels into place, add combos, and export your control scheme as SVG or PNG. No signup." />
+      <link rel="canonical" href="https://dylandalal.com/xbox" />
+
+      {/* Open Graph (Facebook, LinkedIn) */}
+      <meta property="og:title" content="Xbox Controller Diagram Maker — Free Control Scheme Tool" />
+      <meta property="og:description" content="Build and export a labeled Xbox controller layout diagram in your browser. Free, no signup, exports to SVG and PNG." />
+      <meta property="og:image" content="https://dylandalal.com/favicon.png" />
+      <meta property="og:url" content="https://dylandalal.com/xbox" />
+      <meta property="og:type" content="website" />
+
+      {/* Twitter Cards */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Xbox Controller Diagram Maker — Free Control Scheme Tool" />
+      <meta name="twitter:description" content="Build and export a labeled Xbox controller layout diagram in your browser. Free, no signup, exports to SVG and PNG." />
+      <meta name="twitter:image" content="https://dylandalal.com/favicon.png" />
+
+      {/* Schema Markup */}
+      <script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Xbox Controller Diagram Maker",
+          "url": "https://dylandalal.com/xbox",
+          "applicationCategory": "DesignApplication",
+          "operatingSystem": "Any",
+          "browserRequirements": "Requires JavaScript",
+          "description": "A free browser tool for building labeled Xbox controller layout diagrams and exporting them as SVG and PNG.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Dylan Dalal",
+            "url": "https://dylandalal.com"
+          }
+        }
+        `}
+      </script>
+    </Helmet>
+
     <section className="xd">
       <header className="xd__head">
         <span className="xd__eyebrow">Free Tool</span>
@@ -933,5 +981,6 @@ export default function XboxDiagram() {
         </aside>
       </div>
     </section>
+    </>
   );
 }
