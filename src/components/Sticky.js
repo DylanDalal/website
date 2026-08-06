@@ -6,10 +6,13 @@ export default function StickyNavbar() {
   const [show, setShow] = useState(false);
   const location = useLocation();
 
-  const isWebRoute = location.pathname === "/web";
+  /* Pages with no tall hero: the navbar should appear after a short scroll
+     rather than the 225vh the hero pages need. */
+  const isShortHeroRoute =
+    location.pathname === "/web" || location.pathname === "/xbox";
 
   useEffect(() => {
-    const threshold = isWebRoute
+    const threshold = isShortHeroRoute
       ? window.innerHeight * 0.4
       : window.innerHeight * 2.25;
 
@@ -18,7 +21,7 @@ export default function StickyNavbar() {
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isWebRoute]);
+  }, [isShortHeroRoute]);
 
   return (
     <div className={`stickyNavbar ${show ? "show" : "hide"}`}>

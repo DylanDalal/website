@@ -11,6 +11,7 @@ import Blog from "./pages/Blog";
 import Web  from "./pages/Web";
 import BingoEdit from "./pages/EditBingo";
 import BingoPlay from "./pages/PlayBingo";
+import XboxDiagram from "./pages/XboxDiagram";
 
 import Bingo  from "./pages/RaveMusicalBingo";
 
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="bingo" element={<Bingo />} />
             <Route path="bingo/edit" element={<BingoEdit />} />
             <Route path="bingo/play" element={<BingoPlay />} />
+            <Route path="xbox" element={<XboxDiagram />} />
         </Route>
 
         {/* unknown URLs → home */}

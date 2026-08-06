@@ -43,7 +43,6 @@ import sql from '../resources/computer-science/sql.png';
 import mariadb from '../resources/computer-science/mariadb.png';
 import opencv from '../resources/computer-science/opencv.png';
 import maya from '../resources/computer-science/maya.png';
-import r_logo from '../resources/computer-science/R.png';
 import javascript from '../resources/computer-science/javascript.png';
 import html from '../resources/computer-science/html.png';
 import react from '../resources/computer-science/react.png';
@@ -102,13 +101,12 @@ const websi = `My passion for art and design makes creating dynamic websites a v
                coding the websites, I usually take on the role of graphic designer, video editor, and brand manager.
                I've worked with a few companies on complete brand redesigns that you can explore below.`
 
-const psych1 = `My research at the FSU Department of Psychology centered around removing participant biases from our
-               experiment results by doing in-depth data analysis on respondent datasets. The goal was to determine
-               if and how people use the properties of math when completing math problems.`
+const xbox1 = `A free browser tool for building Xbox controller layout diagrams. Type what each button does, drag the
+               labels wherever you want them, add button combos, then export the finished diagram as SVG and PNG.`
 
-const psych2 = `I never finished the project, which I immensely regret. It was my first long-form software engineering
-                project. Each property was written with a different method, from BET navigation to string processing.
-                It taught me to research the correct tools for the job and how to write a half-decent algorithm.`
+const xbox2 = `Everything runs client-side — the layout lives in a JSON file you can download, hand to an AI to fill
+                out, and upload right back. I built it because every controller diagram I needed for documentation
+                was either a screenshot or an hour in Illustrator.`
 
 const svm1 = `My Machine Learning course at school tasked us with creating a support vector machine from scratch that
               would draw the most precise line separating two overlapping datasets.`
@@ -471,15 +469,15 @@ function Tech() {
           <div class="grid-item">
             <div className="tech-logos" style={{ display: 'flex', padding: "20px 0 0 0"}}>
               <div>
-                <img className="tech-logo" src={python_b} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
-                <img className="tech-logo" src={r_logo} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }} />
+                <img className="tech-logo" src={react} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }}/>
+                <img className="tech-logo" src={javascript} alt="Dylan Dalal" style={{ margin: "0 5px 0 5px" }} />
               </div>
             </div>
-            <h3>Mathematical Property Algorithms</h3>
-            <p>{psych1}</p>
-            <p>{psych2}</p>
+            <h3>Xbox Controller Diagram Maker</h3>
+            <p>{xbox1}</p>
+            <p>{xbox2}</p>
             <div style={{ margin: "1vh 0 2vh 0" }}>
-              <VisitWebsiteButton url="https://github.com/DylanDalal/my-work/tree/main/Python/Commutativity" text="View repository" />
+              <VisitWebsiteButton url="/xbox" text="Try the tool" newTab={true} />
             </div>
           </div>
           <div class="grid-item dark">

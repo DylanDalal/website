@@ -1,0 +1,635 @@
+/* =================================================
+   XBOX CONTROLLER DIAGRAM MAKER
+   Standalone free tool. Matches the site's navy +
+   DIN/Futura system used by Web.scss / .web2.
+================================================== */
+
+$cyan:   #97d1d6;
+$navy:   #0b133a;
+$navy-2: #01062e;
+$ink:    #ffffff;
+$ink-2:  rgba(255, 255, 255, 0.72);
+$ink-3:  rgba(255, 255, 255, 0.48);
+$ink-4:  rgba(255, 255, 255, 0.28);
+$hair:   rgba(255, 255, 255, 0.16);
+$hair-2: rgba(255, 255, 255, 0.08);
+$mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+.xd {
+  width: 100%;
+  min-height: 100vh;
+  padding: 10vh 3vw 12vh;
+  color: $ink;
+  font-family: "Futura", system-ui, sans-serif;
+  background: linear-gradient(180deg, #131d4d 0%, $navy 30%, $navy-2 100%);
+}
+
+/* =================== HEADER =================== */
+
+.xd__head {
+  max-width: 92rem;
+  margin: 0 auto 3rem;
+  padding: 0 1vw;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.xd__eyebrow {
+  font-family: $mono;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $cyan;
+}
+
+.xd__title {
+  margin: 0;
+  font-family: "DINCondensed", "Futura", sans-serif;
+  font-size: clamp(2.6rem, 5.5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.xd__sub {
+  margin: 0;
+  color: $ink-2;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+/* =================== LAYOUT =================== */
+
+.xd__grid {
+  max-width: 92rem;
+  margin: 0 auto;
+  padding: 0 1vw;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 26rem);
+  gap: 2rem;
+  align-items: start;
+}
+
+/* =================== PREVIEW =================== */
+
+.xd__preview {
+  position: sticky;
+  top: 5rem;
+  border: 1px solid $hair-2;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1rem;
+}
+
+.xd__stage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Display controls */
+
+.xd__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 2rem;
+  padding: 0.2rem 0.4rem 0.9rem;
+  border-bottom: 1px solid $hair-2;
+  margin-bottom: 0.8rem;
+}
+
+.xd__slider {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: $mono;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink-3;
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 9rem;
+    height: 2px;
+    border-radius: 2px;
+    background: $hair;
+    outline: none;
+    cursor: pointer;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 0.85rem;
+      height: 0.85rem;
+      border-radius: 50%;
+      background: $cyan;
+      border: none;
+    }
+
+    &::-moz-range-thumb {
+      width: 0.85rem;
+      height: 0.85rem;
+      border-radius: 50%;
+      background: $cyan;
+      border: none;
+    }
+  }
+}
+
+.xd__faceLetter {
+  font-family: "Futura", system-ui, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+.xd__check {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: $mono;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink-3;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    width: 0.95rem;
+    height: 0.95rem;
+    accent-color: $cyan;
+    cursor: pointer;
+  }
+}
+
+/* Callouts */
+
+.xd__leader {
+  stroke: $ink-4;
+  stroke-width: 2;
+  opacity: var(--line-opacity, 1);
+  transition: stroke 0.25s ease;
+}
+
+.xd__dot {
+  fill: $ink-4;
+  opacity: var(--line-opacity, 1);
+  transition: fill 0.25s ease;
+}
+
+.xd__callout.is-filled {
+  .xd__leader { stroke: $cyan; }
+  .xd__dot    { fill: $cyan; }
+}
+
+.xd__callout.is-focused {
+  .xd__leader { stroke: $ink; stroke-width: 3; opacity: 1; }
+  .xd__dot    { fill: $ink; opacity: 1; }
+}
+
+/* Label tags (inside foreignObject — sizes are in stage units) */
+
+.xd-tag {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(11, 19, 58, 0.65);
+  transition: border-color 0.25s ease, background 0.25s ease;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.xd-tag--left {
+  flex-direction: row-reverse;
+  text-align: right;
+
+  .xd-tag__text { align-items: flex-end; }
+}
+
+.xd-tag--top {
+  justify-content: center;
+  text-align: center;
+}
+
+.xd-tag__icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  opacity: 0.9;
+}
+
+.xd-tag__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.xd-tag__name {
+  font-family: $mono;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink-3;
+  white-space: nowrap;
+}
+
+.xd-tag__value {
+  font-family: "Futura", system-ui, sans-serif;
+  font-size: 23px;
+  line-height: 1.2;
+  color: $ink-4;
+  font-style: italic;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* multi-row values (d-pad directions) */
+.xd-tag__value--row {
+  display: block;
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.xd-tag__dir {
+  display: inline-block;
+  width: 24px;
+  color: $cyan;
+  font-style: normal;
+}
+
+.xd-tag__prefix {
+  font-family: $mono;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $cyan;
+  margin-right: 8px;
+  font-style: normal;
+}
+
+.xd__callout.is-filled .xd-tag {
+  border-color: rgba(151, 209, 214, 0.45);
+  background: rgba(11, 19, 58, 0.85);
+
+  .xd-tag__value {
+    color: $ink;
+    font-style: normal;
+  }
+}
+
+.xd__callout.is-focused .xd-tag {
+  border-color: $ink;
+}
+
+.xd__callout.is-dragging {
+  .xd-tag {
+    cursor: grabbing;
+    border-color: $cyan;
+    background: rgba(11, 19, 58, 0.95);
+  }
+
+  .xd__leader { opacity: 1; }
+  .xd__dot    { opacity: 1; }
+}
+
+.xd__guide {
+  stroke: $cyan;
+  stroke-width: 1.5;
+  stroke-dasharray: 7 7;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.xd__guide--center {
+  stroke: #e8c95c;
+  stroke-dasharray: 3 9;
+}
+
+/* =================== COMBO BOARD (preview) =================== */
+
+.xd__comboBoard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding: 0.9rem 0.4rem 0.2rem;
+  margin-top: 0.8rem;
+  border-top: 1px solid $hair-2;
+}
+
+.xd__comboBox {
+  min-width: 13rem;
+  flex: 1 1 13rem;
+  max-width: 20rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(11, 19, 58, 0.65);
+  padding: 0.7rem 0.9rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.xd__comboBoxHead {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid $hair-2;
+  font-family: $mono;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $cyan;
+
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+    opacity: 0.9;
+  }
+}
+
+.xd__comboRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.xd__comboPress {
+  font-family: $mono;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $ink-3;
+  white-space: nowrap;
+}
+
+.xd__comboAction {
+  font-size: 0.95rem;
+  color: $ink;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &.is-empty {
+    color: $ink-4;
+    font-style: italic;
+  }
+}
+
+/* =================== EDITOR =================== */
+
+.xd__editor {
+  border: 1px solid $hair-2;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 1.25rem;
+  display: grid;
+  gap: 1.4rem;
+}
+
+.xd__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.xd__btn {
+  cursor: pointer;
+  font-family: $mono;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink;
+  background: transparent;
+  border: 1px solid $hair;
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+
+  &:hover {
+    border-color: $cyan;
+    color: $cyan;
+    background: rgba(151, 209, 214, 0.08);
+  }
+}
+
+.xd__btn--wide {
+  width: 100%;
+  text-align: center;
+}
+
+.xd__btn--accent {
+  border-color: rgba(151, 209, 214, 0.6);
+  color: $cyan;
+
+  &:hover {
+    background: rgba(151, 209, 214, 0.14);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: wait;
+  }
+}
+
+.xd__btn--ghost {
+  color: $ink-3;
+  border-color: $hair-2;
+
+  &:hover {
+    border-color: $ink-3;
+    color: $ink-2;
+    background: transparent;
+  }
+}
+
+.xd__notice {
+  margin: -0.5rem 0 0;
+  font-family: $mono;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+.xd__notice--ok    { color: #7ec98a; }
+.xd__notice--error { color: #e87a6e; }
+
+.xd__group {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.xd__groupRule {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: $mono;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $ink-3;
+  margin-bottom: 0.2rem;
+}
+
+.xd__groupLine {
+  flex: 1;
+  height: 1px;
+  background: $hair-2;
+}
+
+.xd__row {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 0.7rem;
+  row-gap: 0.35rem;
+  align-items: center;
+}
+
+.xd__inputPair {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.xd__rowIcon {
+  width: 2rem;
+  height: 2rem;
+  grid-row: 1 / 3;
+  opacity: 0.85;
+}
+
+.xd__rowName {
+  font-family: $mono;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $ink-3;
+}
+
+.xd__input {
+  width: 100%;
+  font-family: "Futura", system-ui, sans-serif;
+  font-size: 0.95rem;
+  color: $ink;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid $hair-2;
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+  outline: none;
+  transition: border-color 0.25s ease, background 0.25s ease;
+
+  &::placeholder {
+    color: $ink-4;
+    font-style: italic;
+  }
+
+  &:focus {
+    border-color: $cyan;
+    background: rgba(151, 209, 214, 0.07);
+  }
+}
+
+/* combo editor rows */
+
+.xd__combo {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.6rem;
+  border: 1px solid $hair-2;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.xd__comboPick {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.xd__comboPlus {
+  font-family: $mono;
+  color: $ink-3;
+}
+
+.xd__select {
+  flex: 1;
+  min-width: 0;
+  font-family: $mono;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $ink;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid $hair-2;
+  border-radius: 8px;
+  padding: 0.45rem 0.5rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+
+  &:focus { border-color: $cyan; }
+
+  option {
+    background: $navy;
+    color: $ink;
+  }
+}
+
+.xd__comboRemove {
+  cursor: pointer;
+  flex: 0 0 auto;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  line-height: 1;
+  color: $ink-3;
+  background: transparent;
+  border: 1px solid $hair-2;
+  border-radius: 50%;
+  transition: border-color 0.25s ease, color 0.25s ease;
+
+  &:hover {
+    border-color: #e87a6e;
+    color: #e87a6e;
+  }
+}
+
+.xd__hint {
+  margin: 0;
+  font-family: $mono;
+  font-size: 0.68rem;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  color: $ink-4;
+}
+
+/* =================== RESPONSIVE =================== */
+
+@media (max-width: 1000px) {
+  .xd__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .xd__preview {
+    position: static;
+  }
+}
