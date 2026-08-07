@@ -1,14 +1,19 @@
 /* Export pipeline for the Xbox Controller Diagram Maker.
    Rebuilds the diagram as a self-contained SVG (no foreignObject, no
    external refs — required so the file opens anywhere and can be
-   rasterized to PNG through a canvas), then bundles SVG + PNG + JSON +
-   README into a store-mode ZIP. */
+   rasterized to PNG through a canvas), in both a flat-background and a
+   transparent version, then bundles the SVGs + PNG + JSON + README into
+   a store-mode ZIP. */
 
 const SANS = "Futura, 'Century Gothic', system-ui, sans-serif";
 const MONO = "ui-monospace, 'SF Mono', Menlo, Consolas, monospace";
 
 const NAVY_BG = "#0b133a";
-const TAG_BG = "#101b4d";
+/* Tiles sit on translucent black so they read the same over the navy
+   background, over a transparent canvas, or over whatever the diagram
+   is dropped onto. fill-opacity rather than rgba() — design tools are
+   spottier about rgba in fills. */
+const TAG_FILL = 'fill="#000000" fill-opacity="0.3"';
 const CYAN = "#97d1d6";
 const INK = "#ffffff";
 const INK_3 = "rgba(255,255,255,0.48)";
@@ -131,7 +136,7 @@ function tagSvg(item, iconUri) {
 
   parts.push(
     `<rect x="${rect.x}" y="${rect.y}" width="${rect.w}" height="${boxH}"` +
-      ` rx="14" fill="${TAG_BG}" stroke="${
+      ` rx="14" ${TAG_FILL} stroke="${
         filled ? "rgba(151,209,214,0.45)" : HAIR
       }" stroke-width="1.5"/>`
   );
@@ -201,7 +206,7 @@ function comboBoardSvg(comboGroups, iconUris, startY, totalW) {
 
     parts.push(
       `<rect x="${x}" y="${y}" width="${boxW}" height="${boxH}" rx="14"` +
-        ` fill="${TAG_BG}" stroke="${HAIR}" stroke-width="1.5"/>`
+        ` ${TAG_FILL} stroke="${HAIR}" stroke-width="1.5"/>`
     );
     parts.push(
       `<image href="${iconUris[g.hold]}" x="${x + 16}" y="${y + 13}"` +
@@ -294,14 +299,22 @@ export async function buildExportSvg(scene) {
     totalH = board.endY + 16;
   }
 
-  const svg =
+  /* same artwork twice: once on the navy card, once on nothing */
+  const compose = (background) =>
     `<svg xmlns="http://www.w3.org/2000/svg" width="${viewW}" height="${totalH}"` +
     ` viewBox="0 0 ${viewW} ${totalH}">\n` +
-    `<rect width="${viewW}" height="${totalH}" fill="${NAVY_BG}"/>\n` +
+    background +
     `<g transform="translate(${padX}, ${padY})">\n${body.join("\n")}\n</g>\n` +
     `${comboSvg}\n</svg>`;
 
-  return { svg, width: viewW, height: totalH };
+  return {
+    svg: compose(
+      `<rect width="${viewW}" height="${totalH}" fill="${NAVY_BG}"/>\n`
+    ),
+    svgTransparent: compose(""),
+    width: viewW,
+    height: totalH,
+  };
 }
 
 /* ---------------- PNG rasterization ---------------- */
@@ -414,12 +427,19 @@ WHAT'S IN THIS FOLDER
 Every file is stamped with the date and time you exported it, so a new
 export never gets mixed up with an older one.
 
-  diagram-<stamp>.svg  — vector version of your diagram. Scales to any
-                         size; opens in browsers and design tools.
-  diagram-<stamp>.png  — image version (2x resolution), ready to drop
-                         into documents, wikis, or Discord.
-  layout-<stamp>.json  — your saved layout: every button label, combo,
-                         label position, and display setting.
+  diagram-<stamp>.svg              — vector version on the navy
+                                     background. Scales to any size;
+                                     opens in browsers and design tools.
+  diagram-<stamp>-transparent.svg  — the same vector with no background,
+                                     for dropping onto your own art. The
+                                     label tiles stay 30% black so they
+                                     stay readable over anything.
+  diagram-<stamp>-transparent.png  — image version (2x resolution) with
+                                     a transparent background, ready for
+                                     documents, wikis, or Discord.
+  layout-<stamp>.json              — your saved layout: every button
+                                     label, combo, label position, and
+                                     display setting.
 
 KEEP the layout JSON!
 The SVG and PNG are final images — they can't be loaded back into the

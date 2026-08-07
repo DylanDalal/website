@@ -859,17 +859,23 @@ export default function XboxDiagram() {
         lineOpacity,
       };
 
-      const { svg, width, height } = await buildExportSvg(scene);
+      const { svg, svgTransparent, width, height } = await buildExportSvg(scene);
       /* 2x unless that would push the raster past the ~16MP ceiling
-         browsers put on canvases — a tall canvas can get there */
+         browsers put on canvases — a tall canvas can get there. The
+         raster comes off the transparent SVG: a canvas starts clear, so
+         the PNG keeps its alpha. */
       const scale = Math.min(2, Math.max(1, Math.sqrt(16e6 / (width * height))));
-      const png = await svgToPng(svg, width, height, scale);
+      const png = await svgToPng(svgTransparent, width, height, scale);
       const enc = new TextEncoder();
       const tag = stamp();
       const zip = makeZip([
         { name: `diagram-${tag}.svg`, data: enc.encode(svg) },
         {
-          name: `diagram-${tag}.png`,
+          name: `diagram-${tag}-transparent.svg`,
+          data: enc.encode(svgTransparent),
+        },
+        {
+          name: `diagram-${tag}-transparent.png`,
           data: new Uint8Array(await png.arrayBuffer()),
         },
         {
