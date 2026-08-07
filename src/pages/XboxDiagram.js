@@ -239,7 +239,11 @@ export default function XboxDiagram() {
   const textElsRef = useRef({}); // callout id -> measured element
   const idByElRef = useRef(new Map());
   const refCbRef = useRef({});
-  const exportUrlRef = useRef(null);
+  const exportUrlsRef = useRef([]);
+  /* whether the last two pointer gestures travelled — a pair of drags in
+     quick succession also fires dblclick, which must not send the tag
+     home and silently undo the positioning just done */
+  const gestureMovedRef = useRef([false, false]);
 
   useEffect(() => {
     const prev = document.title;
@@ -285,7 +289,7 @@ export default function XboxDiagram() {
   useEffect(
     () => () => {
       if (roRef.current) roRef.current.disconnect();
-      if (exportUrlRef.current) URL.revokeObjectURL(exportUrlRef.current);
+      exportUrlsRef.current.forEach((u) => URL.revokeObjectURL(u));
     },
     []
   );
@@ -503,6 +507,7 @@ export default function XboxDiagram() {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerup", up);
       window.removeEventListener("pointercancel", up);
+      gestureMovedRef.current = [gestureMovedRef.current[1], moved];
       if (!moved) setSelId((cur) => (cur === id ? null : id));
       setDragId(null);
       setGuides({ x: null, y: null, xKind: null, yKind: null });
@@ -879,15 +884,19 @@ export default function XboxDiagram() {
          rides the click that started it — browsers treat that as an
          automatic download and often block every one after the first.
          Keep the blob URL alive and offer it as a real link too. */
+      exportUrlsRef.current.forEach((u) => URL.revokeObjectURL(u));
       const url = URL.createObjectURL(zip);
-      if (exportUrlRef.current) URL.revokeObjectURL(exportUrlRef.current);
-      exportUrlRef.current = url;
+      const svgUrl = URL.createObjectURL(
+        new Blob([svg], { type: "image/svg+xml" })
+      );
+      exportUrlsRef.current = [url, svgUrl];
       downloadUrl(url, zipName);
       setNotice({
         kind: "ok",
         text: `Exported ${width} × ${height} — ${zipName}.`,
         href: url,
         name: zipName,
+        svgHref: svgUrl,
       });
     } catch {
       setNotice({
@@ -1184,7 +1193,12 @@ export default function XboxDiagram() {
                       }`}
                       title="Click to edit width & wrapping · drag to reposition · double-click to reset"
                       onPointerDown={(e) => startDrag(e, c.id)}
-                      onDoubleClick={() => resetTag(c.id)}
+                      onDoubleClick={() => {
+                        /* two quick drags also read as a double-click —
+                           only a genuine double-click resets */
+                        if (gestureMovedRef.current.some(Boolean)) return;
+                        resetTag(c.id);
+                      }}
                     >
                       <img
                         src={single ? field.icon : c.icon}
@@ -1312,6 +1326,16 @@ export default function XboxDiagram() {
                   download={notice.name}
                 >
                   Save it again
+                </a>
+              )}
+              {notice.svgHref && (
+                <a
+                  className="xd__noticeLink"
+                  href={notice.svgHref}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Open the SVG
                 </a>
               )}
             </p>
