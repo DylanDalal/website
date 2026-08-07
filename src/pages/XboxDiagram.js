@@ -189,13 +189,24 @@ const stamp = () => {
   );
 };
 
-const saveBlob = (blob, filename) => {
-  const url = URL.createObjectURL(blob);
+/* The anchor has to be in the document for Firefox to honour it, and
+   revoking the URL in the same tick can cut the download off before the
+   browser has read the blob. */
+const downloadUrl = (url, filename) => {
   const a = document.createElement("a");
   a.href = url;
   a.download = filename;
+  a.rel = "noopener";
+  a.style.display = "none";
+  document.body.appendChild(a);
   a.click();
-  URL.revokeObjectURL(url);
+  a.remove();
+};
+
+const saveBlob = (blob, filename) => {
+  const url = URL.createObjectURL(blob);
+  downloadUrl(url, filename);
+  setTimeout(() => URL.revokeObjectURL(url), 30000);
 };
 
 /* ============================ PAGE ============================ */
@@ -228,6 +239,7 @@ export default function XboxDiagram() {
   const textElsRef = useRef({}); // callout id -> measured element
   const idByElRef = useRef(new Map());
   const refCbRef = useRef({});
+  const exportUrlRef = useRef(null);
 
   useEffect(() => {
     const prev = document.title;
@@ -270,7 +282,13 @@ export default function XboxDiagram() {
     return () => window.removeEventListener("keydown", onKey);
   }, [selId]);
 
-  useEffect(() => () => roRef.current && roRef.current.disconnect(), []);
+  useEffect(
+    () => () => {
+      if (roRef.current) roRef.current.disconnect();
+      if (exportUrlRef.current) URL.revokeObjectURL(exportUrlRef.current);
+    },
+    []
+  );
 
   /* Tags size themselves around their text, so their boxes are measured
      rather than guessed — wrapping a label makes its box grow. */
@@ -837,7 +855,10 @@ export default function XboxDiagram() {
       };
 
       const { svg, width, height } = await buildExportSvg(scene);
-      const png = await svgToPng(svg, width, height, 2);
+      /* 2x unless that would push the raster past the ~16MP ceiling
+         browsers put on canvases — a tall canvas can get there */
+      const scale = Math.min(2, Math.max(1, Math.sqrt(16e6 / (width * height))));
+      const png = await svgToPng(svg, width, height, scale);
       const enc = new TextEncoder();
       const tag = stamp();
       const zip = makeZip([
@@ -853,10 +874,20 @@ export default function XboxDiagram() {
         { name: "README.txt", data: enc.encode(README_TEXT) },
       ]);
       const zipName = `xbox-controller-diagram-${tag}.zip`;
-      saveBlob(zip, zipName);
+
+      /* Building the file takes a moment, so this download no longer
+         rides the click that started it — browsers treat that as an
+         automatic download and often block every one after the first.
+         Keep the blob URL alive and offer it as a real link too. */
+      const url = URL.createObjectURL(zip);
+      if (exportUrlRef.current) URL.revokeObjectURL(exportUrlRef.current);
+      exportUrlRef.current = url;
+      downloadUrl(url, zipName);
       setNotice({
         kind: "ok",
-        text: `Export downloaded — ${zipName} (SVG, PNG, JSON, README).`,
+        text: `Exported ${width} × ${height} — ${zipName}.`,
+        href: url,
+        name: zipName,
       });
     } catch {
       setNotice({
@@ -1272,7 +1303,18 @@ export default function XboxDiagram() {
             />
           </div>
           {notice && (
-            <p className={`xd__notice xd__notice--${notice.kind}`}>{notice.text}</p>
+            <p className={`xd__notice xd__notice--${notice.kind}`}>
+              {notice.text}
+              {notice.href && (
+                <a
+                  className="xd__noticeLink"
+                  href={notice.href}
+                  download={notice.name}
+                >
+                  Save it again
+                </a>
+              )}
+            </p>
           )}
 
           {GROUPS.map((group) => (

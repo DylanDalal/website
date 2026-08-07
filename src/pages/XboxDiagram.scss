@@ -578,6 +578,15 @@ $mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
   letter-spacing: 0.06em;
 }
 
+.xd__noticeLink {
+  margin-left: 0.6rem;
+  color: $cyan;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover { color: $ink; }
+}
+
 .xd__notice--ok    { color: #7ec98a; }
 .xd__notice--error { color: #e87a6e; }
 
