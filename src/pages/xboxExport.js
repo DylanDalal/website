@@ -411,16 +411,19 @@ export const README_TEXT = `XBOX CONTROLLER DIAGRAM — EXPORT
 Made with the free tool at https://dylandalal.com/xbox
 
 WHAT'S IN THIS FOLDER
-  diagram.svg  — vector version of your diagram. Scales to any size;
-                 opens in browsers and design tools.
-  diagram.png  — image version (2x resolution), ready to drop into
-                 documents, wikis, or Discord.
-  layout.json  — your saved layout: every button label, combo, label
-                 position, and display setting.
+Every file is stamped with the date and time you exported it, so a new
+export never gets mixed up with an older one.
 
-KEEP layout.json!
+  diagram-<stamp>.svg  — vector version of your diagram. Scales to any
+                         size; opens in browsers and design tools.
+  diagram-<stamp>.png  — image version (2x resolution), ready to drop
+                         into documents, wikis, or Discord.
+  layout-<stamp>.json  — your saved layout: every button label, combo,
+                         label position, and display setting.
+
+KEEP the layout JSON!
 The SVG and PNG are final images — they can't be loaded back into the
 tool. If you ever want to change your diagram, return to
-https://dylandalal.com/xbox, click "Upload JSON", choose layout.json,
-make your edits, and export again.
+https://dylandalal.com/xbox, click "Upload JSON", choose the layout
+JSON, make your edits, and export again.
 `;

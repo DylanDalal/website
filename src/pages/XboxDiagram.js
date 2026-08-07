@@ -177,6 +177,18 @@ const tagSide = (rect, anchor) => {
   return dx > 0 ? "left" : "right";
 };
 
+/* Downloads are stamped so a second export never collides with the
+   first in the downloads folder — same-named files are easy to mistake
+   for the new one. */
+const stamp = () => {
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, "0");
+  return (
+    `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}` +
+    `-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}`
+  );
+};
+
 const saveBlob = (blob, filename) => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -582,7 +594,10 @@ export default function XboxDiagram() {
     new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
 
   const downloadJson = () =>
-    saveBlob(jsonBlob(buildPayload(currentState())), "xbox-controller-layout.json");
+    saveBlob(
+      jsonBlob(buildPayload(currentState())),
+      `xbox-controller-layout-${stamp()}.json`
+    );
 
   const downloadBlank = () =>
     saveBlob(
@@ -824,19 +839,24 @@ export default function XboxDiagram() {
       const { svg, width, height } = await buildExportSvg(scene);
       const png = await svgToPng(svg, width, height, 2);
       const enc = new TextEncoder();
+      const tag = stamp();
       const zip = makeZip([
-        { name: "diagram.svg", data: enc.encode(svg) },
-        { name: "diagram.png", data: new Uint8Array(await png.arrayBuffer()) },
+        { name: `diagram-${tag}.svg`, data: enc.encode(svg) },
         {
-          name: "layout.json",
+          name: `diagram-${tag}.png`,
+          data: new Uint8Array(await png.arrayBuffer()),
+        },
+        {
+          name: `layout-${tag}.json`,
           data: enc.encode(JSON.stringify(buildPayload(currentState()), null, 2)),
         },
         { name: "README.txt", data: enc.encode(README_TEXT) },
       ]);
-      saveBlob(zip, "xbox-controller-diagram.zip");
+      const zipName = `xbox-controller-diagram-${tag}.zip`;
+      saveBlob(zip, zipName);
       setNotice({
         kind: "ok",
-        text: "Export downloaded — SVG, PNG, JSON, and README in one ZIP.",
+        text: `Export downloaded — ${zipName} (SVG, PNG, JSON, README).`,
       });
     } catch {
       setNotice({
