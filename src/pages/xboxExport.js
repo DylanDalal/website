@@ -20,6 +20,10 @@ const INK_3 = "rgba(255,255,255,0.48)";
 const INK_4 = "rgba(255,255,255,0.28)";
 const HAIR = "rgba(255,255,255,0.12)";
 
+/* Measured values carry sub-pixel precision; keep three decimals so the
+   file stays exact without turning into noise. */
+const r = (n) => Math.round(n * 1000) / 1000;
+
 const esc = (s) =>
   String(s)
     .replace(/&/g, "&amp;")
@@ -65,8 +69,49 @@ const clip = (text, maxChars) =>
 
 /* ---------------- SVG generation ---------------- */
 
+/* Draw a tag from measurements taken off the live page: the card is the
+   rect the canvas used, and every line sits where the browser put it.
+   Nothing is re-derived, so the file matches the canvas exactly. */
+function measuredTagSvg(item, iconUri) {
+  const { rect, filled, measured } = item;
+  /* CSS draws the 1px border inside the box; an SVG stroke straddles the
+     edge, so inset by half a pixel to land on the same outer bounds */
+  const parts = [
+    `<rect x="${r(rect.x + 0.5)}" y="${r(rect.y + 0.5)}"` +
+      ` width="${r(rect.w - 1)}" height="${r(rect.h - 1)}"` +
+      ` rx="13.5" ${TAG_FILL} stroke="${
+        filled ? "rgba(151,209,214,0.45)" : HAIR
+      }" stroke-width="1"/>`,
+  ];
+
+  if (measured.icon) {
+    const { x, y, w, h } = measured.icon;
+    parts.push(
+      `<image href="${iconUri}" x="${r(x)}" y="${r(y)}"` +
+        ` width="${r(w)}" height="${r(h)}"/>`
+    );
+  }
+
+  measured.lines.forEach((ln) => {
+    parts.push(
+      `<text x="${r(ln.x)}" y="${r(ln.y)}" text-anchor="${ln.anchor}"` +
+        ` dominant-baseline="central"` +
+        ` font-family="${esc(ln.family)}" font-size="${r(ln.size)}"` +
+        (ln.weight && ln.weight !== "400" ? ` font-weight="${ln.weight}"` : "") +
+        (ln.italic ? ` font-style="italic"` : "") +
+        (ln.letterSpacing ? ` letter-spacing="${r(ln.letterSpacing)}"` : "") +
+        ` fill="${ln.fill}"` +
+        (ln.opacity != null ? ` fill-opacity="${r(ln.opacity)}"` : "") +
+        `>${esc(ln.text)}</text>`
+    );
+  });
+
+  return parts.join("\n");
+}
+
 function tagSvg(item, iconUri) {
   const { rect, side, name, rows, filled, wrap: wrapText } = item;
+  if (item.measured) return measuredTagSvg(item, iconUri);
   const parts = [];
 
   const iconSize = 46;
@@ -427,19 +472,24 @@ WHAT'S IN THIS FOLDER
 Every file is stamped with the date and time you exported it, so a new
 export never gets mixed up with an older one.
 
-  diagram-<stamp>.svg              — vector version on the navy
-                                     background. Scales to any size;
-                                     opens in browsers and design tools.
-  diagram-<stamp>-transparent.svg  — the same vector with no background,
-                                     for dropping onto your own art. The
-                                     label tiles stay 30% black so they
-                                     stay readable over anything.
-  diagram-<stamp>-transparent.png  — image version (2x resolution) with
-                                     a transparent background, ready for
-                                     documents, wikis, or Discord.
+  diagram-<stamp>-transparent.svg  — vector with no background, for
+                                     dropping onto your own art. Scales
+                                     to any size; opens in browsers and
+                                     design tools. The label tiles stay
+                                     30% black so they read over
+                                     anything.
+  diagram-<stamp>-transparent.png  — image version (2x resolution), also
+                                     with a transparent background.
+  diagram-<stamp>-background.png   — same image on the flat navy
+                                     background, for documents, wikis,
+                                     or Discord.
   layout-<stamp>.json              — your saved layout: every button
                                      label, combo, label position, and
                                      display setting.
+
+Both PNGs are exported at exactly the canvas size shown in the tool
+(2x), with no extra margin — the artwork runs to the edges you set with
+the canvas sliders.
 
 KEEP the layout JSON!
 The SVG and PNG are final images — they can't be loaded back into the

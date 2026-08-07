@@ -114,6 +114,7 @@ const PAD_X_MAX = 600;
 const PAD_Y_MAX = 900;
 const MAX_TEXT = 140;
 const MAX_COMBOS = 20;
+const LINE_OPACITY_DEFAULT = 0.5;
 
 /* label width: the global slider sets the baseline, and any tag can be
    given its own width from the inspector */
@@ -177,6 +178,63 @@ const tagSide = (rect, anchor) => {
   return dx > 0 ? "left" : "right";
 };
 
+/* rgb()/rgba() from getComputedStyle → an SVG fill a design tool will
+   also accept (hex + separate opacity rather than rgba in the fill). */
+const cssColor = (value) => {
+  const m = /^rgba?\(([^)]+)\)$/.exec((value || "").trim());
+  if (!m) return { fill: value || "#ffffff", opacity: null };
+  const parts = m[1].split(",").map((n) => parseFloat(n));
+  const hex =
+    "#" +
+    parts
+      .slice(0, 3)
+      .map((n) => Math.round(n).toString(16).padStart(2, "0"))
+      .join("");
+  const a = parts[3];
+  return { fill: hex, opacity: a === undefined || a >= 1 ? null : a };
+};
+
+/* Every line box a text node occupies, with the text that sits on it and
+   the box the browser gave it. Characters whose rects are empty (a
+   collapsed space at a wrap point) join the run without widening it. */
+const lineFragments = (node) => {
+  const text = node.nodeValue;
+  if (!text || !text.trim()) return [];
+  const range = document.createRange();
+  const runs = [];
+  let cur = null;
+  for (let i = 0; i < text.length; i++) {
+    range.setStart(node, i);
+    range.setEnd(node, i + 1);
+    const r = range.getBoundingClientRect();
+    if (!r.width && !r.height) {
+      if (cur) cur.text += text[i];
+      continue;
+    }
+    if (!cur || Math.abs(r.top - cur.top) > 1) {
+      cur = {
+        text: text[i],
+        top: r.top, bottom: r.bottom, left: r.left, right: r.right,
+      };
+      runs.push(cur);
+    } else {
+      cur.text += text[i];
+      cur.left = Math.min(cur.left, r.left);
+      cur.right = Math.max(cur.right, r.right);
+      cur.top = Math.min(cur.top, r.top);
+      cur.bottom = Math.max(cur.bottom, r.bottom);
+    }
+  }
+  return runs
+    .map((r) => ({
+      text: r.text.trim(),
+      left: r.left,
+      right: r.right,
+      mid: (r.top + r.bottom) / 2,
+    }))
+    .filter((r) => r.text);
+};
+
 /* Downloads are stamped so a second export never collides with the
    first in the downloads folder — same-named files are easy to mistake
    for the new one. */
@@ -217,7 +275,7 @@ export default function XboxDiagram() {
   const [gap, setGap] = useState(GAP_DEFAULT);
   const [padX, setPadX] = useState(0);
   const [padY, setPadY] = useState(0);
-  const [lineOpacity, setLineOpacity] = useState(1);
+  const [lineOpacity, setLineOpacity] = useState(LINE_OPACITY_DEFAULT);
   const [hideEmpty, setHideEmpty] = useState(true);
   const [gridSnap, setGridSnap] = useState(true);
   const [labelWidth, setLabelWidth] = useState(TAG_W);
@@ -632,7 +690,7 @@ export default function XboxDiagram() {
           gap: GAP_DEFAULT,
           padX: 0,
           padY: 0,
-          lineOpacity: 1,
+          lineOpacity: LINE_OPACITY_DEFAULT,
           hideEmpty: true,
           gridSnap: true,
           labelWidth: TAG_W,
@@ -797,7 +855,7 @@ export default function XboxDiagram() {
     setGap(GAP_DEFAULT);
     setPadX(0);
     setPadY(0);
-    setLineOpacity(1);
+    setLineOpacity(LINE_OPACITY_DEFAULT);
     setHideEmpty(true);
     setGridSnap(true);
     setLabelWidth(TAG_W);
@@ -807,6 +865,67 @@ export default function XboxDiagram() {
     setTagH({});
     setTagPos({});
     setNotice(null);
+  };
+
+  /* Read a tag back out of the page exactly as the browser laid it out —
+     icon box and one run per line box — in stage units. The export draws
+     from this instead of re-deriving the layout, so the file matches the
+     canvas to the pixel. */
+  const measureTag = (id) => {
+    const textEl = textElsRef.current[id];
+    const svgEl = svgRef.current;
+    if (!textEl || !svgEl || typeof window.getComputedStyle !== "function") {
+      return null;
+    }
+    const tagEl = textEl.parentElement;
+    const box = svgEl.getBoundingClientRect();
+    const sx = box.width / viewW;
+    const sy = box.height / viewH;
+    if (!sx || !sy) return null;
+    const toX = (v) => (v - box.left) / sx - padX;
+    const toY = (v) => (v - box.top) / sy - padY;
+
+    const iconEl = tagEl.querySelector(".xd-tag__icon");
+    const ir = iconEl && iconEl.getBoundingClientRect();
+    const icon = ir
+      ? { x: toX(ir.left), y: toY(ir.top), w: ir.width / sx, h: ir.height / sy }
+      : null;
+
+    const lines = [];
+    const walker = document.createTreeWalker(textEl, NodeFilter.SHOW_TEXT);
+    let node = walker.nextNode();
+    while (node) {
+      const style = window.getComputedStyle(node.parentElement);
+      const { fill, opacity } = cssColor(style.color);
+      const anchor =
+        style.textAlign === "right"
+          ? "end"
+          : style.textAlign === "center"
+          ? "middle"
+          : "start";
+      lineFragments(node).forEach((f) => {
+        const at =
+          anchor === "end" ? f.right : anchor === "middle" ? (f.left + f.right) / 2 : f.left;
+        lines.push({
+          text: f.text,
+          x: toX(at),
+          y: toY(f.mid),
+          anchor,
+          /* font metrics inside a foreignObject are already in stage
+             units — 1 CSS px there is 1 user unit */
+          size: parseFloat(style.fontSize),
+          family: style.fontFamily,
+          weight: style.fontWeight,
+          italic: style.fontStyle === "italic",
+          letterSpacing:
+            style.letterSpacing === "normal" ? null : parseFloat(style.letterSpacing),
+          fill,
+          opacity,
+        });
+      });
+      node = walker.nextNode();
+    }
+    return lines.length ? { icon, lines } : null;
   };
 
   /* -------- export bundle (SVG + PNG + JSON + README) -------- */
@@ -828,6 +947,7 @@ export default function XboxDiagram() {
           name: single ? fieldById[c.fields[0]].name : c.name,
           filled: rows.length > 0,
           wrap,
+          measured: measureTag(c.id),
           rows: rows.length ? rows : [{ text: "Unassigned", empty: true }],
         };
       });
@@ -866,10 +986,12 @@ export default function XboxDiagram() {
          the PNG keeps its alpha. */
       const scale = Math.min(2, Math.max(1, Math.sqrt(16e6 / (width * height))));
       const png = await svgToPng(svgTransparent, width, height, scale);
+      /* the flat SVG never ships — it exists only to raster the PNG that
+         has a background */
+      const pngFlat = await svgToPng(svg, width, height, scale);
       const enc = new TextEncoder();
       const tag = stamp();
       const zip = makeZip([
-        { name: `diagram-${tag}.svg`, data: enc.encode(svg) },
         {
           name: `diagram-${tag}-transparent.svg`,
           data: enc.encode(svgTransparent),
@@ -877,6 +999,10 @@ export default function XboxDiagram() {
         {
           name: `diagram-${tag}-transparent.png`,
           data: new Uint8Array(await png.arrayBuffer()),
+        },
+        {
+          name: `diagram-${tag}-background.png`,
+          data: new Uint8Array(await pngFlat.arrayBuffer()),
         },
         {
           name: `layout-${tag}.json`,
@@ -893,7 +1019,7 @@ export default function XboxDiagram() {
       exportUrlsRef.current.forEach((u) => URL.revokeObjectURL(u));
       const url = URL.createObjectURL(zip);
       const svgUrl = URL.createObjectURL(
-        new Blob([svg], { type: "image/svg+xml" })
+        new Blob([svgTransparent], { type: "image/svg+xml" })
       );
       exportUrlsRef.current = [url, svgUrl];
       downloadUrl(url, zipName);
