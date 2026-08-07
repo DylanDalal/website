@@ -63,6 +63,8 @@ const ART_Y = 130;
 const TAG_W = 300;
 const TAG_H = 96;
 const VIEW_H = 780;
+const ICON_SIZE = 46; // tag icon, stage units — must match .xd-tag__icon
+const TAG_PAD_Y = 22; // tag vertical padding + borders
 
 const CALLOUTS = [
   { id: "lb",   fields: ["lb"],   side: "left",  tagY: 112, anchor: [240, 172] },
@@ -107,6 +109,11 @@ const GAP_DEFAULT = 40;
 const PAD_MAX = 400;
 const MAX_TEXT = 140;
 const MAX_COMBOS = 20;
+
+/* label width: the global slider sets the baseline, and any tag can be
+   given its own width from the inspector */
+const TAG_W_MIN = 180;
+const TAG_W_MAX = 620;
 
 const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
 
@@ -153,6 +160,11 @@ export default function XboxDiagram() {
   const [pad, setPad] = useState(0);
   const [lineOpacity, setLineOpacity] = useState(1);
   const [hideEmpty, setHideEmpty] = useState(true);
+  const [labelWidth, setLabelWidth] = useState(TAG_W);
+  const [tagW, setTagW] = useState({}); // callout id -> width override
+  const [wrapIds, setWrapIds] = useState({}); // callout id -> wrap text?
+  const [selId, setSelId] = useState(null); // callout id being inspected
+  const [tagH, setTagH] = useState({}); // callout id -> measured height
   const [focusedId, setFocusedId] = useState(null);
   const [notice, setNotice] = useState(null); // { kind: "ok" | "error", text }
   const [tagPos, setTagPos] = useState({}); // callout id -> [x, y] override
@@ -163,12 +175,71 @@ export default function XboxDiagram() {
   const uidRef = useRef(0);
   const svgRef = useRef(null);
   const rectsRef = useRef({});
+  const roRef = useRef(null);
+  const textElsRef = useRef({}); // callout id -> measured element
+  const idByElRef = useRef(new Map());
+  const refCbRef = useRef({});
 
   useEffect(() => {
     const prev = document.title;
     document.title = "Xbox Controller Diagram Maker — Dylan Dalal";
     return () => { document.title = prev; };
   }, []);
+
+  useEffect(() => {
+    if (!selId) return undefined;
+    const onKey = (e) => { if (e.key === "Escape") setSelId(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selId]);
+
+  useEffect(() => () => roRef.current && roRef.current.disconnect(), []);
+
+  /* Tags size themselves around their text, so their boxes are measured
+     rather than guessed — wrapping a label makes its box grow. */
+  const observer = () => {
+    if (roRef.current || typeof ResizeObserver === "undefined") return roRef.current;
+    roRef.current = new ResizeObserver((entries) => {
+      setTagH((prev) => {
+        let next = prev;
+        entries.forEach((entry) => {
+          const id = idByElRef.current.get(entry.target);
+          if (!id) return;
+          const h = Math.round(
+            Math.max(ICON_SIZE, entry.target.offsetHeight) + TAG_PAD_Y
+          );
+          if (Math.abs((prev[id] || 0) - h) > 0.5) {
+            if (next === prev) next = { ...prev };
+            next[id] = h;
+          }
+        });
+        return next;
+      });
+    });
+    return roRef.current;
+  };
+
+  /* one stable ref callback per callout, so React only attaches and
+     detaches the observer when a tag actually mounts or unmounts */
+  const measureRef = (id) => {
+    if (!refCbRef.current[id]) {
+      refCbRef.current[id] = (el) => {
+        const ro = observer();
+        const old = textElsRef.current[id];
+        if (old && old !== el) {
+          if (ro) ro.unobserve(old);
+          idByElRef.current.delete(old);
+          delete textElsRef.current[id];
+        }
+        if (el && old !== el) {
+          textElsRef.current[id] = el;
+          idByElRef.current.set(el, id);
+          if (ro) ro.observe(el);
+        }
+      };
+    }
+    return refCbRef.current[id];
+  };
 
   /* Display rows for a callout: tap rows are unprefixed unless the same
      button also has a hold action; hold rows always carry the chip. */
@@ -185,21 +256,31 @@ export default function XboxDiagram() {
   };
 
   /* -------- derived geometry -------- */
-  const artX = 10 + TAG_W + gap;
+  const artX = 10 + labelWidth + gap;
   const rightTagX = artX + ART_W + gap;
-  const baseW = rightTagX + TAG_W + 10;
+  const baseW = rightTagX + labelWidth + 10;
   const viewW = baseW + pad * 2;
   const viewH = VIEW_H + pad * 2;
 
-  /* default + effective rect for every callout tag. Multi-field boxes
-     (d-pad) match the standard height until their rows outgrow it. */
+  /* A tag's width is its own override if it has one, otherwise the global
+     label width scaled by however wide that callout is by design. */
+  const widthOf = (c) =>
+    Math.round(
+      tagW[c.id] != null
+        ? tagW[c.id]
+        : (labelWidth * (c.tagW || TAG_W)) / TAG_W
+    );
+
+  /* default + effective rect for every callout tag. Heights come from the
+     measured text (see measureRef); the row estimate covers first paint. */
   const layout = CALLOUTS.map((c) => {
-    const w = c.tagW || TAG_W;
+    const w = widthOf(c);
     const rows = calloutRows(c);
-    const h =
+    const est =
       c.fields.length > 1
         ? Math.max(TAG_H, 64 + rows.length * 26)
         : c.tagH || TAG_H;
+    const h = Math.max(TAG_H, tagH[c.id] != null ? tagH[c.id] : est);
     const def =
       c.side === "top"
         ? { x: artX + c.tagX, y: 20 }
@@ -217,6 +298,7 @@ export default function XboxDiagram() {
       def,
       anchor: [artX + c.anchor[0], c.anchor[1]],
       rows,
+      wrap: !!wrapIds[c.id],
       filled: rows.length > 0,
     };
   });
@@ -237,6 +319,10 @@ export default function XboxDiagram() {
     const item = rectsRef.current.layout.find((l) => l.c.id === id);
     if (!item) return;
     e.preventDefault();
+    e.stopPropagation();
+    const downX = e.clientX;
+    const downY = e.clientY;
+    let moved = false;
 
     const { w, h } = item.rect;
     const [px, py] = toStage(e.clientX, e.clientY);
@@ -271,9 +357,14 @@ export default function XboxDiagram() {
     const minY = -p;
     const maxY = VIEW_H + p - h;
 
-    setDragId(id);
-
     const move = (ev) => {
+      if (!moved) {
+        /* a press that never travels is a click — it opens the inspector
+           instead of nudging the tag */
+        if (Math.hypot(ev.clientX - downX, ev.clientY - downY) < 4) return;
+        moved = true;
+        setDragId(id);
+      }
       const [mx, my] = toStage(ev.clientX, ev.clientY);
       let nx = clamp(mx - offX, minX, maxX);
       let ny = clamp(my - offY, minY, maxY);
@@ -303,6 +394,7 @@ export default function XboxDiagram() {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerup", up);
       window.removeEventListener("pointercancel", up);
+      if (!moved) setSelId((cur) => (cur === id ? null : id));
       setDragId(null);
       setGuides({ x: null, y: null, xKind: null, yKind: null });
     };
@@ -318,6 +410,35 @@ export default function XboxDiagram() {
       delete next[id];
       return next;
     });
+
+  /* -------- per-tag width + wrapping -------- */
+  const setTagWidth = (id, w) =>
+    setTagW((p) => ({ ...p, [id]: clamp(Math.round(w), TAG_W_MIN, TAG_W_MAX) }));
+
+  const toggleWrap = (id, on) =>
+    setWrapIds((p) => {
+      const next = { ...p };
+      if (on) next[id] = true;
+      else delete next[id];
+      return next;
+    });
+
+  const resetTagStyle = (id) => {
+    setTagW((p) => {
+      const next = { ...p };
+      delete next[id];
+      return next;
+    });
+    toggleWrap(id, false);
+    resetTag(id);
+  };
+
+  const selected = layout.find((l) => l.c.id === selId) || null;
+  const selectedName = selected
+    ? selected.c.fields.length === 1
+      ? fieldById[selected.c.fields[0]].name
+      : selected.c.name
+    : "";
 
   /* -------- state helpers -------- */
   const setValue = (id, slot, text) =>
@@ -350,36 +471,54 @@ export default function XboxDiagram() {
   });
 
   /* -------- JSON in / out -------- */
-  const buildPayload = (vals, cbs, pos, g, cp, lo, he) => ({
+  const buildPayload = (s) => ({
     buttons: FIELDS.reduce(
       (acc, f) => ({
         ...acc,
-        [f.id]: { tap: vals[f.id].tap, hold: vals[f.id].hold },
+        [f.id]: { tap: s.values[f.id].tap, hold: s.values[f.id].hold },
       }),
       {}
     ),
-    combos: cbs.map(({ hold, press, action }) => ({ hold, press, action })),
+    combos: s.combos.map(({ hold, press, action }) => ({ hold, press, action })),
     display: {
-      labelSpacing: g,
-      canvasPadding: cp,
-      lineOpacity: lo,
-      hideEmpty: he,
+      labelSpacing: s.gap,
+      canvasPadding: s.pad,
+      lineOpacity: s.lineOpacity,
+      hideEmpty: s.hideEmpty,
+      labelWidth: s.labelWidth,
     },
-    positions: pos,
+    positions: s.tagPos,
+    widths: s.tagW,
+    wrap: Object.keys(s.wrapIds).filter((k) => s.wrapIds[k]),
+  });
+
+  const currentState = () => ({
+    values, combos, tagPos, gap, pad, lineOpacity, hideEmpty, labelWidth,
+    tagW, wrapIds,
   });
 
   const jsonBlob = (payload) =>
     new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
 
   const downloadJson = () =>
-    saveBlob(
-      jsonBlob(buildPayload(values, combos, tagPos, gap, pad, lineOpacity, hideEmpty)),
-      "xbox-controller-layout.json"
-    );
+    saveBlob(jsonBlob(buildPayload(currentState())), "xbox-controller-layout.json");
 
   const downloadBlank = () =>
     saveBlob(
-      jsonBlob(buildPayload(EMPTY_VALUES, [], {}, GAP_DEFAULT, 0, 1, true)),
+      jsonBlob(
+        buildPayload({
+          values: EMPTY_VALUES,
+          combos: [],
+          tagPos: {},
+          gap: GAP_DEFAULT,
+          pad: 0,
+          lineOpacity: 1,
+          hideEmpty: true,
+          labelWidth: TAG_W,
+          tagW: {},
+          wrapIds: {},
+        })
+      ),
       "xbox-controller-template.json"
     );
 
@@ -468,6 +607,27 @@ export default function XboxDiagram() {
         }
         setTagPos(nextPos);
 
+        const nextWidths = {};
+        if (data.widths && typeof data.widths === "object") {
+          CALLOUTS.forEach((c) => {
+            const w = data.widths[c.id];
+            if (typeof w === "number" && isFinite(w)) {
+              nextWidths[c.id] = clamp(Math.round(w), TAG_W_MIN, TAG_W_MAX);
+            }
+          });
+        }
+        setTagW(nextWidths);
+
+        const nextWrap = {};
+        if (Array.isArray(data.wrap)) {
+          data.wrap.forEach((id) => {
+            if (CALLOUTS.some((c) => c.id === id)) nextWrap[id] = true;
+          });
+        }
+        setWrapIds(nextWrap);
+        setSelId(null);
+        setTagH({});
+
         if (data.display && typeof data.display === "object") {
           if (typeof data.display.labelSpacing === "number") {
             setGap(clamp(Math.round(data.display.labelSpacing), GAP_MIN, GAP_MAX));
@@ -480,6 +640,11 @@ export default function XboxDiagram() {
           }
           if (typeof data.display.hideEmpty === "boolean") {
             setHideEmpty(data.display.hideEmpty);
+          }
+          if (typeof data.display.labelWidth === "number") {
+            setLabelWidth(
+              clamp(Math.round(data.display.labelWidth), TAG_W_MIN, TAG_W_MAX)
+            );
           }
         }
         setNotice({ kind: "ok", text: `Loaded ${file.name}` });
@@ -497,6 +662,11 @@ export default function XboxDiagram() {
     setPad(0);
     setLineOpacity(1);
     setHideEmpty(true);
+    setLabelWidth(TAG_W);
+    setTagW({});
+    setWrapIds({});
+    setSelId(null);
+    setTagH({});
     setTagPos({});
     setNotice(null);
   };
@@ -509,7 +679,7 @@ export default function XboxDiagram() {
     try {
       const items = layout
         .filter(({ filled }) => !hideEmpty || filled)
-        .map(({ c, rect, anchor, rows }) => {
+        .map(({ c, rect, anchor, rows, wrap }) => {
         const single = c.fields.length === 1;
         return {
           rect,
@@ -519,6 +689,7 @@ export default function XboxDiagram() {
           iconKey: single ? c.fields[0] : "dpad",
           name: single ? fieldById[c.fields[0]].name : c.name,
           filled: rows.length > 0,
+          wrap,
           rows: rows.length ? rows : [{ text: "Unassigned", empty: true }],
         };
       });
@@ -557,13 +728,7 @@ export default function XboxDiagram() {
         { name: "diagram.png", data: new Uint8Array(await png.arrayBuffer()) },
         {
           name: "layout.json",
-          data: enc.encode(
-            JSON.stringify(
-              buildPayload(values, combos, tagPos, gap, pad, lineOpacity, hideEmpty),
-              null,
-              2
-            )
-          ),
+          data: enc.encode(JSON.stringify(buildPayload(currentState()), null, 2)),
         },
         { name: "README.txt", data: enc.encode(README_TEXT) },
       ]);
@@ -659,6 +824,17 @@ export default function XboxDiagram() {
               />
             </label>
             <label className="xd__slider">
+              <span>Label width</span>
+              <input
+                type="range"
+                min={TAG_W_MIN}
+                max={TAG_W_MAX}
+                step="10"
+                value={labelWidth}
+                onChange={(e) => setLabelWidth(Number(e.target.value))}
+              />
+            </label>
+            <label className="xd__slider">
               <span>Canvas size</span>
               <input
                 type="range"
@@ -690,11 +866,57 @@ export default function XboxDiagram() {
             </label>
           </div>
 
+          {selected ? (
+            <div className="xd__inspector">
+              <span className="xd__inspectorName">{selectedName}</span>
+              <label className="xd__slider">
+                <span>Width</span>
+                <input
+                  type="range"
+                  min={TAG_W_MIN}
+                  max={TAG_W_MAX}
+                  step="10"
+                  value={selected.rect.w}
+                  onChange={(e) => setTagWidth(selected.c.id, Number(e.target.value))}
+                />
+                <span className="xd__sliderVal">{selected.rect.w}</span>
+              </label>
+              <label className="xd__check">
+                <input
+                  type="checkbox"
+                  checked={!!wrapIds[selected.c.id]}
+                  onChange={(e) => toggleWrap(selected.c.id, e.target.checked)}
+                />
+                <span>Wrap text</span>
+              </label>
+              <button
+                type="button"
+                className="xd__btn xd__btn--ghost xd__btn--mini"
+                onClick={() => resetTagStyle(selected.c.id)}
+              >
+                Reset label
+              </button>
+              <button
+                type="button"
+                className="xd__btn xd__btn--ghost xd__btn--mini"
+                onClick={() => setSelId(null)}
+              >
+                Done
+              </button>
+            </div>
+          ) : (
+            <p className="xd__stageHint">
+              Click a label to set its width or make its text wrap · drag to
+              move · double-click to send it home.
+            </p>
+          )}
+
           <svg
             ref={svgRef}
             className="xd__stage"
             viewBox={`0 0 ${viewW} ${viewH}`}
             style={{ "--line-opacity": lineOpacity }}
+            onPointerDown={() => setSelId(null)}
             role="img"
             aria-label="Xbox controller diagram"
           >
@@ -715,15 +937,17 @@ export default function XboxDiagram() {
               </text>
             ))}
 
-            {layout.map(({ c, rect, anchor, rows, filled }) => {
+            {layout.map(({ c, rect, anchor, rows, filled, wrap }) => {
               const focused = c.fields.includes(focusedId);
-              if (hideEmpty && !filled && !focused && dragId !== c.id) {
+              const isSel = selId === c.id;
+              if (hideEmpty && !filled && !focused && !isSel && dragId !== c.id) {
                 return null;
               }
               const cls = [
                 "xd__callout",
                 filled ? "is-filled" : "",
                 focused ? "is-focused" : "",
+                isSel ? "is-selected" : "",
                 dragId === c.id ? "is-dragging" : "",
               ].join(" ");
 
@@ -746,8 +970,10 @@ export default function XboxDiagram() {
                   <circle cx={anchor[0]} cy={anchor[1]} r="6" className="xd__dot" />
                   <foreignObject x={rect.x} y={rect.y} width={rect.w} height={rect.h}>
                     <div
-                      className={`xd-tag xd-tag--${side}`}
-                      title="Drag to reposition · double-click to reset"
+                      className={`xd-tag xd-tag--${side}${
+                        wrap ? " xd-tag--wrap" : ""
+                      }`}
+                      title="Click to edit width & wrapping · drag to reposition · double-click to reset"
                       onPointerDown={(e) => startDrag(e, c.id)}
                       onDoubleClick={() => resetTag(c.id)}
                     >
@@ -757,7 +983,7 @@ export default function XboxDiagram() {
                         className="xd-tag__icon"
                         draggable="false"
                       />
-                      <div className="xd-tag__text">
+                      <div className="xd-tag__text" ref={measureRef(c.id)}>
                         <span className="xd-tag__name">
                           {single ? field.name : c.name}
                         </span>
@@ -767,18 +993,22 @@ export default function XboxDiagram() {
                           <span className="xd-tag__value">{rows[0].text}</span>
                         ) : (
                           rows.map((r) => (
-                            <span
-                              key={r.key}
-                              className="xd-tag__value xd-tag__value--row"
-                            >
-                              {r.arrow && (
-                                <span className="xd-tag__dir">{r.arrow}</span>
-                              )}
+                            <React.Fragment key={r.key}>
                               {r.prefix && (
-                                <span className="xd-tag__prefix">{r.prefix}</span>
+                                <span className="xd-tag__prefix">
+                                  {r.arrow && (
+                                    <span className="xd-tag__dir">{r.arrow}</span>
+                                  )}
+                                  {r.prefix}
+                                </span>
                               )}
-                              {r.text}
-                            </span>
+                              <span className="xd-tag__value xd-tag__value--row">
+                                {r.arrow && !r.prefix && (
+                                  <span className="xd-tag__dir">{r.arrow}</span>
+                                )}
+                                {r.text}
+                              </span>
+                            </React.Fragment>
                           ))
                         )}
                       </div>

@@ -138,6 +138,44 @@ $mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
   }
 }
 
+.xd__sliderVal {
+  min-width: 2.4rem;
+  text-align: right;
+  color: $ink-2;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Per-label controls, shown when a tag is clicked */
+
+.xd__inspector {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem 1.6rem;
+  padding: 0.6rem 0.7rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid rgba(151, 209, 214, 0.4);
+  border-radius: 12px;
+  background: rgba(151, 209, 214, 0.06);
+}
+
+.xd__inspectorName {
+  font-family: $mono;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $cyan;
+}
+
+.xd__stageHint {
+  margin: 0 0 0.8rem;
+  padding: 0 0.4rem;
+  font-family: $mono;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: $ink-4;
+}
+
 .xd__faceLetter {
   font-family: "Futura", system-ui, sans-serif;
   font-size: 32px;
@@ -265,6 +303,25 @@ $mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
   text-overflow: ellipsis;
 }
 
+/* wrapped labels: let every line breathe instead of clipping */
+.xd-tag--wrap {
+  .xd-tag__name {
+    white-space: normal;
+  }
+
+  .xd-tag__value {
+    display: block;
+    -webkit-line-clamp: none;
+    overflow: visible;
+    overflow-wrap: anywhere;
+  }
+
+  .xd-tag__value--row {
+    white-space: normal;
+    text-overflow: clip;
+  }
+}
+
 .xd-tag__dir {
   display: inline-block;
   width: 24px;
@@ -272,14 +329,20 @@ $mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
   font-style: normal;
 }
 
+/* TAP / HOLD read as subheadings above the command they describe */
 .xd-tag__prefix {
+  display: block;
   font-family: $mono;
   font-size: 13px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: $cyan;
-  margin-right: 8px;
   font-style: normal;
+  margin-top: 2px;
+
+  &:first-child { margin-top: 0; }
+
+  + .xd-tag__value { margin-top: -3px; }
 }
 
 .xd__callout.is-filled .xd-tag {
@@ -294,6 +357,18 @@ $mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 
 .xd__callout.is-focused .xd-tag {
   border-color: $ink;
+}
+
+.xd__callout.is-selected {
+  .xd-tag {
+    border-color: $cyan;
+    border-style: dashed;
+    background: rgba(11, 19, 58, 0.95);
+    box-shadow: 0 0 0 3px rgba(151, 209, 214, 0.18);
+  }
+
+  .xd__leader { opacity: 1; }
+  .xd__dot    { opacity: 1; }
 }
 
 .xd__callout.is-dragging {
@@ -432,6 +507,11 @@ $mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 .xd__btn--wide {
   width: 100%;
   text-align: center;
+}
+
+.xd__btn--mini {
+  font-size: 0.66rem;
+  padding: 0.35rem 0.8rem;
 }
 
 .xd__btn--accent {

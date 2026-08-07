@@ -61,29 +61,12 @@ const clip = (text, maxChars) =>
 /* ---------------- SVG generation ---------------- */
 
 function tagSvg(item, iconUri) {
-  const { rect, side, name, rows, filled } = item;
+  const { rect, side, name, rows, filled, wrap: wrapText } = item;
   const parts = [];
-
-  parts.push(
-    `<rect x="${rect.x}" y="${rect.y}" width="${rect.w}" height="${rect.h}"` +
-      ` rx="14" fill="${TAG_BG}" stroke="${
-        filled ? "rgba(151,209,214,0.45)" : HAIR
-      }" stroke-width="1.5"/>`
-  );
 
   const iconSize = 46;
   const padX = 14;
-  const iconX =
-    side === "left" ? rect.x + rect.w - padX - iconSize : rect.x + padX;
-  const iconY = rect.y + rect.h / 2 - iconSize / 2;
-  parts.push(
-    `<image href="${iconUri}" x="${iconX}" y="${iconY}"` +
-      ` width="${iconSize}" height="${iconSize}"/>`
-  );
-
   const anchorAttr = side === "left" ? "end" : "start";
-  const textX =
-    side === "left" ? iconX - padX : iconX + iconSize + padX;
   const budget = Math.max(
     6,
     Math.floor((rect.w - iconSize - padX * 3) / 11)
@@ -91,28 +74,80 @@ function tagSvg(item, iconUri) {
 
   /* rows: [{ text, arrow?, prefix?, empty? }]. A lone plain value wraps
      to two lines; anything multi-row (tap/hold pairs, d-pad directions)
-     renders one clipped line per row — matching the live preview. */
+     renders one line per row under a TAP/HOLD subheading — matching the
+     live preview. Tags marked "wrap text" instead run every row over as
+     many lines as the text needs. */
   const bigValue =
     rows.length === 1 && !rows[0].arrow && !rows[0].prefix && !rows[0].empty;
 
   const lineHs = [];
   const rendered = [];
   if (bigValue) {
-    wrap(rows[0].text, budget, 2).forEach((ln) => {
+    wrap(rows[0].text, budget, wrapText ? 12 : 2).forEach((ln) => {
       rendered.push({ text: ln, size: 23 });
       lineHs.push(27);
     });
   } else {
     rows.forEach((r) => {
-      const prefixLen = (r.arrow ? 2 : 0) + (r.prefix ? r.prefix.length + 2 : 0);
-      rendered.push({ ...r, text: clip(r.text, Math.max(4, budget + 2 - prefixLen)), size: 20 });
-      lineHs.push(26);
+      if (r.prefix) {
+        rendered.push({
+          heading: true,
+          text: `${r.arrow ? r.arrow + " " : ""}${r.prefix.toUpperCase()}`,
+          size: 13,
+        });
+        lineHs.push(18);
+      }
+      /* the direction arrow only leads the value when no subheading
+         above it already carries it */
+      const lead = r.prefix ? null : r.arrow;
+      const room = Math.max(4, budget + 2 - (lead ? 2 : 0));
+      if (wrapText) {
+        wrap(r.text, room, 12).forEach((ln, i) => {
+          rendered.push({
+            empty: r.empty,
+            arrow: i === 0 ? lead : null,
+            text: ln,
+            size: 20,
+          });
+          lineHs.push(26);
+        });
+      } else {
+        rendered.push({
+          empty: r.empty,
+          arrow: lead,
+          text: clip(r.text, room),
+          size: 20,
+        });
+        lineHs.push(26);
+      }
     });
   }
 
   const nameH = 22;
   const totalH = nameH + lineHs.reduce((a, b) => a + b, 0);
-  let baseline = rect.y + rect.h / 2 - totalH / 2 + 14;
+  /* the preview measures its boxes around the text; grow here too so a
+     wrapped label is never taller than the card behind it */
+  const boxH = Math.max(rect.h, totalH + 24);
+
+  parts.push(
+    `<rect x="${rect.x}" y="${rect.y}" width="${rect.w}" height="${boxH}"` +
+      ` rx="14" fill="${TAG_BG}" stroke="${
+        filled ? "rgba(151,209,214,0.45)" : HAIR
+      }" stroke-width="1.5"/>`
+  );
+
+  const iconX =
+    side === "left" ? rect.x + rect.w - padX - iconSize : rect.x + padX;
+  const iconY = rect.y + boxH / 2 - iconSize / 2;
+  parts.push(
+    `<image href="${iconUri}" x="${iconX}" y="${iconY}"` +
+      ` width="${iconSize}" height="${iconSize}"/>`
+  );
+
+  const textX =
+    side === "left" ? iconX - padX : iconX + iconSize + padX;
+
+  let baseline = rect.y + boxH / 2 - totalH / 2 + 14;
 
   parts.push(
     `<text x="${textX}" y="${baseline}" text-anchor="${anchorAttr}"` +
@@ -122,19 +157,24 @@ function tagSvg(item, iconUri) {
   baseline += nameH + 5;
 
   rendered.forEach((r, i) => {
+    if (r.heading) {
+      parts.push(
+        `<text x="${textX}" y="${baseline}" text-anchor="${anchorAttr}"` +
+          ` font-family="${MONO}" font-size="13" letter-spacing="1"` +
+          ` fill="${CYAN}">${esc(r.text)}</text>`
+      );
+      baseline += lineHs[i];
+      return;
+    }
     const fill = r.empty ? INK_4 : INK;
     const style = r.empty ? ` font-style="italic"` : "";
     const arrow = r.arrow
       ? `<tspan fill="${CYAN}">${esc(r.arrow)} </tspan>`
       : "";
-    const prefix = r.prefix
-      ? `<tspan font-family="${MONO}" font-size="13" letter-spacing="1"` +
-        ` fill="${CYAN}">${esc(r.prefix.toUpperCase())} </tspan>`
-      : "";
     parts.push(
       `<text x="${textX}" y="${baseline}" text-anchor="${anchorAttr}"` +
         ` font-family="${SANS}" font-size="${r.size}" fill="${fill}"${style}>` +
-        `${arrow}${prefix}${esc(r.text)}</text>`
+        `${arrow}${esc(r.text)}</text>`
     );
     baseline += lineHs[i];
   });
