@@ -54,9 +54,11 @@ const GROUPS = [
 /* ======================= STAGE GEOMETRY =======================
    The controller art (860×575) sits inside a stage whose horizontal
    gutters grow/shrink with the label-spacing slider, and the whole
-   stage gains `pad` units of workspace on every side via a translate
-   group (canvas-size slider). Anchor x values are relative to the
-   art's left edge; y values include the art's fixed y offset of 130. */
+   stage gains `padX` units of workspace on the left/right and `padY`
+   on the top/bottom via a translate group (the canvas sliders, which
+   move independently so the diagram can take any aspect ratio).
+   Anchor x values are relative to the art's left edge; y values
+   include the art's fixed y offset of 130. */
 const ART_W = 860;
 const ART_H = 575;
 const ART_Y = 130;
@@ -106,7 +108,10 @@ const EMPTY_VALUES = FIELDS.reduce(
 const GAP_MIN = 0;
 const GAP_MAX = 300;
 const GAP_DEFAULT = 40;
-const PAD_MAX = 400;
+/* extra workspace added to each side — width and height move
+   independently so the canvas can take any aspect ratio */
+const PAD_X_MAX = 600;
+const PAD_Y_MAX = 900;
 const MAX_TEXT = 140;
 const MAX_COMBOS = 20;
 
@@ -118,6 +123,36 @@ const TAG_W_MAX = 620;
 const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
 
 const SNAP = 14; // snap distance, stage units
+const GRID = 20; // grid pitch, stage units
+const NUDGE = {
+  ArrowLeft:  [-1, 0],
+  ArrowRight: [1, 0],
+  ArrowUp:    [0, -1],
+  ArrowDown:  [0, 1],
+};
+
+/* Positions that continue the rhythm of tiles already lined up along an
+   axis: one more gap past either end of a pair, or centred inside it.
+   peers: [{ start, size }] of the tiles sharing this lane. */
+const sequenceCands = (peers, size) => {
+  const out = [];
+  const sorted = peers.slice().sort((a, b) => a.start - b.start);
+  for (let i = 0; i < sorted.length - 1; i++) {
+    const a = sorted[i];
+    const b = sorted[i + 1];
+    const gap = b.start - (a.start + a.size);
+    if (gap < 0) continue;
+    const after = b.start + b.size + gap;
+    const before = a.start - size - gap;
+    out.push({ value: after, guide: after, kind: "gap" });
+    out.push({ value: before, guide: before, kind: "gap" });
+    if (gap - size > 4) {
+      const mid = a.start + a.size + (gap - size) / 2;
+      out.push({ value: mid, guide: mid, kind: "gap" });
+    }
+  }
+  return out;
+};
 
 /* Point on the tag's border where the leader line exits, aiming at the
    anchor — works wherever the tag has been dragged. */
@@ -157,9 +192,11 @@ export default function XboxDiagram() {
   const [values, setValues] = useState(EMPTY_VALUES);
   const [combos, setCombos] = useState([]);
   const [gap, setGap] = useState(GAP_DEFAULT);
-  const [pad, setPad] = useState(0);
+  const [padX, setPadX] = useState(0);
+  const [padY, setPadY] = useState(0);
   const [lineOpacity, setLineOpacity] = useState(1);
   const [hideEmpty, setHideEmpty] = useState(true);
+  const [gridSnap, setGridSnap] = useState(true);
   const [labelWidth, setLabelWidth] = useState(TAG_W);
   const [tagW, setTagW] = useState({}); // callout id -> width override
   const [wrapIds, setWrapIds] = useState({}); // callout id -> wrap text?
@@ -186,9 +223,37 @@ export default function XboxDiagram() {
     return () => { document.title = prev; };
   }, []);
 
+  /* With a label selected the arrow keys nudge it by exact amounts,
+     bypassing every snap — the way to land somewhere off-grid. */
   useEffect(() => {
     if (!selId) return undefined;
-    const onKey = (e) => { if (e.key === "Escape") setSelId(null); };
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        setSelId(null);
+        return;
+      }
+      const dir = NUDGE[e.key];
+      if (!dir || e.metaKey || e.ctrlKey) return;
+      const tag = e.target && e.target.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      e.preventDefault();
+
+      const step = e.shiftKey ? GRID : e.altKey ? 1 : 5;
+      const item = rectsRef.current.layout.find((l) => l.c.id === selId);
+      if (!item) return;
+      const { baseW: bw, padX: pX, padY: pY } = rectsRef.current;
+      const { w, h } = item.rect;
+      setTagPos((prev) => {
+        const cur = prev[selId] || [item.rect.x, item.rect.y];
+        return {
+          ...prev,
+          [selId]: [
+            clamp(cur[0] + dir[0] * step, -pX, bw + pX - w),
+            clamp(cur[1] + dir[1] * step, -pY, VIEW_H + pY - h),
+          ],
+        };
+      });
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [selId]);
@@ -259,8 +324,8 @@ export default function XboxDiagram() {
   const artX = 10 + labelWidth + gap;
   const rightTagX = artX + ART_W + gap;
   const baseW = rightTagX + labelWidth + 10;
-  const viewW = baseW + pad * 2;
-  const viewH = VIEW_H + pad * 2;
+  const viewW = baseW + padX * 2;
+  const viewH = VIEW_H + padY * 2;
 
   /* A tag's width is its own override if it has one, otherwise the global
      label width scaled by however wide that callout is by design. */
@@ -287,8 +352,8 @@ export default function XboxDiagram() {
         : { x: c.side === "left" ? 10 : rightTagX, y: c.tagY };
     const pos = tagPos[c.id];
     const rect = {
-      x: clamp(pos ? pos[0] : def.x, -pad, baseW + pad - w),
-      y: clamp(pos ? pos[1] : def.y, -pad, VIEW_H + pad - h),
+      x: clamp(pos ? pos[0] : def.x, -padX, baseW + padX - w),
+      y: clamp(pos ? pos[1] : def.y, -padY, VIEW_H + padY - h),
       w,
       h,
     };
@@ -302,16 +367,31 @@ export default function XboxDiagram() {
       filled: rows.length > 0,
     };
   });
-  rectsRef.current = { layout, viewW, baseW, pad };
+  rectsRef.current = { layout, viewW, baseW, padX, padY };
 
   /* -------- dragging + snapping -------- */
   const toStage = (clientX, clientY) => {
     const r = svgRef.current.getBoundingClientRect();
-    const { viewW: vw, pad: p } = rectsRef.current;
+    const { viewW: vw, padX: px, padY: py } = rectsRef.current;
     return [
-      ((clientX - r.left) / r.width) * vw - p,
-      ((clientY - r.top) / r.height) * (VIEW_H + p * 2) - p,
+      ((clientX - r.left) / r.width) * vw - px,
+      ((clientY - r.top) / r.height) * (VIEW_H + py * 2) - py,
     ];
+  };
+
+  /* Nearest snap on one axis: named candidates win inside SNAP, and
+     anything left over lands on the grid when grid snap is on. */
+  const snapAxis = (raw, cands) => {
+    let value = raw;
+    let guide = null;
+    let kind = null;
+    let best = SNAP;
+    cands.forEach((c) => {
+      const d = Math.abs(c.value - raw);
+      if (d < best) { best = d; value = c.value; guide = c.guide; kind = c.kind; }
+    });
+    if (!kind && gridSnap) value = Math.round(raw / GRID) * GRID;
+    return { value, guide, kind };
   };
 
   const startDrag = (e, id) => {
@@ -332,7 +412,7 @@ export default function XboxDiagram() {
     /* snap candidates: other tags' edges, this tag's home position, the
        canvas center, and positions mirroring another tag across the
        canvas centerlines (equidistant from the middle) */
-    const { baseW: bw, pad: p } = rectsRef.current;
+    const { baseW: bw, padX: pX, padY: pY } = rectsRef.current;
     const midX = bw / 2;
     const midY = VIEW_H / 2;
     const others = rectsRef.current.layout.filter(
@@ -352,10 +432,10 @@ export default function XboxDiagram() {
     yCands.push({ value: midY - h / 2, guide: midY, kind: "center" });
     xCands.push({ value: item.def.x, guide: null, kind: "edge" });
     yCands.push({ value: item.def.y, guide: null, kind: "edge" });
-    const minX = -p;
-    const maxX = bw + p - w;
-    const minY = -p;
-    const maxY = VIEW_H + p - h;
+    const minX = -pX;
+    const maxX = bw + pX - w;
+    const minY = -pY;
+    const maxY = VIEW_H + pY - h;
 
     const move = (ev) => {
       if (!moved) {
@@ -366,27 +446,26 @@ export default function XboxDiagram() {
         setDragId(id);
       }
       const [mx, my] = toStage(ev.clientX, ev.clientY);
-      let nx = clamp(mx - offX, minX, maxX);
-      let ny = clamp(my - offY, minY, maxY);
+      const rawX = clamp(mx - offX, minX, maxX);
+      const rawY = clamp(my - offY, minY, maxY);
 
-      let gx = null;
-      let gy = null;
-      let gxKind = null;
-      let gyKind = null;
-      let best = SNAP;
-      xCands.forEach((cand) => {
-        const d = Math.abs(cand.value - nx);
-        if (d < best) { best = d; nx = cand.value; gx = cand.guide; gxKind = cand.kind; }
-      });
-      best = SNAP;
-      yCands.forEach((cand) => {
-        const d = Math.abs(cand.value - ny);
-        if (d < best) { best = d; ny = cand.value; gy = cand.guide; gyKind = cand.kind; }
-      });
-      nx = clamp(nx, minX, maxX);
-      ny = clamp(ny, minY, maxY);
+      /* tiles that line up with this one form a sequence; the gap they
+         already keep becomes a snap target, so a column or row stays
+         evenly spaced as you extend it */
+      const column = others
+        .filter((o) => o.rect.x < rawX + w && rawX < o.rect.x + o.rect.w)
+        .map((o) => ({ start: o.rect.y, size: o.rect.h }));
+      const row = others
+        .filter((o) => o.rect.y < rawY + h && rawY < o.rect.y + o.rect.h)
+        .map((o) => ({ start: o.rect.x, size: o.rect.w }));
 
-      setGuides({ x: gx, y: gy, xKind: gxKind, yKind: gyKind });
+      const sx = snapAxis(rawX, xCands.concat(sequenceCands(row, w)));
+      const sy = snapAxis(rawY, yCands.concat(sequenceCands(column, h)));
+
+      const nx = clamp(sx.value, minX, maxX);
+      const ny = clamp(sy.value, minY, maxY);
+
+      setGuides({ x: sx.guide, y: sy.guide, xKind: sx.kind, yKind: sy.kind });
       setTagPos((prev) => ({ ...prev, [id]: [nx, ny] }));
     };
 
@@ -482,9 +561,11 @@ export default function XboxDiagram() {
     combos: s.combos.map(({ hold, press, action }) => ({ hold, press, action })),
     display: {
       labelSpacing: s.gap,
-      canvasPadding: s.pad,
+      canvasPadX: s.padX,
+      canvasPadY: s.padY,
       lineOpacity: s.lineOpacity,
       hideEmpty: s.hideEmpty,
+      gridSnap: s.gridSnap,
       labelWidth: s.labelWidth,
     },
     positions: s.tagPos,
@@ -493,8 +574,8 @@ export default function XboxDiagram() {
   });
 
   const currentState = () => ({
-    values, combos, tagPos, gap, pad, lineOpacity, hideEmpty, labelWidth,
-    tagW, wrapIds,
+    values, combos, tagPos, gap, padX, padY, lineOpacity, hideEmpty,
+    gridSnap, labelWidth, tagW, wrapIds,
   });
 
   const jsonBlob = (payload) =>
@@ -511,9 +592,11 @@ export default function XboxDiagram() {
           combos: [],
           tagPos: {},
           gap: GAP_DEFAULT,
-          pad: 0,
+          padX: 0,
+          padY: 0,
           lineOpacity: 1,
           hideEmpty: true,
+          gridSnap: true,
           labelWidth: TAG_W,
           tagW: {},
           wrapIds: {},
@@ -599,8 +682,8 @@ export default function XboxDiagram() {
               typeof p[0] === "number" && typeof p[1] === "number"
             ) {
               nextPos[c.id] = [
-                clamp(p[0], -PAD_MAX, 4000),
-                clamp(p[1], -PAD_MAX, VIEW_H + PAD_MAX),
+                clamp(p[0], -PAD_X_MAX, 4000),
+                clamp(p[1], -PAD_Y_MAX, VIEW_H + PAD_Y_MAX),
               ];
             }
           });
@@ -632,14 +715,29 @@ export default function XboxDiagram() {
           if (typeof data.display.labelSpacing === "number") {
             setGap(clamp(Math.round(data.display.labelSpacing), GAP_MIN, GAP_MAX));
           }
-          if (typeof data.display.canvasPadding === "number") {
-            setPad(clamp(Math.round(data.display.canvasPadding), 0, PAD_MAX));
+          /* canvasPadding is the older single-value form */
+          const px =
+            typeof data.display.canvasPadX === "number"
+              ? data.display.canvasPadX
+              : data.display.canvasPadding;
+          const py =
+            typeof data.display.canvasPadY === "number"
+              ? data.display.canvasPadY
+              : data.display.canvasPadding;
+          if (typeof px === "number") {
+            setPadX(clamp(Math.round(px), 0, PAD_X_MAX));
+          }
+          if (typeof py === "number") {
+            setPadY(clamp(Math.round(py), 0, PAD_Y_MAX));
           }
           if (typeof data.display.lineOpacity === "number") {
             setLineOpacity(clamp(data.display.lineOpacity, 0, 1));
           }
           if (typeof data.display.hideEmpty === "boolean") {
             setHideEmpty(data.display.hideEmpty);
+          }
+          if (typeof data.display.gridSnap === "boolean") {
+            setGridSnap(data.display.gridSnap);
           }
           if (typeof data.display.labelWidth === "number") {
             setLabelWidth(
@@ -659,9 +757,11 @@ export default function XboxDiagram() {
     setValues(EMPTY_VALUES);
     setCombos([]);
     setGap(GAP_DEFAULT);
-    setPad(0);
+    setPadX(0);
+    setPadY(0);
     setLineOpacity(1);
     setHideEmpty(true);
+    setGridSnap(true);
     setLabelWidth(TAG_W);
     setTagW({});
     setWrapIds({});
@@ -713,7 +813,8 @@ export default function XboxDiagram() {
           })),
         })),
         art: { x: artX, y: ART_Y, w: ART_W, h: ART_H },
-        pad,
+        padX,
+        padY,
         baseW,
         viewW,
         viewH,
@@ -835,14 +936,25 @@ export default function XboxDiagram() {
               />
             </label>
             <label className="xd__slider">
-              <span>Canvas size</span>
+              <span>Canvas width</span>
               <input
                 type="range"
                 min="0"
-                max={PAD_MAX}
+                max={PAD_X_MAX}
                 step="20"
-                value={pad}
-                onChange={(e) => setPad(Number(e.target.value))}
+                value={padX}
+                onChange={(e) => setPadX(Number(e.target.value))}
+              />
+            </label>
+            <label className="xd__slider">
+              <span>Canvas height</span>
+              <input
+                type="range"
+                min="0"
+                max={PAD_Y_MAX}
+                step="20"
+                value={padY}
+                onChange={(e) => setPadY(Number(e.target.value))}
               />
             </label>
             <label className="xd__slider">
@@ -864,6 +976,17 @@ export default function XboxDiagram() {
               />
               <span>Hide empty controls</span>
             </label>
+            <label className="xd__check">
+              <input
+                type="checkbox"
+                checked={gridSnap}
+                onChange={(e) => setGridSnap(e.target.checked)}
+              />
+              <span>Snap to grid</span>
+            </label>
+            <span className="xd__ratio" title="Canvas size and aspect ratio">
+              {viewW} × {viewH} · {(viewW / viewH).toFixed(2)}:1
+            </span>
           </div>
 
           {selected ? (
@@ -903,24 +1026,59 @@ export default function XboxDiagram() {
               >
                 Done
               </button>
+              <span className="xd__inspectorHint">
+                Arrows nudge (shift {GRID}, alt 1)
+              </span>
             </div>
           ) : (
             <p className="xd__stageHint">
-              Click a label to set its width or make its text wrap · drag to
-              move · double-click to send it home.
+              Click a label to set its width, wrap its text, or nudge it with
+              the arrow keys · drag to move · double-click to send it home.
             </p>
           )}
 
+          {/* the stage box tracks the canvas ratio exactly: a taller
+              canvas makes a taller box, a wider one draws the diagram
+              smaller inside the same column */}
           <svg
             ref={svgRef}
             className="xd__stage"
             viewBox={`0 0 ${viewW} ${viewH}`}
-            style={{ "--line-opacity": lineOpacity }}
+            style={{
+              "--line-opacity": lineOpacity,
+              aspectRatio: `${viewW} / ${viewH}`,
+            }}
             onPointerDown={() => setSelId(null)}
             role="img"
             aria-label="Xbox controller diagram"
           >
-            <g transform={`translate(${pad}, ${pad})`}>
+            <g transform={`translate(${padX}, ${padY})`}>
+            {dragId && gridSnap && (
+              <>
+                <defs>
+                  <pattern
+                    id="xdGrid"
+                    width={GRID}
+                    height={GRID}
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <path
+                      d={`M ${GRID} 0 L 0 0 0 ${GRID}`}
+                      fill="none"
+                      className="xd__gridLine"
+                    />
+                  </pattern>
+                </defs>
+                <rect
+                  x={-padX}
+                  y={-padY}
+                  width={viewW}
+                  height={viewH}
+                  fill="url(#xdGrid)"
+                  pointerEvents="none"
+                />
+              </>
+            )}
             <image href={controllerArt} x={artX} y={ART_Y} width={ART_W} height={ART_H} />
 
             {FACE_LETTERS.map((f) => (
@@ -1020,18 +1178,14 @@ export default function XboxDiagram() {
 
             {guides.x !== null && (
               <line
-                x1={guides.x} y1={-pad} x2={guides.x} y2={VIEW_H + pad}
-                className={`xd__guide ${
-                  guides.xKind === "center" ? "xd__guide--center" : ""
-                }`}
+                x1={guides.x} y1={-padY} x2={guides.x} y2={VIEW_H + padY}
+                className={`xd__guide xd__guide--${guides.xKind || "edge"}`}
               />
             )}
             {guides.y !== null && (
               <line
-                x1={-pad} y1={guides.y} x2={baseW + pad} y2={guides.y}
-                className={`xd__guide ${
-                  guides.yKind === "center" ? "xd__guide--center" : ""
-                }`}
+                x1={-padX} y1={guides.y} x2={baseW + padX} y2={guides.y}
+                className={`xd__guide xd__guide--${guides.yKind || "edge"}`}
               />
             )}
             </g>

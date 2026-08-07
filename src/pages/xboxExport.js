@@ -242,7 +242,7 @@ function comboBoardSvg(comboGroups, iconUris, startY, totalW) {
 export async function buildExportSvg(scene) {
   const {
     controllerUrl, iconUrls, items, faceLetters, comboGroups,
-    art, pad, viewW, viewH, lineOpacity,
+    art, padX, padY, viewW, viewH, lineOpacity,
   } = scene;
 
   const controllerUri = await toDataUri(controllerUrl);
@@ -298,7 +298,7 @@ export async function buildExportSvg(scene) {
     `<svg xmlns="http://www.w3.org/2000/svg" width="${viewW}" height="${totalH}"` +
     ` viewBox="0 0 ${viewW} ${totalH}">\n` +
     `<rect width="${viewW}" height="${totalH}" fill="${NAVY_BG}"/>\n` +
-    `<g transform="translate(${pad}, ${pad})">\n${body.join("\n")}\n</g>\n` +
+    `<g transform="translate(${padX}, ${padY})">\n${body.join("\n")}\n</g>\n` +
     `${comboSvg}\n</svg>`;
 
   return { svg, width: viewW, height: totalH };

@@ -84,7 +84,7 @@ $mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 .xd__stage {
   display: block;
   width: 100%;
-  height: auto;
+  height: auto; /* paired with the inline aspect-ratio from the viewBox */
 }
 
 /* Display controls */
@@ -138,6 +138,16 @@ $mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
   }
 }
 
+.xd__ratio {
+  margin-left: auto;
+  align-self: center;
+  font-family: $mono;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  color: $ink-4;
+  font-variant-numeric: tabular-nums;
+}
+
 .xd__sliderVal {
   min-width: 2.4rem;
   text-align: right;
@@ -157,6 +167,16 @@ $mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
   border: 1px solid rgba(151, 209, 214, 0.4);
   border-radius: 12px;
   background: rgba(151, 209, 214, 0.06);
+}
+
+.xd__inspectorHint {
+  margin-left: auto;
+  align-self: center;
+  font-family: $mono;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $ink-4;
 }
 
 .xd__inspectorName {
@@ -393,6 +413,18 @@ $mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 .xd__guide--center {
   stroke: #e8c95c;
   stroke-dasharray: 3 9;
+}
+
+/* equal-spacing snap: this tile keeps the same gap as the ones it
+   lines up with */
+.xd__guide--gap {
+  stroke: #7ec98a;
+  stroke-dasharray: 14 6;
+}
+
+.xd__gridLine {
+  stroke: rgba(255, 255, 255, 0.09);
+  stroke-width: 1;
 }
 
 /* =================== COMBO BOARD (preview) =================== */
