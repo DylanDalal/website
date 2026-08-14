@@ -441,24 +441,6 @@ $mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
   svg { transition: transform 0.3s ease; }
 }
 
-/* -------------------------------------------------
-   FIT FRAME
--------------------------------------------------- */
-.fit-frame {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-
-  &__iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border: 0;
-    transform-origin: center center;
-    pointer-events: none;
-  }
-}
-
 /* =================================================
    PROCESS LEDGER
 ================================================== */

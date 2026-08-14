@@ -1,7 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 
 import "./Web.scss";
 import kofskyShot from "../resources/computer-science/website_5.jpg";
+import terraShot from "../resources/computer-science/site-terra.webp";
+import resumesmithyShot from "../resources/computer-science/site-resumesmithy.webp";
+import owezShot from "../resources/computer-science/site-owez.webp";
+import tiptShot from "../resources/computer-science/site-tipt.webp";
+import iconShot from "../resources/computer-science/site-openforanicon.webp";
+import airtabShot from "../resources/computer-science/site-airtab.webp";
+import maximusShot from "../resources/computer-science/site-maximus.webp";
+import dylandalalShot from "../resources/computer-science/site-dylandalal.webp";
 
 const cohortShot = process.env.PUBLIC_URL + "/cohort.jpg";
 
@@ -14,7 +22,7 @@ const webapps = [
     description:
       "Browser-based 3D viewer for production location planning. Measurements, virtual scouting, and real time collaboration. Designed the Projects page and backend functionality.",
     tech: ["React", "TypeScript", "WebGL"],
-    embed: "https://terra.districtcinema.com/",
+    screenshot: terraShot,
     span: "featured",
     accent: "#10b981",
   },
@@ -26,7 +34,7 @@ const webapps = [
     description:
       "End-to-end resume builder on Cloudflare D1. Auth, billing, generation pipeline, and responsive design.",
     tech: ["React", "TypeScript", "Cloudflare D1"],
-    embed: "https://resumesmithy.com/",
+    screenshot: resumesmithyShot,
     span: "featured",
     accent: "#f59e0b",
   },
@@ -38,7 +46,7 @@ const webapps = [
     description:
       "Full-stack SaaS on Firebase. Brand identity, UX, data model, and product surface.",
     tech: ["React", "TypeScript", "Firebase"],
-    embed: "https://owez.me/",
+    screenshot: owezShot,
     span: "standard",
     accent: "#8b5cf6",
   },
@@ -50,7 +58,6 @@ const webapps = [
     description:
       "Agency platform with member profiles, a marketing site, and an admin dashboard for asset management.",
     tech: ["React", "TypeScript"],
-    embed: null,
     screenshot: cohortShot,
     span: "standard",
     accent: "#ef4444",
@@ -63,7 +70,7 @@ const webapps = [
     description:
       "Profile builder for mobile-payment links. Full analytics dashboard and Stripe integration.",
     tech: ["React", "JavaScript", "Stripe"],
-    embed: "https://tipt.co/",
+    screenshot: tiptShot,
     span: "standard",
     accent: "#00c896",
   },
@@ -78,7 +85,7 @@ const brandSites = [
     description:
       "Contest platform connecting artists and voters for a music-tech startup. All graphics, video, and 3D made in-house.",
     tech: ["Framer", "React"],
-    embed: "https://static-fade-239041.framer.app/",
+    screenshot: iconShot,
     span: "featured",
     accent: "#ff6b35",
   },
@@ -90,7 +97,7 @@ const brandSites = [
     description:
       "Launch page for a multi-product tech startup. Original graphics and a clear story for investors.",
     tech: ["Framer", "React"],
-    embed: "https://airtabmedia.com",
+    screenshot: airtabShot,
     span: "featured",
     accent: "#6366f1",
   },
@@ -102,7 +109,7 @@ const brandSites = [
     description:
       "Website for a marketing and product development production company.",
     tech: ["React", "JavaScript"],
-    embed: "https://www.maximus.productions",
+    screenshot: maximusShot,
     span: "standard",
     accent: "#f5c842",
   },
@@ -114,7 +121,7 @@ const brandSites = [
     description:
       "You've been here before! React portfolio built for performance and SEO.",
     tech: ["React", "JavaScript"],
-    embed: "https://dylandalal.com",
+    screenshot: dylandalalShot,
     span: "standard",
     accent: "#ec4899",
   },
@@ -126,7 +133,6 @@ const brandSites = [
     description:
       "Law office website designed for clarity and accessibility. Clean, straightforward structure.",
     tech: ["JavaScript"],
-    embed: null,
     screenshot: kofskyShot,
     span: "standard",
     accent: "#94a3b8",
@@ -165,48 +171,6 @@ const marqueeItems = [
   "ACCESSIBILITY",
 ];
 
-function FitFrame({ src, title }) {
-  const wrapRef = useRef(null);
-  const frameRef = useRef(null);
-
-  useEffect(() => {
-    const baseW = 1600;
-    const baseH = 1000;
-    const wrap = wrapRef.current;
-    if (!wrap) return;
-
-    const fit = () => {
-      const { width, height } = wrap.getBoundingClientRect();
-      if (!width || !height) return;
-      const scale = Math.max(width / baseW, height / baseH);
-      if (frameRef.current) {
-        frameRef.current.style.width = `${baseW}px`;
-        frameRef.current.style.height = `${baseH}px`;
-        frameRef.current.style.transform = `translate(-50%, -50%) scale(${scale})`;
-      }
-    };
-
-    fit();
-    const ro = new ResizeObserver(fit);
-    ro.observe(wrap);
-    return () => ro.disconnect();
-  }, []);
-
-  return (
-    <div ref={wrapRef} className="fit-frame">
-      <iframe
-        ref={frameRef}
-        src={src}
-        title={title}
-        loading="lazy"
-        className="fit-frame__iframe"
-        scrolling="no"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      />
-    </div>
-  );
-}
-
 function ProjectTile({ project, index, offset = 0 }) {
   const num = String(index + 1 + offset).padStart(2, "0");
 
@@ -219,10 +183,14 @@ function ProjectTile({ project, index, offset = 0 }) {
       style={{ "--accent": project.accent }}
     >
       <div className="tile__media">
-        {project.embed ? (
-          <FitFrame src={project.embed} title={project.name} />
-        ) : project.screenshot ? (
-          <img src={project.screenshot} alt={`${project.name} screenshot`} style={{ objectPosition: "top" }} />
+        {project.screenshot ? (
+          <img
+            src={project.screenshot}
+            alt={`${project.name} screenshot`}
+            loading="lazy"
+            decoding="async"
+            style={{ objectPosition: "top" }}
+          />
         ) : null}
         <div className="tile__scrim" />
       </div>
