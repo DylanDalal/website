@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import "./Web.scss";
-import kofskyShot from "../resources/computer-science/website_5.jpg";
 import terraShot from "../resources/computer-science/site-terra.webp";
 import resumesmithyShot from "../resources/computer-science/site-resumesmithy.webp";
 import owezShot from "../resources/computer-science/site-owez.webp";
@@ -10,6 +9,9 @@ import iconShot from "../resources/computer-science/site-openforanicon.webp";
 import airtabShot from "../resources/computer-science/site-airtab.webp";
 import maximusShot from "../resources/computer-science/site-maximus.webp";
 import dylandalalShot from "../resources/computer-science/site-dylandalal.webp";
+import feelgoodchiroShot from "../resources/computer-science/site-feelgoodchiro.webp";
+import chiroBefore from "../resources/computer-science/web/feelgoodchiro-before.webp";
+import chiroAfter from "../resources/computer-science/web/feelgoodchiro-after.webp";
 
 const cohortShot = process.env.PUBLIC_URL + "/cohort.jpg";
 
@@ -126,16 +128,16 @@ const brandSites = [
     accent: "#ec4899",
   },
   {
-    name: "Kofsky Law Office",
-    url: "https://kofskylawoffice.com",
-    year: "2022",
+    name: "Feel Good Chiropractic",
+    url: "https://feelgoodchiro.net",
+    year: "2026",
     role: "Design · Build",
     description:
-      "Law office website designed for clarity and accessibility. Clean, straightforward structure.",
-    tech: ["JavaScript"],
-    screenshot: kofskyShot,
+      "Marketing site for a Tampa chiropractic practice. Condition and service pages built for local search, a full Spanish translation, and booking wired throughout.",
+    tech: ["Next.js", "React"],
+    screenshot: feelgoodchiroShot,
     span: "standard",
-    accent: "#94a3b8",
+    accent: "#ffafcc",
   },
 ];
 
@@ -154,6 +156,29 @@ const processSteps = [
     num: "03",
     title: "Always accessible",
     body: "Expect continued support after launch. I'll provide video and written docs so your team can keep things running without me.",
+  },
+];
+
+const chiroPalette = [
+  { name: "Sky", hex: "#C5DCFA" },
+  { name: "Lavender", hex: "#EADEF0" },
+  { name: "Blush", hex: "#FEE3EE" },
+  { name: "Sunset", hex: "#FFAFCC" },
+  { name: "Dusk", hex: "#353349" },
+];
+
+const chiroStory = [
+  {
+    title: "Where it started",
+    body: "The old site was a stock template: a grayscale hero photo, mustard buttons, a charcoal slab of welcome text, and an accessibility pop-up parked on top of the headline. None of it felt like the office it was for.",
+  },
+  {
+    title: "A brand we built together",
+    body: "I worked with the client to find a calmer identity before touching any code. We landed on something tranquil and warm, reminiscent of a Florida sunset: sky blue melting into pink and lavender, soft rounded type, and one line to carry it all. Get back to feeling good.",
+  },
+  {
+    title: "What shipped",
+    body: "A Next.js site with a page for every condition and service, written for local search. A complete Spanish translation. Booking within reach from anywhere on the site.",
   },
 ];
 
@@ -233,6 +258,148 @@ function BentoGrid({ projects, offset = 0 }) {
   );
 }
 
+function SiteFrame({ label, note, src, width, height, alt }) {
+  return (
+    <figure className="cs__pane">
+      <figcaption className="cs__pane-label">
+        <span>{label}</span>
+        <span className="cs__pane-note">{note}</span>
+      </figcaption>
+      <div className="cs__browser">
+        <span className="cs__chrome" aria-hidden="true"><i /><i /><i /></span>
+        <div className="cs__frame">
+          <img src={src} alt={alt} width={width} height={height} decoding="async" />
+        </div>
+      </div>
+    </figure>
+  );
+}
+
+function ChiroCaseStudy() {
+  const scrollRef = useRef(null);
+
+  // Both full-page captures pan top → bottom while the stage is pinned.
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const rect = el.getBoundingClientRect();
+      const travel = Math.max(rect.height - window.innerHeight, 1);
+      const prog = Math.max(0, Math.min(-rect.top / travel, 1));
+      el.style.setProperty("--p", prog.toFixed(4));
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return (
+    <section className="cs">
+      <div className="section-rule section-rule--spaced">
+        <span className="section-rule__label">Case Study: Feel Good Chiro</span>
+        <span className="section-rule__line" />
+        <span className="section-rule__count">Rebrand + Rebuild</span>
+      </div>
+
+      <div className="cs__intro">
+        <h2 className="cs__title">
+          Getting back to
+          <br />
+          feeling good.
+        </h2>
+        <div className="cs__lede">
+          <p>
+            Feel Good Chiropractic is a Tampa practice built on personal, unhurried care.
+            Its website said none of that. I worked with the client to rebuild it from
+            the brand up.
+          </p>
+          <dl className="cs__meta">
+            <div>
+              <dt>Scope</dt>
+              <dd>Brand · Design · Build</dd>
+            </div>
+            <div>
+              <dt>Stack</dt>
+              <dd>Next.js · React</dd>
+            </div>
+            <div>
+              <dt>Live</dt>
+              <dd>
+                <a href="https://feelgoodchiro.net" target="_blank" rel="noopener noreferrer">
+                  feelgoodchiro.net
+                </a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div className="cs__scroll" ref={scrollRef}>
+        <div className="cs__stage">
+          <div className="cs__panes">
+            <SiteFrame
+              label="Before"
+              note="Stock template"
+              src={chiroBefore}
+              width={1200}
+              height={5324}
+              alt="Full-page capture of the old Feel Good Chiropractic homepage"
+            />
+            <SiteFrame
+              label="After"
+              note="New brand + build"
+              src={chiroAfter}
+              width={1200}
+              height={9176}
+              alt="Full-page capture of the redesigned Feel Good Chiropractic homepage"
+            />
+          </div>
+          <div className="cs__progress" aria-hidden="true"><span /></div>
+        </div>
+      </div>
+
+      <div className="cs__story">
+        <div className="cs__brand">
+          <p className="cs__brand-line">Get back to feeling good.</p>
+          <ul className="cs__swatches">
+            {chiroPalette.map((c) => (
+              <li key={c.hex}>
+                <span className="cs__chip" style={{ background: c.hex }} />
+                <span className="cs__chip-name">{c.name}</span>
+                <span className="cs__chip-hex">{c.hex}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="cs__notes">
+          {chiroStory.map((n) => (
+            <div className="cs__note" key={n.title}>
+              <h3>{n.title}</h3>
+              <p>{n.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Web() {
   useEffect(() => {
     document.documentElement.classList.add("web-page--hide-scrollbar");
@@ -306,6 +473,9 @@ export default function Web() {
         </span>
       </div>
       <BentoGrid projects={brandSites} offset={webapps.length} />
+
+      {/* CASE STUDY */}
+      <ChiroCaseStudy />
 
       {/* PROCESS */}
       <section className="process">

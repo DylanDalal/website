@@ -49,11 +49,21 @@ import react from '../resources/computer-science/react.png';
 import framer from '../resources/computer-science/framer.png';
 import csharp from '../resources/computer-science/csharp.png';
 import plus from '../resources/computer-science/plus.png';
-import WebsitePreviewSlider from "../components/WebsitePreviewSlider";
+import WebsiteWall from "../components/WebsiteWall";
 import website_1 from "../resources/computer-science/website_1.jpg";
-import website_2 from "../resources/computer-science/website_5.jpg";
+import website_2 from "../resources/computer-science/website_2.jpg";
 import website_3 from "../resources/computer-science/website_3.jpg";
 import website_4 from "../resources/computer-science/website_4.jpg";
+import site_terra from "../resources/computer-science/site-terra.webp";
+import site_resumesmithy from "../resources/computer-science/site-resumesmithy.webp";
+import site_owez from "../resources/computer-science/site-owez.webp";
+import site_tipt from "../resources/computer-science/site-tipt.webp";
+import site_icon from "../resources/computer-science/site-openforanicon.webp";
+import site_airtab from "../resources/computer-science/site-airtab.webp";
+import site_maximus from "../resources/computer-science/site-maximus.webp";
+import site_dylandalal from "../resources/computer-science/site-dylandalal.webp";
+import site_feelgoodchiro from "../resources/computer-science/site-feelgoodchiro.webp";
+import feelgoodchiro_full from "../resources/computer-science/web/feelgoodchiro-after-sm.webp";
 import beeble1 from "../resources/computer-science/beeble1.jpg";
 import {
   DataTransferComponent,
@@ -131,7 +141,48 @@ const auto1 = `Python pipeline that converts Reddit stories into fully-captioned
 const auto2 = `My goal was to do as little as possible, while uploading as much as possible. This pipeline achieved
                exactly that. The channel never got any traction, though.`
 
-const website_previews = [website_1, website_2, website_3, website_4]
+const site_cohort = process.env.PUBLIC_URL + "/cohort.jpg";
+
+// shift = parallax travel in column-widths (sign sets direction; 3-card columns with one tall
+// capture are short, so keep them under ~0.4 or their ends scroll into view). Tall captures scroll inside their frame
+// from `from`% to `from + pan`% of their own height, so one capture can appear twice as different pages.
+const website_wall = [
+  { shift: -0.34, shots: [
+    { kind: "wide", src: site_terra },
+    { kind: "tall", src: website_1, from: 0, pan: 22 },
+    { kind: "wide", src: site_owez },
+  ]},
+  { shift: 0.8, shots: [
+    { kind: "tall", src: feelgoodchiro_full, from: 0, pan: 22 },
+    { kind: "wide", src: site_icon },
+    { kind: "tall", src: website_3, from: 26, pan: 22 },
+  ]},
+  { shift: -0.38, shots: [
+    { kind: "wide", src: site_resumesmithy },
+    { kind: "tall", src: website_2, from: 0, pan: 22 },
+    { kind: "wide", src: site_maximus },
+  ]},
+  { shift: 0.6, shots: [
+    { kind: "tall", src: website_4, from: 0, pan: 24 },
+    { kind: "wide", src: site_airtab },
+    { kind: "tall", src: website_1, from: 27, pan: 22 },
+  ]},
+  { shift: -0.3, shots: [
+    { kind: "wide", src: site_feelgoodchiro },
+    { kind: "tall", src: website_3, from: 0, pan: 22 },
+    { kind: "wide", src: site_cohort },
+  ]},
+  { shift: 0.75, shots: [
+    { kind: "tall", src: website_2, from: 27, pan: 22 },
+    { kind: "wide", src: site_tipt },
+    { kind: "tall", src: feelgoodchiro_full, from: 44, pan: 22 },
+  ]},
+  { shift: -0.36, shots: [
+    { kind: "wide", src: site_dylandalal },
+    { kind: "tall", src: website_4, from: 38, pan: 24 },
+    { kind: "wide", src: site_terra },
+  ]},
+];
 
 const asoj_intro = [
   {
@@ -454,7 +505,7 @@ function Tech() {
           Elevating Brands with Elegant Websites
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: 'center', justifyContent: 'center' }}>
-          <WebsitePreviewSlider images={website_previews} />
+          <WebsiteWall columns={website_wall} />
           <div style={{maxWidth: "55vw"}}>
             <div className="body_no_padding" style={{ color: 'black' }}>{websi}</div>
             <div style={{ textAlign: 'center'}}>

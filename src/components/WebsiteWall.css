@@ -1,0 +1,99 @@
+/* ------------- clipping band ------------- */
+.wall{
+  --p:.5;                    /* scroll progress, set from WebsiteWall.js */
+  --col:14vw;
+  --gap:1vw;
+  position:relative;
+  width:100%;
+  height:min(64vh, calc(var(--col) * 2.7));   /* tied to card size so columns always overfill it */
+  margin:2vh 0 5vh;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  /* cards dissolve into the white band instead of being cut off */
+  -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 10%, #000 90%, transparent 100%);
+          mask-image:linear-gradient(180deg, transparent 0, #000 10%, #000 90%, transparent 100%);
+}
+
+/* ------------- tilted plane ------------- */
+.wall__plane{
+  flex:none;
+  display:flex;
+  align-items:center;
+  gap:var(--gap);
+  transform:rotate(-7deg) scale(1.15);
+}
+
+.wall__col{
+  flex:0 0 var(--col);
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap);
+  /* sign of --shift decides whether the column rises or sinks */
+  transform:translate3d(0, calc((var(--p) - .5) * 2 * var(--shift) * var(--col)), 0);
+  will-change:transform;
+}
+
+/* ------------- cards ------------- */
+.wall__card{
+  margin:0;
+  border-radius:10px;
+  overflow:hidden;
+  background:#0b133a;
+  border:1px solid rgba(11, 19, 58, 0.12);
+  box-shadow:
+    0 8px 32px rgba(11, 19, 58, 0.14),
+    0 2px 8px rgba(11, 19, 58, 0.08);
+}
+
+.wall__frame{
+  overflow:hidden;
+}
+
+.wall__frame img{
+  display:block;
+  width:100%;
+  pointer-events:none;
+}
+
+/* landscape browser window */
+.wall__chrome{
+  display:flex;
+  align-items:center;
+  gap:.3vw;
+  height:1.1vw;
+  padding:0 .6vw;
+  background:#eef0f5;
+}
+.wall__chrome i{
+  width:.36vw;
+  height:.36vw;
+  border-radius:50%;
+  background:rgba(11, 19, 58, 0.22);
+}
+.wall__card--wide .wall__frame{ aspect-ratio:16 / 10; }
+.wall__card--wide img{
+  height:100%;
+  object-fit:cover;
+  object-position:top;
+}
+
+/* full-page capture that pans inside its frame */
+.wall__card--tall .wall__frame{ aspect-ratio:10 / 17; }
+.wall__card--tall img{
+  height:auto;
+  transform:translate3d(0, calc((var(--from, 0%) + var(--p) * var(--pan, 0%)) * -1), 0);
+  will-change:transform;
+}
+
+@media (orientation: portrait) {
+  .wall{
+    --col:30vw;
+    --gap:2vw;
+    height:min(46vh, calc(var(--col) * 2.7));
+  }
+  .wall__chrome{ height:2.6vw; gap:.7vw; padding:0 1.4vw; }
+  .wall__chrome i{ width:.85vw; height:.85vw; }
+  .wall__card{ border-radius:8px; }
+}
